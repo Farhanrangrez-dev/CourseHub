@@ -184,7 +184,7 @@ const StudentDetails = () => {
         </div>
 
         <div className="col-md-2 d-flex">
-          <button className="btn btn-secondary mt-4 w-100">
+          <button className="btn btn-secondary mt-4 w-100" style={{backgroundColor:"gray" , color:"black", border:"none"}}>
             <i className="fas fa-search"></i> Search
           </button>
         </div>

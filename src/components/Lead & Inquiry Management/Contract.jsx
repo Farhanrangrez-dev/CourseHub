@@ -284,7 +284,7 @@ const Contract = () => {
       <nav aria-label="breadcrumb">
         <ol className="breadcrumb">
           <li className="breadcrumb-item">
-            <Link to="/dashboard" className="text-success text-decoration-none">
+            <Link to="/dashboard" className="text-success text-decoration-none"  >
               Home
             </Link>
           </li>
@@ -311,7 +311,7 @@ const Contract = () => {
         <Col className="text-end gap-2 w-100">
           <Button
             onClick={handleShow}
-            style={{ backgroundColor: "#0f3093a8", color: "black" }}
+            style={{ backgroundColor: "gray", color: "black", border:"none" }}
           >
             + Add
           </Button>
@@ -373,9 +373,10 @@ const Contract = () => {
           ))}
         </tbody>
       </Table>
+      
 
       <div className="d-flex justify-content-between">
-        <Button onClick={prevPage} disabled={currentPage === 1}>
+        <Button onClick={prevPage} disabled={currentPage === 1} style={{backgroundColor:"gray" , color:"black", border:"none"}}>
           Previous
         </Button>
         <span>
@@ -384,6 +385,7 @@ const Contract = () => {
         <Button
           onClick={nextPage}
           disabled={currentPage >= Math.ceil(contracts.length / itemsPerPage)}
+          style={{backgroundColor:"gray" , color:"black", border:"none"}}
         >
           Next
         </Button>

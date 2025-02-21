@@ -168,7 +168,7 @@ const Deal = () => {
             </ol>
           </nav>
           <Button
-            style={{ backgroundColor: "#0f3093a8", color: "black" }}
+           style={{backgroundColor:"gray" , color:"black", border:"none"}}
             onClick={handleShow}
           >
             + Add

@@ -127,10 +127,10 @@ const Reports = () => {
             <option value="last90">Last 90 Days</option>
             <option value="year">This Year</option>
           </Form.Select>
-          <Button variant="outline-primary">
+          <Button variant="outline-primary" style={{backgroundColor:"gray" , color:"black", border:"none"}}>
             <FaFilter className="me-2" /> Filter
           </Button>
-          <Button variant="primary">
+          <Button variant="primary" style={{backgroundColor:"gray" , color:"black", border:"none"}}>
             <FaDownload className="me-2" /> Export Report
           </Button>
         </div>
@@ -278,7 +278,7 @@ const Reports = () => {
                 <Card.Body>
                   <div className="d-flex justify-content-between align-items-center mb-4">
                     <h5 className="mb-0">Detailed Performance Metrics</h5>
-                    <Button variant="outline-primary" size="sm">
+                    <Button variant="outline-primary" size="sm" style={{backgroundColor:"gray" , color:"black", border:"none"}}>
                       <FaDownload className="me-2" /> Export
                     </Button>
                   </div>
@@ -406,7 +406,7 @@ const Reports = () => {
                 <Card.Body>
                   <div className="d-flex justify-content-between align-items-center mb-4">
                     <h5 className="mb-0">Follow-up Status</h5>
-                    <Button variant="outline-primary" size="sm">
+                    <Button variant="outline-primary" size="sm" style={{backgroundColor:"gray" , color:"black", border:"none"}}>
                       <FaSync className="me-2" /> Refresh
                     </Button>
                   </div>

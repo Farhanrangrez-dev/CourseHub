@@ -394,7 +394,7 @@ const AdmissionTracking = () => {
           </div>
         </div>
 
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className="btn btn-primary" style={{backgroundColor:"gray" , color:"black", border:"none"}}>
           Submit Application
         </button>
       </form>

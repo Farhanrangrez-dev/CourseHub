@@ -91,7 +91,7 @@ const TaskAssignment = ({ onTaskAssign, onLeadAssign }) => {
     <div className="container p-3"  >
       <h4 className="fw-bold mb-4">Assign Tasks</h4>
       <div className="text-end mb-3">
-        <button className="btn btn-primary" onClick={() => setShowModal(true)}>
+        <button className="btn btn-primary" onClick={() => setShowModal(true)} style={{backgroundColor:"gray" , color:"black", border:"none"}}>
           Add Task
         </button>
       </div>

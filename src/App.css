@@ -90,7 +90,7 @@ main {
 }
 .login-container h1 {
   font-weight: 600;
-  color: #578e7e;
+ 
   margin-bottom: 20px;
 }
 .req {
@@ -108,13 +108,11 @@ main {
 }
 
 .login-container .btn-primary {
-  background-color: #578e7e;
-  border-color: #578e7e;
+  
 }
 
 .login-container .btn-primary:hover {
-  background-color: #578e7e;
-  border-color: #578e7e;
+ 
 }
 
 .login-container .form-text {
@@ -299,7 +297,7 @@ select.form-input {
 }
 
 .nav-brand {
-  color: #578e7e;
+ 
   line-height: 54.46px;
   font-size: 45px;
   font-weight: 700;

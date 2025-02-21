@@ -65,6 +65,7 @@ const TaskReminders = ({ tasks }) => {
             notificationsEnabled ? "btn-danger" : "btn-success"
           }`}
           onClick={handleNotificationToggle}
+          style={{backgroundColor:"gray" , color:"black", border:"none"}}
         >
           {notificationsEnabled
             ? "Disable Notifications"

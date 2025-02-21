@@ -91,7 +91,7 @@ const AddCounselor = ({ onAdd }) => {
   return (
     <div className="container p-3"  >
       {/* Search input on the left and Add button on the right */}
-      <h4 className="fw-bold mb-4">Add Counselor</h4>
+      <h4 className="fw-bold mb-4" >Add Counselor</h4>
       <div className="row">
         <div className="col-md-6">
           <input
@@ -106,6 +106,7 @@ const AddCounselor = ({ onAdd }) => {
           <button
             className="btn btn-primary"
             onClick={() => setShowModal(true)}
+            style={{backgroundColor:"gray" , color:"black", border:"none"}}s
           >
             Add Counselor
           </button>

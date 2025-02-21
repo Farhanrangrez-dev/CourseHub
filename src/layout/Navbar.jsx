@@ -23,7 +23,7 @@ const Navbar = ({ toggleSidebar }) => {
         style={{
           position: "fixed",
           backgroundColor: "white",
-          color: "black",
+          color: "white",
           width: "100%",
         
          

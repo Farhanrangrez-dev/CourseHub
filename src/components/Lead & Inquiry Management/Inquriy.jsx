@@ -168,7 +168,7 @@ const Inquriy = () => {
         </div>
 
         <div className="col-md-2 d-flex align-items-end">
-          <button className="btn btn-dark w-100">
+          <button className="btn btn-dark w-100" style={{backgroundColor:"gray" , color:"black", border:"none"}}>
             <i className="bi bi-search"></i> Search
           </button>
         </div>
@@ -183,7 +183,7 @@ const Inquriy = () => {
           <option>50</option>
         </Form.Select>
         <Button
-          style={{ backgroundColor: "#0f3093a8", color: "black" }}
+         style={{backgroundColor:"gray" , color:"black", border:"none"}}
           onClick={handleShow}
         >
           + Add

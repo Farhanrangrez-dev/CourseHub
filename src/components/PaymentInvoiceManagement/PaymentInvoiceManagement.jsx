@@ -186,6 +186,7 @@ function CourseUniversityDatabase() {
           <button
             className="btn btn-success mb-3"
             onClick={() => setShowModal(true)}
+            style={{backgroundColor:"gray" , color:"black", border:"none"}}
           >
             ➕ Add Course
           </button>
@@ -301,7 +302,7 @@ function CourseUniversityDatabase() {
           <Button variant="secondary" onClick={() => setShowModal(false)}>
             Close
           </Button>
-          <Button variant="primary" onClick={handleAddCourse}>
+          <Button variant="primary" onClick={handleAddCourse} style={{backgroundColor:"gray" , color:"black", border:"none"}}>
             Add Course
           </Button>
         </Modal.Footer>
