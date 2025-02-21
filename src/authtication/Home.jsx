@@ -65,7 +65,7 @@ const SinglePageWebsite = () => {
                   <p className="card-text">
                     Learn {course.name} with expert guidance.
                   </p>
-                  <button className="btn btn-primary">Enroll Now</button>
+                  <button className="btn btn-primary"style={{backgroundColor:"gray" , color:"black", border:"none"}}>Enroll Now</button>
                 </div>
               </div>
             </div>

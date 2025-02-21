@@ -287,7 +287,7 @@ const LeadInquiryManagement = () => {
                   </button>
                   <button
                     type="submit"
-                    className="btn btn-primary px-4 ms-2 col-sm-12 "
+                    className="btn btn-primary px-4 ms-2 col-sm-12 " style={{backgroundColor:"gray" , color:"black", border:"none"}}
                   >
                     SAVE
                   </button>
