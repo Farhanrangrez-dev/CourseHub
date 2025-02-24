@@ -68,6 +68,9 @@ const Login = ({
             <div className="mb-3">
               <input type="password" className="form-control" placeholder="Create Password" required />
             </div>
+            <div className="mb-3">
+              <input type="password" className="form-control" placeholder="Comfirm  Password" required />
+            </div>
             <button type="submit" className="btn btn-success w-100">Sign Up</button>
           </form>
         )}

@@ -195,7 +195,7 @@ const Payments = () => {
               </div>
 
               <div className="table-responsive">
-                <Table responsive hover>
+                <Table striped responsive hover>
                   <thead>
                     <tr>
                       <th>Invoice ID</th>

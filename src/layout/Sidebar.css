@@ -7,9 +7,8 @@
   margin-top: 85px;
   z-index: 1;
   position: fixed;
-  background-color:rgb(192, 191, 191);
+  background-color: rgb(192, 191, 191);
   color: white;
- 
 }
 .submenu {
   list-style: none;
@@ -38,11 +37,9 @@
 
 .sidebar-container.collapsed {
   width: 80px;
-  
 }
 .sidebar-container.collapsed .submenu {
   display: none;
-
 }
 .sidebar-container.collapsed .menu .menu-text {
   opacity: 0;
@@ -84,8 +81,6 @@
   color: rgb(10, 10, 10);
 }
 
-
-
 .submenu {
   list-style-type: none;
   margin: 0;
@@ -114,7 +109,6 @@
 .submenu-item {
   padding: 10px 0;
   cursor: pointer;
-  
 }
 .submenu-item {
   color: black;
@@ -148,6 +142,5 @@
     width: 0px;
     z-index: 999;
     position: absolute;
-
   }
 }

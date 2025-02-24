@@ -27,8 +27,8 @@ const CommunicationFollowupManagement = () => {
       <h2 className="text-center mb-4">📩 Communication Follow-Up</h2>
 
       <div className="table-responsive">
-        <table className="table table-bordered table-hover">
-          <thead className="table-dark">
+        <table className="table table-striped table-bordered table-hover">
+          <thead className="table ">
             <tr>
               <th>Name</th>
               <th>Email</th>

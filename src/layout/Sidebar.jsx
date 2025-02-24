@@ -144,7 +144,7 @@ const Sidebar = ({ collapsed, menuItemClick, login, toggleSidebar }) => {
                 >
                   Dashboard
                 </li> */}
-                  <li
+                  {/* <li
                     className={`menu-item submenu-item ${
                       isActive("/contract") ? "active" : ""
                     }`}
@@ -154,7 +154,7 @@ const Sidebar = ({ collapsed, menuItemClick, login, toggleSidebar }) => {
                     }}
                   >
                     Contact
-                  </li>
+                  </li> */}
                   <li
                     className={`menu-item submenu-item ${
                       isActive("/inquiry") ? "active" : ""
@@ -177,7 +177,7 @@ const Sidebar = ({ collapsed, menuItemClick, login, toggleSidebar }) => {
                   >
                     Lead
                   </li>
-                  <li
+                  {/* <li
                     className={`menu-item submenu-item ${
                       isActive("/deal") ? "active" : ""
                     }`}
@@ -187,7 +187,7 @@ const Sidebar = ({ collapsed, menuItemClick, login, toggleSidebar }) => {
                     }}
                   >
                     Deal
-                  </li>
+                  </li> */}
                   {/* <li
                   className={`menu-item submenu-item ${
                     isActive("/quotes") ? "active" : ""
@@ -583,7 +583,7 @@ const Sidebar = ({ collapsed, menuItemClick, login, toggleSidebar }) => {
                   >
                     Document Upload
                   </li> */}
-                  <li
+                  {/* <li
                     className={`menu-item submenu-item ${
                       isActive("/university") ? "active" : ""
                     }`}
@@ -593,7 +593,7 @@ const Sidebar = ({ collapsed, menuItemClick, login, toggleSidebar }) => {
                     }}
                   >
                     University Details
-                  </li>
+                  </li> */}
                   <li
                     className={`menu-item submenu-item ${
                       isActive("/applications") ? "active" : ""
@@ -613,7 +613,7 @@ const Sidebar = ({ collapsed, menuItemClick, login, toggleSidebar }) => {
           )}
 
           {/* Communication & Follow-up Management */}
-          {login == "admin" ? (
+          {/* {login == "admin" ? (
             <li
               className={`menu-item ${
                 isSubmenuActive(["/followup", "/reminder"]) ? "active" : ""
@@ -664,7 +664,7 @@ const Sidebar = ({ collapsed, menuItemClick, login, toggleSidebar }) => {
             </li>
           ) : (
             ""
-          )}
+          )} */}
 
           {/* Task Management */}
           {login == "admin" ? (

@@ -194,7 +194,7 @@ function CourseUniversityDatabase() {
 
         {/* Universities Table */}
         <div className="table-responsive">
-          <table className="table table-bordered table-hover">
+          <table className="table table-striped table-bordered table-hover">
             <thead className="table-light">
               <tr>
                 <th>University Name</th>
