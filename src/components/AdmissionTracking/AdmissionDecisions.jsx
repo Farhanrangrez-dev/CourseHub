@@ -184,7 +184,7 @@ const AdmissionDecisions = () => {
       {/* Modal for Adding New Decision */}
       <Modal show={showModal} onHide={() => setShowModal(false)}>
         <Modal.Header closeButton>
-          <Modal.Title style={{backgroundColor:"gray" , color:"black", border:"none"}}>Add Admission Decision</Modal.Title>
+          <Modal.Title >Add Admission Decision</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>

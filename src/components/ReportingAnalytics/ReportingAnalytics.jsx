@@ -469,7 +469,7 @@ const Payments = () => {
               <Button variant="secondary" onClick={() => setShowModal(false)}>
                 Cancel
               </Button>
-              <Button variant="primary" type="submit">
+              <Button variant="primary" type="submit" style={{backgroundColor:"gray", color:"black", border:"none"}}> 
                 {modalMode === "add" ? "Create Payment" : "Update Payment"}
               </Button>
             </div>

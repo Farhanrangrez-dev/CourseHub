@@ -138,7 +138,7 @@ function ManaDetails() {
                       <strong>Gender:</strong> {student.gender}
                     </p>
                   </div>
-                  <Button variant="info">View Details</Button>
+                  <Button  style={{backgroundColor:"gray", color:"black", border:"none"}}>View Details</Button>
                 </Card.Body>
               </Card>
             </Link>

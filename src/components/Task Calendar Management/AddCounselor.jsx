@@ -217,6 +217,7 @@ const AddCounselor = ({ onAdd }) => {
                   Close
                 </button>
                 <button
+                 style={{ backgroundColor: "gray", color: "black", border: "none" }}
                   type="button"
                   className="btn btn-success"
                   onClick={
