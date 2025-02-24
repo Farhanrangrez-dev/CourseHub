@@ -394,7 +394,7 @@ select.form-input {
 @media (max-width: 820px) {
   .right-side-content.collapsed {
     padding-left: 0px !important;
-    margin-left: 80px;
+    /* margin-left: 80px; */
   }
   .right-side-content {
     width: 100%;
