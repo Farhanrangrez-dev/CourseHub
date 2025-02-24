@@ -30,50 +30,8 @@ const storedInquiries = JSON.parse(localStorage.getItem("inquiries")) || [];
 setInquiries(storedInquiries);
 }, []);
 
-<<<<<<< HEAD
-  return (
-    <div className="bg-dark text-white">
-      {/* Navbar */}
-      <Navbar expand="lg" className="navbar-dark bg-dark py-3">
-        <Container>
-          <Navbar.Brand href="#" className="fw-bold">
-            CourseHub
-          </Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="ms-auto">
-              <Nav.Link href="#" className="text-white">
-                Courses
-              </Nav.Link>
-              <Nav.Link href="#" className="text-white">
-                Programs
-              </Nav.Link>
-              <Nav.Link href="#" className="text-white">
-                Explore
-              </Nav.Link>
-            </Nav>
-            <Button style={{ marginRight: "10px" }}>
-              <Link to={"/login"} className="ms-3 " style={{ color: "white" }}>
-                Sign up
-              </Link>
-            </Button>
-            <Button>
-              <Link
-                to={"/login"}
-                variant="danger"
-                className="ms-2 text-decoration-none"
-                style={{ color: "white" }}
-              >
-                Log in
-              </Link>
-            </Button>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
-=======
 const handleShow = () => setShowModal(true);
 const handleClose = () => setShowModal(false);
->>>>>>> f5179247134720a7cb1adc606cb78b7405a07a7c
 
 const handleChange = (e) => {
 setFormData({ ...formData, [e.target.name]: e.target.value });

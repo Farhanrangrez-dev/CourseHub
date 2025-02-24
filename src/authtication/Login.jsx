@@ -43,10 +43,6 @@ const Login = ({
                 placeholder="Email Address"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-<<<<<<< HEAD
-=======
-                
->>>>>>> f5179247134720a7cb1adc606cb78b7405a07a7c
               />
             </div>
             <div className="mb-3">
@@ -56,11 +52,7 @@ const Login = ({
                 placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-<<<<<<< HEAD
                   
-=======
-                
->>>>>>> f5179247134720a7cb1adc606cb78b7405a07a7c
               />
             </div>
             <button type="submit" className="btn btn-primary w-100">
