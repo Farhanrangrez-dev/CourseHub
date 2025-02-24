@@ -28,7 +28,7 @@ const Login = ({
   return (
     <main className="justify-content-center align-items-center" >
       <div className="login-container border rounded shadow " >
-        <h1 className="fw-bold text-center text-primary">Student RECRUITMENT</h1>
+        <h1 className="fw-bold text-center ">Student RECRUITMENT</h1>
         <h4 className="text-center mb-4">{showSignUp ? "Sign Up" : "Welcome!"}</h4>
 
         {!showSignUp ? (
@@ -67,6 +67,9 @@ const Login = ({
             </div>
             <div className="mb-3">
               <input type="password" className="form-control" placeholder="Create Password" required />
+            </div>
+            <div className="mb-3">
+              <input type="password" className="form-control" placeholder="Comfirm  Password" required />
             </div>
             <button type="submit" className="btn btn-success w-100">Sign Up</button>
           </form>

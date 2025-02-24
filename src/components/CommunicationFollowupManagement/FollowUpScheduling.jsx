@@ -71,7 +71,7 @@ const FollowUpScheduling = () => {
           />
         </Form.Group>
 
-        <Button variant="primary" onClick={scheduleFollowUp} className="me-2">
+        <Button variant="primary" onClick={scheduleFollowUp} className="me-2" style={{backgroundColor:"gray" , color:"black", border:"none"}}>
           Schedule Follow-up
         </Button>
         <Button

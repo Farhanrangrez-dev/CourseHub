@@ -109,7 +109,7 @@ const AutomatedReminders = () => {
           </Form.Select>
         </Form.Group>
 
-        <Button variant="primary" onClick={addReminder} className="me-2">
+        <Button variant="primary" onClick={addReminder} className="me-2" style={{backgroundColor:"gray" , color:"black", border:"none"}}>
           Set Reminder
         </Button>
         <Button

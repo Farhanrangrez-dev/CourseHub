@@ -186,6 +186,7 @@ function CourseUniversityDatabase() {
           <button
             className="btn btn-success mb-3"
             onClick={() => setShowModal(true)}
+            style={{backgroundColor:"gray" , color:"black", border:"none"}}
           >
             ➕ Add Course
           </button>
@@ -193,7 +194,7 @@ function CourseUniversityDatabase() {
 
         {/* Universities Table */}
         <div className="table-responsive">
-          <table className="table table-bordered table-hover">
+          <table className="table table-striped table-bordered table-hover">
             <thead className="table-light">
               <tr>
                 <th>University Name</th>
@@ -301,7 +302,7 @@ function CourseUniversityDatabase() {
           <Button variant="secondary" onClick={() => setShowModal(false)}>
             Close
           </Button>
-          <Button variant="primary" onClick={handleAddCourse}>
+          <Button variant="primary" onClick={handleAddCourse} style={{backgroundColor:"gray" , color:"black", border:"none"}}>
             Add Course
           </Button>
         </Modal.Footer>

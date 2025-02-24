@@ -1,83 +1,131 @@
-import { useState, useEffect } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
+import React, { useState } from "react";
+import { Container, Row, Col, Card, Form, Button } from "react-bootstrap";
 
-// Task Reminders Component
-const TaskReminders = ({ tasks }) => {
+const TaskReminderDashboard = () => {
+  // Sample tasks data
+  const [tasks, setTasks] = useState([
+    { id: 1, name: "Submit Project Report", due: "Nov 10, 2023", completed: false },
+    { id: 2, name: "Team Meeting", due: "Nov 12, 2023", completed: false },
+  ]);
+
+  // Sample alerts data
+  const alerts = [
+    { id: 1, title: "Missing Documents", description: "Document: Tax Forms", due: "Immediate" },
+    { id: 2, title: "Deadline Alert", description: "Project: Marketing Plan", due: "Nov 15, 2023" },
+  ];
+
+  // Reminder state
+  const [reminder, setReminder] = useState({ name: "", date: "" });
   const [reminders, setReminders] = useState([]);
-  const [notificationsEnabled, setNotificationsEnabled] = useState(false);
+  const [autoReminders, setAutoReminders] = useState(false);
 
-  useEffect(() => {
-    // Filter tasks to show only upcoming ones
-    const upcomingTasks = tasks.filter((task) => {
-      const taskDate = new Date(task.date);
-      const today = new Date();
-      return taskDate >= today;
-    });
-    setReminders(upcomingTasks);
-  }, [tasks]);
-
-  // Function to handle enabling/disabling notifications
-  const handleNotificationToggle = () => {
-    setNotificationsEnabled((prev) => !prev);
+  // Mark task as complete
+  const toggleTaskCompletion = (id) => {
+    setTasks(tasks.map((task) => (task.id === id ? { ...task, completed: !task.completed } : task)));
   };
 
-  // Function to format dates into a readable format
-  const formatDate = (dateString) => {
-    const date = new Date(dateString);
-    return date.toLocaleDateString("en-US", {
-      weekday: "long",
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    });
+  // Add new reminder
+  const handleAddReminder = () => {
+    if (reminder.name && reminder.date) {
+      const newReminder = {
+        id: reminders.length + 1, // Unique ID for each reminder
+        name: reminder.name,
+        date: reminder.date,
+      };
+      setReminders([...reminders, newReminder]); // Add new reminder to the list
+      setReminder({ name: "", date: "" }); // Reset the form
+    } else {
+      alert("Please fill out both the task name and date.");
+    }
   };
 
   return (
-    <div className="container p-3">
-      <h4 className="fw-bold mb-4">Task Reminders</h4>
-      <p>Get notified for upcoming tasks.</p>
+    <Container className="mt-4">
+      <Row>
+        {/* Upcoming Tasks */}
+        <Col md={4}>
+          <h4>Upcoming Tasks</h4>
+          {tasks.map((task) => (
+            <Card key={task.id} className="mb-3 p-3 bg-danger bg-opacity-10">
+              <Card.Body>
+                <Card.Title>{task.name}</Card.Title>
+                <Card.Text>Due: {task.due}</Card.Text>
+                <Form.Check
+                  type="checkbox"
+                  label="Mark as Complete"
+                  checked={task.completed}
+                  onChange={() => toggleTaskCompletion(task.id)}
+                />
+              </Card.Body>
+            </Card>
+          ))}
+        </Col>
 
-      <ul className="list-group">
-        {reminders.length > 0 ? (
-          reminders.map((task, index) => (
-            <li
-              key={index}
-              className="list-group-item d-flex justify-content-between"
-            >
-              <div>
-                <strong>{task.task}</strong> - {task.counselor}
-                <br />
-                <small>{formatDate(task.date)}</small>
-              </div>
-              {notificationsEnabled && (
-                <span className="badge bg-primary">Reminder Enabled</span>
-              )}
-            </li>
-          ))
-        ) : (
-          <li className="list-group-item">No upcoming tasks</li>
-        )}
-      </ul>
+        {/* Alerts */}
+        <Col md={4}>
+          <h4>Alerts</h4>
+          {alerts.map((alert) => (
+            <Card key={alert.id} className="mb-3 p-3 bg-danger text-light">
+              <Card.Body>
+                <Card.Title>{alert.title}</Card.Title>
+                <Card.Text>{alert.description}</Card.Text>
+                <Card.Text>
+                  <strong>Due:</strong> {alert.due}
+                </Card.Text>
+              </Card.Body>
+            </Card>
+          ))}
+        </Col>
 
-      <div className="d-flex justify-content-between align-items-center mt-2">
-        <button
-          className={`btn ${
-            notificationsEnabled ? "btn-danger" : "btn-success"
-          }`}
-          onClick={handleNotificationToggle}
-        >
-          {notificationsEnabled
-            ? "Disable Notifications"
-            : "Enable Notifications"}
-        </button>
-        <span className="text-muted">
-          {notificationsEnabled
-            ? "You will be notified for upcoming tasks"
-            : ""}
-        </span>
-      </div>
-    </div>
+        {/* Reminder Management */}
+        <Col md={4}>
+          <h4>Manage Reminders</h4>
+          <Card className="p-3">
+            <Form.Group className="mb-2">
+              <Form.Control
+                type="text"
+                placeholder="Task Name"
+                value={reminder.name}
+                onChange={(e) => setReminder({ ...reminder, name: e.target.value })}
+              />
+            </Form.Group>
+            <Form.Group className="mb-2">
+              <Form.Control
+                type="date"
+                value={reminder.date}
+                onChange={(e) => setReminder({ ...reminder, date: e.target.value })}
+              />
+            </Form.Group>
+            <Button variant="danger" onClick={handleAddReminder} className="w-100">
+              Add Reminder
+            </Button>
+            <div className="mt-3 d-flex align-items-center">
+              <Form.Check
+                type="switch"
+                id="autoReminders"
+                label="Automate Reminders"
+                checked={autoReminders}
+                onChange={() => setAutoReminders(!autoReminders)}
+              />
+            </div>
+          </Card>
+
+          {/* Display Reminders */}
+          <div className="mt-4">
+            <h5>Reminders</h5>
+            {reminders.map((reminder) => (
+              <Card key={reminder.id} className="mb-3 p-3 bg-light">
+                <Card.Body>
+                  <Card.Title>{reminder.name}</Card.Title>
+                  <Card.Text>Due: {reminder.date}</Card.Text>
+                </Card.Body>
+              </Card>
+            ))}
+          </div>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 
-export default TaskReminders;
+export default TaskReminderDashboard;

@@ -1,235 +1,314 @@
-import { Dropdown, Button, Table, Modal, Form } from "react-bootstrap";
-import { useState } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Table, Button, Form, Badge, Modal } from "react-bootstrap";
 
-const Inquriy = () => {
-  const initialData = [
-    {
-      name: "Encoure",
-      phone: 890567673,
-      source: "Admission Campaign",
-      enquirydate: "2025-02-11",
-      lastdate: "2025-02-11",
-      nextdate: "2025-02-11",
-      status: "Active",
-    },
-    {
-      name: "Alexandria",
-      phone: 789806786,
-      source: "Online Front Site",
-      enquirydate: "2025-02-11",
-      lastdate: "2025-02-11",
-      nextdate: "2025-02-11",
-      status: "Active",
-    },
-    {
-      name: "Netpoints",
-      phone: 789806786,
-      source: "Google Ads",
-      enquirydate: "2025-02-11",
-      lastdate: "2025-02-11",
-      nextdate: "2025-02-11",
-      status: "Active",
-    },
-  ];
-
-  const [data, setData] = useState(initialData);
-  const [show, setShowModal] = useState(false);
-  const [formData, setFormData] = useState({
-    name: "",
-    phone: "",
-    source: "",
-    enquirydate: "",
-    lastdate: "",
-    nextdate: "",
-    status: "",
+const Inquiry = () => {
+  // Sample inquiry data
+  const [inquiries, setInquiries] = useState({
+    todayInquiries: [
+      {
+        id: 1,
+        title: "Complete monthly inquiry report",
+        status: "In Progress",
+        priority: "High priority",
+        assignedTeam: "Marketing",
+        counselor: "👤",
+      },
+      {
+        id: 2,
+        title: "Contact negotiation meeting",
+        status: "In Progress",
+        priority: "Medium priority",
+        assignedTeam: "Operational",
+        counselor: "👥",
+      },
+      {
+        id: 3,
+        title: "Keynote on market trends",
+        status: "WhatsApp",
+        priority: "WhatsApp",
+        assignedTeam: "Counselor",
+        counselor: "👨‍🏫",
+      },
+    ],
+    todayFollowUps: [
+      {
+        id: 4,
+        name: "John Doe", // Added name field
+        title: "Service Inquiry",
+        followUpDate: "Today",
+        status: "New",
+        urgency: "WhatsApp",
+        department: "Lead Inquiry",
+        responsible: "👤",
+      },
+      {
+        id: 5,
+        name: "Jane Smith", // Added name field
+        title: "Advanced filters review",
+        followUpDate: "Today",
+        status: "In Progress",
+        urgency: "Email",
+        department: "Conversion",
+        responsible: "👥",
+      },
+      {
+        id: 6,
+        name: "Michael Brown", // Added name field
+        title: "Lead Conversion Report",
+        followUpDate: "Today",
+        status: "New",
+        urgency: "Call",
+        department: "Follow-up",
+        responsible: "👨‍💼",
+      },
+    ],
+    thisWeekFollowUps: [
+      {
+        id: 7,
+        name: "Emily Johnson", // Added name field
+        title: "Follow-up Tasks",
+        followUpDate: "Thursday",
+        status: "In Progress",
+        urgency: "Email",
+        department: "Lead Follow-ups",
+        responsible: "👤",
+      },
+      {
+        id: 8,
+        name: "David Wilson", // Added name field
+        title: "Lead Progress Review",
+        followUpDate: "Thursday",
+        status: "New",
+        urgency: "Email",
+        department: "Lead Management",
+        responsible: "👥",
+      },
+      {
+        id: 9,
+        name: "Sarah Davis", // Added name field
+        title: "Lead Conversion Report",
+        followUpDate: "Friday",
+        status: "New",
+        urgency: "Call",
+        department: "Lead Development",
+        responsible: "👨‍💼",
+      },
+    ],
   });
-  const [editIndex, setEditIndex] = useState(null); // Track the index of the inquiry being edited
 
-  const handleClose = () => {
-    setShowModal(false);
-    setEditIndex(null); // Reset edit index when modal is closed
-    setFormData({
-      name: "",
-      phone: "",
-      source: "",
-      enquirydate: "",
+  // State for modals
+  const [showInquiryModal, setShowInquiryModal] = useState(false);
+  const [showFollowUpModal, setShowFollowUpModal] = useState(false);
+
+  // State for new inquiry form data
+  const [newInquiry, setNewInquiry] = useState({
+    title: "",
+    status: "New",
+    priority: "Medium priority",
+    assignedTeam: "",
+    counselor: "👤",
+  });
+
+  // State for new follow-up form data
+  const [newFollowUp, setNewFollowUp] = useState({
+    name: "", // Added name field
+    title: "",
+    followUpDate: "Today",
+    status: "New",
+    urgency: "WhatsApp",
+    department: "",
+    responsible: "👤",
+  });
+
+  // Open inquiry modal
+  const handleShowInquiryModal = () => setShowInquiryModal(true);
+
+  // Close inquiry modal
+  const handleCloseInquiryModal = () => {
+    setShowInquiryModal(false);
+    setNewInquiry({
+      title: "",
+      status: "New",
+      priority: "Medium priority",
+      assignedTeam: "",
+      counselor: "👤",
     });
   };
 
-  const handleShow = () => setShowModal(true);
+  // Open follow-up modal
+  const handleShowFollowUpModal = () => setShowFollowUpModal(true);
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  // Close follow-up modal
+  const handleCloseFollowUpModal = () => {
+    setShowFollowUpModal(false);
+    setNewFollowUp({
+      name: "", // Reset name field
+      title: "",
+      followUpDate: "Today",
+      status: "New",
+      urgency: "WhatsApp",
+      department: "",
+      responsible: "👤",
+    });
   };
 
-  const handleSubmit = (e) => {
+  // Handle input changes for new inquiry
+  const handleInquiryInputChange = (e) => {
+    const { name, value } = e.target;
+    setNewInquiry({
+      ...newInquiry,
+      [name]: value,
+    });
+  };
+
+  // Handle input changes for new follow-up
+  const handleFollowUpInputChange = (e) => {
+    const { name, value } = e.target;
+    setNewFollowUp({
+      ...newFollowUp,
+      [name]: value,
+    });
+  };
+
+  // Handle form submission for new inquiry
+  const handleAddInquiry = (e) => {
     e.preventDefault();
-    const newInquiry = {
-      name: formData.name,
-      phone: formData.phone,
-      source: formData.source,
-      enquirydate: formData.enquirydate,
-      lastdate: formData.lastdate, // Default value
-      nextdate: formData.nextdate, // Default value
-      status: formData.status, // Default value
+
+    // Create a new inquiry object
+    const inquiry = {
+      id: inquiries.todayInquiries.length + 1,
+      ...newInquiry,
     };
 
-    if (editIndex !== null) {
-      // If editing an existing inquiry
-      const updatedData = [...data];
-      updatedData[editIndex] = newInquiry;
-      setData(updatedData);
-    } else {
-      // If adding a new inquiry
-      setData([...data, newInquiry]);
+    // Add the new inquiry to the list
+    setInquiries({
+      ...inquiries,
+      todayInquiries: [...inquiries.todayInquiries, inquiry],
+    });
+
+    // Close the modal
+    handleCloseInquiryModal();
+  };
+
+  // Handle form submission for new follow-up
+  const handleAddFollowUp = (e) => {
+    e.preventDefault();
+
+    // Create a new follow-up object
+    const followUp = {
+      id: inquiries.todayFollowUps.length + 1,
+      ...newFollowUp,
+    };
+
+    // Add the new follow-up to the list
+    setInquiries({
+      ...inquiries,
+      todayFollowUps: [...inquiries.todayFollowUps, followUp],
+    });
+
+    // Close the modal
+    handleCloseFollowUpModal();
+  };
+
+  // Handle follow-up actions (WhatsApp, Email, Call)
+  const handleFollowUpAction = (action, title) => {
+    alert(`Performing ${action} for: ${title}`);
+  };
+
+  // Badge colors based on status
+  const getBadge = (status) => {
+    switch (status) {
+      case "In Progress":
+        return "success";
+      case "New":
+        return "primary";
+      case "WhatsApp":
+        return "warning";
+      case "Email":
+        return "info";
+      case "Call":
+        return "danger";
+      default:
+        return "secondary";
     }
-
-    setFormData({
-      name: "",
-      phone: "",
-      source: "",
-      enquirydate: "",
-    });
-    handleClose();
-  };
-
-  const handleDelete = (index) => {
-    const updatedData = data.filter((_, i) => i !== index); // Remove the inquiry at the specified index
-    setData(updatedData);
-  };
-
-  const handleEdit = (index) => {
-    const inquiry = data[index];
-    console.log(inquiry);
-    setFormData({
-      name: inquiry.name,
-      phone: inquiry.phone,
-      source: inquiry.source,
-      enquirydate: inquiry.enquirydate,
-      lastdate: inquiry.lastdate,
-      nextdate: inquiry.nextdate,
-      status: inquiry.status,
-    });
-    setEditIndex(index);
-    handleShow();
   };
 
   return (
-    <div className="container p-3"  >
-      <h4 className="fw-bold">Admission Enquiry</h4>
-      <nav aria-label="breadcrumb">
-        <ol className="breadcrumb">
-          <li className="breadcrumb-item">
-            <Link to="/dashboard" className="text-success text-decoration-none">
-              Home
-            </Link>
-          </li>
-          <Link
-            to={"/lead"}
-            className="breadcrumb-item active text-decoration-none"
-            aria-current="page"
-          >
-            Leads
-          </Link>
-        </ol>
-      </nav>
-      <div className="row g-2">
-        <div className="col-md-2">
-          <label className="form-label">Class</label>
-          <select className="form-select">
-            <option>Select</option>
-          </select>
-        </div>
-
-        <div className="col-md-2">
-          <label className="form-label">Source</label>
-          <select className="form-select">
-            <option>Select</option>
-          </select>
-        </div>
-
-        <div className="col-md-2">
-          <label className="form-label">Enquiry From Date *</label>
-          <input type="date" className="form-control" />
-        </div>
-
-        <div className="col-md-2">
-          <label className="form-label">Enquiry To Date *</label>
-          <input type="date" className="form-control" />
-        </div>
-
-        <div className="col-md-2">
-          <label className="form-label">Status</label>
-          <select className="form-select">
-            <option>Active</option>
-          </select>
-        </div>
-
-        <div className="col-md-2 d-flex align-items-end">
-          <button className="btn btn-dark w-100">
-            <i className="bi bi-search"></i> Search
-          </button>
+    <div className="container mt-4">
+      {/* Header Section */}
+      <div className="d-flex justify-content-between mb-3">
+        <Form.Control type="text" placeholder="Search inquiries" className="w-50" />
+        <div>
+          <Button variant="success" className="me-2" onClick={handleShowInquiryModal} style={{backgroundColor:"gray", color:"black", border:"none"}}>
+            Add Inquiry
+          </Button>
+          <Button variant="light" onClick={handleShowFollowUpModal}>
+            Follow-up
+          </Button>
         </div>
       </div>
 
-      <div className="d-flex justify-content-between align-items-center flex-wrap"></div>
-      <br />
-      <div className="d-flex justify-content-between align-items-center mb-3">
-        <Form.Select className="w-auto">
-          <option>10</option>
-          <option>20</option>
-          <option>50</option>
-        </Form.Select>
-        <Button
-          style={{ backgroundColor: "#0f3093a8", color: "black" }}
-          onClick={handleShow}
-        >
-          + Add
-        </Button>
-      </div>
-
-      <Table responsive bordered hover className="text-center">
-        <thead className="table-light text-nowrap">
+      {/* Today's Inquiries */}
+      <h4 className="mb-3">Today's Inquiries</h4>
+      <Table striped bordered hover responsive>
+        <thead>
           <tr>
-            <th>NAME</th>
-            <th>Phone</th>
-            <th>Source</th>
-            <th>Enquiry Date</th>
-            <th>Last Follow Up Date </th>
-            <th>Next Follow Up Date </th>
-            <th>Status</th>
-            <th>Action</th>
+            <th>Inquiry</th>
+            <th>Inquiry Stage</th>
+            <th>Priority</th>
+            <th>Assigned Team</th>
+            <th>Counselor</th>
           </tr>
         </thead>
         <tbody>
-          {data.map((item, index) => (
-            <tr key={index}>
-              <td>{item.name}</td>
-              <td>{item.phone}</td>
-              <td>{item.source}</td>
-              <td>{item.enquirydate}</td>
-              <td>{item.lastdate}</td>
-              <td>{item.nextdate}</td>
-              <td>{item.status}</td>
-              <td className="text-nowrap">
-                <Button size="sm" className="btn btn-light btn-sm me-1">
-                  👁️
-                </Button>
+          {inquiries.todayInquiries.map((inq) => (
+            <tr key={inq.id}>
+              <td>{inq.title}</td>
+              <td>
+                <Badge bg={getBadge(inq.status)}>{inq.status}</Badge>
+              </td>
+              <td>
+                <Badge bg="danger">{inq.priority}</Badge>
+              </td>
+              <td>{inq.assignedTeam}</td>
+              <td>{inq.counselor}</td>
+            </tr>
+          ))}
+        </tbody>
+      </Table>
+
+      {/* Today Follow-ups */}
+      <h4 className="mb-3">Today</h4>
+      <Table striped bordered hover responsive>
+        <thead>
+          <tr>
+            <th>Follow-up Date</th>
+            <th>Name</th>
+            <th>Status Update</th>
+            <th>Urgency Level</th>
+            <th>Department</th>
+            <th>Responsible</th>
+          </tr>
+        </thead>
+        <tbody>
+          {inquiries.todayFollowUps.map((inq) => (
+            <tr key={inq.id}>
+              <td>{inq.followUpDate}</td>
+              <td>{inq.name}</td> {/* Display name */}
+              <td>
+                <Badge bg={getBadge(inq.status)}>{inq.status}</Badge>
+              </td>
+              <td>
+                <Badge bg={getBadge(inq.urgency)}>{inq.urgency}</Badge>
+              </td>
+              <td>{inq.department}</td>
+              <td>
                 <Button
+                  variant="outline-primary"
                   size="sm"
-                  className="btn btn-light btn-sm me-1"
-                  onClick={() => handleEdit(index)}
+                  onClick={() => handleFollowUpAction(inq.urgency, inq.title)}
                 >
-                  ✏️
-                </Button>
-                <Button
-                  size="sm"
-                  className="btn btn-light btn-sm me-1"
-                  onClick={() => handleDelete(index)}
-                >
-                  🗑️
+                  {inq.urgency}
                 </Button>
               </td>
             </tr>
@@ -237,139 +316,196 @@ const Inquriy = () => {
         </tbody>
       </Table>
 
-      <Modal show={show} onHide={handleClose} centered>
+      {/* This Week Follow-ups */}
+      <h4 className="mb-3">This Week</h4>
+      <Table striped bordered hover responsive>
+        <thead>
+          <tr>
+            <th>Follow-up Date</th>
+            <th>Name</th>
+            <th>Status Update</th>
+            <th>Urgency Level</th>
+            <th>Department</th>
+            <th>Responsible</th>
+          </tr>
+        </thead>
+        <tbody>
+          {inquiries.thisWeekFollowUps.map((inq) => (
+            <tr key={inq.id}>
+              <td>{inq.followUpDate}</td>
+              <td>{inq.name}</td> {/* Display name */}
+              <td>
+                <Badge bg={getBadge(inq.status)}>{inq.status}</Badge>
+              </td>
+              <td>
+                <Badge bg={getBadge(inq.urgency)}>{inq.urgency}</Badge>
+              </td>
+              <td>{inq.department}</td>
+              <td>
+                <Button
+                  variant="outline-primary"
+                  size="sm"
+                  onClick={() => handleFollowUpAction(inq.urgency, inq.title)}
+                >
+                  {inq.urgency}
+                </Button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </Table>
+
+      {/* Modal for Adding New Inquiry */}
+      <Modal show={showInquiryModal} onHide={handleCloseInquiryModal} centered>
         <Modal.Header closeButton>
-          <Modal.Title>
-            {editIndex !== null ? "Edit Inquiry" : "Create Inquiry"}
-          </Modal.Title>
+          <Modal.Title>Add New Inquiry</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form onSubmit={handleSubmit}>
-            <div className="row">
-              <div className="col-md-6">
-                <Form.Group className="mb-3">
-                  <Form.Label>
-                    Name<span className="text-danger">*</span>
-                  </Form.Label>
-                  <Form.Control
-                    type="text"
-                    name="name"
-                    placeholder="Enter Name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                  />
-                </Form.Group>
-              </div>
-              <div className="col-md-6">
-                <Form.Group className="mb-3">
-                  <Form.Label>
-                    Phone<span className="text-danger">*</span>
-                  </Form.Label>
-                  <Form.Control
-                    type="number"
-                    name="phone"
-                    placeholder="Enter Phone Number"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    required
-                  />
-                </Form.Group>
-              </div>
-              <div className="col-md-6">
-                <Form.Group className="mb-3">
-                  <Form.Label>
-                    Source<span className="text-danger">*</span>
-                  </Form.Label>
-                  <Form.Select
-                    name="source"
-                    value={formData.source}
-                    onChange={handleChange}
-                    required
-                  >
-                    <option value="">Select Source</option>
-                    <option value="Admission Campaign">
-                      Admission Campaign
-                    </option>
-                    <option value="Online Front Site">Online Front Site</option>
-                    <option value="Google Ads">Google Ads</option>
-                    <option value="Front Office">Front Office</option>
-                  </Form.Select>
-                </Form.Group>
-              </div>
-              <div className="col-md-6">
-                <Form.Group className="mb-3">
-                  <Form.Label>
-                    Enquiry Date<span className="text-danger">*</span>
-                  </Form.Label>
-                  <Form.Control
-                    type="date"
-                    name="enquirydate"
-                    value={formData.enquirydate}
-                    onChange={handleChange}
-                    required
-                  />
-                </Form.Group>
-              </div>
-              <div className="col-md-6">
-                <Form.Group className="mb-3">
-                  <Form.Label>
-                    Last Follow Up Date<span className="text-danger">*</span>
-                  </Form.Label>
-                  <Form.Control
-                    type="date"
-                    name="lastdate"
-                    value={formData.lastdate}
-                    onChange={handleChange}
-                    required
-                  />
-                </Form.Group>
-              </div>
-              <div className="col-md-6">
-                <Form.Group className="mb-3">
-                  <Form.Label>
-                    Next Follow Up Date<span className="text-danger">*</span>
-                  </Form.Label>
-                  <Form.Control
-                    type="date"
-                    name="nextdate"
-                    value={formData.nextdate}
-                    onChange={handleChange}
-                    required
-                  />
-                </Form.Group>
-              </div>
-              <div className="col-md-6">
-                <Form.Group className="mb-3">
-                  <Form.Label>
-                    Status<span className="text-danger">*</span>
-                  </Form.Label>
-                  <Form.Select
-                    name="status"
-                    value={formData.status}
-                    onChange={handleChange}
-                    required
-                  >
-                    <option value="">Select Status</option>
-                    <option value="Active">Active</option>
-                    <option value="Inactive">Inactive</option>
-                  </Form.Select>
-                </Form.Group>
-              </div>
+          <Form onSubmit={handleAddInquiry}>
+            <Form.Group className="mb-3">
+              <Form.Label>Title</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter inquiry title"
+                name="title"
+                value={newInquiry.title}
+                onChange={handleInquiryInputChange}
+                required
+              />
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Status</Form.Label>
+              <Form.Select
+                name="status"
+                value={newInquiry.status}
+                onChange={handleInquiryInputChange}
+              >
+                <option value="New">New</option>
+                <option value="In Progress">In Progress</option>
+              </Form.Select>
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Priority</Form.Label>
+              <Form.Select
+                name="priority"
+                value={newInquiry.priority}
+                onChange={handleInquiryInputChange}
+              >
+                <option value="High priority">High priority</option>
+                <option value="Medium priority">Medium priority</option>
+                <option value="Low priority">Low priority</option>
+              </Form.Select>
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Assigned Team</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter assigned team"
+                name="assignedTeam"
+                value={newInquiry.assignedTeam}
+                onChange={handleInquiryInputChange}
+                required
+              />
+            </Form.Group>
+            <div className="d-flex gap-2">
+              <Button variant="primary" type="submit" style={{backgroundColor:"gray", color:"black",border:"none"}}>
+                Add Inquiry
+              </Button>
+              <Button variant="secondary" onClick={handleCloseInquiryModal}>
+                Cancel
+              </Button>
             </div>
           </Form>
         </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Cancel
-          </Button>
-          <Button variant="success" onClick={handleSubmit}>
-            {editIndex !== null ? "Update" : "Create"}
-          </Button>
-        </Modal.Footer>
+      </Modal>
+
+      {/* Modal for Adding New Follow-up */}
+      <Modal show={showFollowUpModal} onHide={handleCloseFollowUpModal} centered>
+        <Modal.Header closeButton>
+          <Modal.Title>Add New Follow-up</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form onSubmit={handleAddFollowUp}>
+            <Form.Group className="mb-3">
+              <Form.Label>Name</Form.Label> {/* Added Name field */}
+              <Form.Control
+                type="text"
+                placeholder="Enter name"
+                name="name"
+                value={newFollowUp.name}
+                onChange={handleFollowUpInputChange}
+                required
+              />
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Title</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter follow-up title"
+                name="title"
+                value={newFollowUp.title}
+                onChange={handleFollowUpInputChange}
+                required
+              />
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Follow-up Date</Form.Label>
+              <Form.Control
+                type="date"
+                placeholder="date"
+                name="followUpDate"
+                value={newFollowUp.followUpDate}
+                onChange={handleFollowUpInputChange}
+                required
+              />
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Status</Form.Label>
+              <Form.Select
+                name="status"
+                value={newFollowUp.status}
+                onChange={handleFollowUpInputChange}
+              >
+                <option value="New">New</option>
+                <option value="In Progress">In Progress</option>
+              </Form.Select>
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Urgency Level</Form.Label>
+              <Form.Select
+                name="urgency"
+                value={newFollowUp.urgency}
+                onChange={handleFollowUpInputChange}
+              >
+                <option value="WhatsApp">WhatsApp</option>
+                <option value="Email">Email</option>
+                <option value="Call">Call</option>
+              </Form.Select>
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Department</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter department"
+                name="department"
+                value={newFollowUp.department}
+                onChange={handleFollowUpInputChange}
+                required
+              />
+            </Form.Group>
+            <div className="d-flex gap-2">
+              <Button variant="primary" type="submit" style={{backgroundColor:"gray", color:"black",border:"none"}}>
+                Add Follow-up
+              </Button>
+              <Button variant="secondary" onClick={handleCloseFollowUpModal}>
+                Cancel
+              </Button>
+            </div>
+          </Form>
+        </Modal.Body>
       </Modal>
     </div>
   );
 };
 
-export default Inquriy;
+export default Inquiry;

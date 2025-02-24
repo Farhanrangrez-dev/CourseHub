@@ -55,7 +55,7 @@ const RolesManagement = () => {
                 className="mb-3"
               />
             </Form.Group>
-            <Button className="w-100" variant="primary" onClick={handleAddRole}>
+            <Button className="w-100" variant="primary" onClick={handleAddRole} style={{backgroundColor:"gray" , color:"black", border:"none"}}>
               Save Role
             </Button>
           </Form>

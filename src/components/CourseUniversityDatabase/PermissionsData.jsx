@@ -126,7 +126,7 @@ const PermissionsTable = () => {
         </tbody>
       </Table>
       <div className="d-flex justify-content-end">
-        <Link className="btn btn-primary mb-3">Save</Link>
+        <Link className="btn btn-primary mb-3" style={{backgroundColor:"gray" , color:"black", border:"none"}}>Save</Link>
       </div>
     </Container>
   );

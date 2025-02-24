@@ -3,6 +3,7 @@ import "./App.css";
 
 import Navbar from "./layout/Navbar";
 import Sidebar from "./layout/Sidebar";
+import Home from "./authtication/Home";
 import { useState } from "react";
 
 import Login from "./authtication/Login";
@@ -41,7 +42,7 @@ import CourseUniversityDatabase from "./components/CourseUniversityDatabase/Cour
 import StudentProfile from "./components/Profile/Dashboard";
 import StudentUniversity from "./components/PaymentInvoiceManagement/StudentUniversity";
 import Councelor from "./components/dashbord/Councelor";
-import Home from "./authtication/Home";
+import LandingPage from "./components/landingpage/landingPage";
 
 function App() {
   //show details to admin
@@ -90,11 +91,13 @@ function App() {
     location.pathname === "/" || location.pathname === "/login";
   return (
     <>
+      {/* <LandingPage/> */}
+
       {/* navbar */}
       {!hideLayout && <Navbar toggleSidebar={toggleSidebar} />}
       {/* navbar end */}
       {/* sidebar start */}
-      <div className={`main-content  ${hideLayout ? "" : ""}`}>
+      <div className={`main-content ${hideLayout ? "full-width" : ""}`}>
         {!hideLayout && (
           <Sidebar
             collapsed={isSidebarCollapsed}
@@ -107,15 +110,14 @@ function App() {
         {/* right side  */}
         <div
           className={`right-side-content ${
-            isSidebarCollapsed ? "collapsed " : ""
+            hideLayout ? "full-width" : isSidebarCollapsed ? "collapsed" : ""
           }`}
+          style={hideLayout ? { marginTop: "0", paddingLeft: "0" } : {}}
         >
           <Routes>
-            {/* <Route path="/" element={<Home></Home>}></Route> */}
-
             {/* login signup */}
             <Route
-              path="/"
+              path="/login"
               element={
                 <Login
                   login={login}
@@ -127,6 +129,7 @@ function App() {
               }
             />
             {/* login signup */}
+            <Route path="/" element={<Home></Home>}></Route>
 
             {/* dashbord */}
             <Route path="/dashboard" element={<Dashboard />} />
@@ -145,7 +148,8 @@ function App() {
             <Route path="/lead" element={<Lead></Lead>}></Route>
 
             {/* deal */}
-            <Route path="/deal" element={<Deal></Deal>}></Route>
+            {/* <Route path="/deal" element={<Deal></Deal>}></Route> */}
+            <Route path="/lead/:id" element={<Deal />} />
 
             <Route path="/contract" element={<Contract></Contract>}></Route>
 

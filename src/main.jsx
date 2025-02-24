@@ -7,7 +7,7 @@ import Home from "./authtication/Home.jsx";
 
 createRoot(document.getElementById("root")).render(
   <BrowserRouter>
-    <Home />
+    {/* <Home /> */}
     <App />
   </BrowserRouter>
 );

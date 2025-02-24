@@ -1,26 +1,28 @@
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-// Add Counselor Component
 const AddCounselor = ({ onAdd }) => {
   const [counselorName, setCounselorName] = useState("");
   const [counselorEmail, setCounselorEmail] = useState("");
   const [counselorPhone, setCounselorPhone] = useState("");
-  const [university, setUniversity] = useState(""); // New field for University
+  const [university, setUniversity] = useState("");
+  const [status, setStatus] = useState("Active");
   const [counselors, setCounselors] = useState([
     {
       name: "John Doe",
       email: "john@example.com",
       phone: "123-456-7890",
       date: "02/15/2025",
-      university: "University A", // Add dummy university data
+      university: "Harvard University",
+      status: "Active",
     },
     {
       name: "Jane Smith",
       email: "jane@example.com",
       phone: "987-654-3210",
       date: "02/14/2025",
-      university: "University B", // Add dummy university data
+      university: "Stanford University",
+      status: "Inactive",
     },
   ]);
   const [showModal, setShowModal] = useState(false);
@@ -34,15 +36,17 @@ const AddCounselor = ({ onAdd }) => {
         email: counselorEmail,
         phone: counselorPhone,
         date: new Date().toLocaleDateString(),
-        university, // Include university in the new counselor data
+        university,
+        status,
       };
       setCounselors([...counselors, newCounselor]);
       onAdd(newCounselor);
       setCounselorName("");
       setCounselorEmail("");
       setCounselorPhone("");
-      setUniversity(""); // Reset university field
-      setShowModal(false); // Close the modal after adding
+      setUniversity("");
+      setStatus("Active");
+      setShowModal(false);
     }
   };
 
@@ -51,7 +55,8 @@ const AddCounselor = ({ onAdd }) => {
     setCounselorName(counselorToEdit.name);
     setCounselorEmail(counselorToEdit.email);
     setCounselorPhone(counselorToEdit.phone);
-    setUniversity(counselorToEdit.university); // Populate university for editing
+    setUniversity(counselorToEdit.university);
+    setStatus(counselorToEdit.status);
     setEditingCounselor(index);
     setShowModal(true);
   };
@@ -70,7 +75,8 @@ const AddCounselor = ({ onAdd }) => {
               name: counselorName,
               email: counselorEmail,
               phone: counselorPhone,
-              university, // Save university during edit
+              university,
+              status,
             }
           : counselor
       );
@@ -79,8 +85,9 @@ const AddCounselor = ({ onAdd }) => {
       setCounselorName("");
       setCounselorEmail("");
       setCounselorPhone("");
-      setUniversity(""); // Reset university field
-      setShowModal(false); // Close the modal after saving
+      setUniversity("");
+      setStatus("Active");
+      setShowModal(false);
     }
   };
 
@@ -89,11 +96,11 @@ const AddCounselor = ({ onAdd }) => {
   );
 
   return (
-    <div className="container p-3"  >
-      {/* Search input on the left and Add button on the right */}
+    <div className="container p-3">
+      {/* Search input and Add button */}
       <h4 className="fw-bold mb-4">Add Counselor</h4>
       <div className="row">
-        <div className="col-md-6">
+        <div className="col-md-6 mb-3">
           <input
             type="text"
             className="form-control"
@@ -102,10 +109,11 @@ const AddCounselor = ({ onAdd }) => {
             onChange={(e) => setSearchTerm(e.target.value)}
           />
         </div>
-        <div className="col-md-6 text-end">
+        <div className="col-md-6 text-md-end">
           <button
-            className="btn btn-primary"
+            className="btn btn-primary w-100 w-md-auto"
             onClick={() => setShowModal(true)}
+            style={{ backgroundColor: "gray", color: "black", border: "none" }}
           >
             Add Counselor
           </button>
@@ -127,7 +135,7 @@ const AddCounselor = ({ onAdd }) => {
           }}
           aria-hidden="false"
         >
-          <div className="modal-dialog">
+          <div className="modal-dialog modal-dialog-centered">
             <div className="modal-content">
               <div className="modal-header">
                 <h5 className="modal-title">
@@ -142,12 +150,11 @@ const AddCounselor = ({ onAdd }) => {
                 ></button>
               </div>
               <div className="modal-body">
-                {/* First row: Counselor Name and Email */}
+                {/* Counselor Name and Email */}
                 <div className="row mb-3">
-                  <div className="col-md-6">
+                  <div className="col-md-6 mb-3">
                     <input
                       type="text"
-                      id="counselorName"
                       className="form-control"
                       placeholder="Enter counselor name..."
                       value={counselorName}
@@ -157,7 +164,6 @@ const AddCounselor = ({ onAdd }) => {
                   <div className="col-md-6">
                     <input
                       type="email"
-                      id="counselorEmail"
                       className="form-control"
                       placeholder="Enter counselor email..."
                       value={counselorEmail}
@@ -166,28 +172,39 @@ const AddCounselor = ({ onAdd }) => {
                   </div>
                 </div>
 
-                {/* Second row: Counselor Phone */}
+                {/* Counselor Phone and University */}
                 <div className="row mb-3">
-                  <div className="col-md-6">
+                  <div className="col-md-6 mb-3">
                     <input
                       type="tel"
-                      id="counselorPhone"
                       className="form-control"
                       placeholder="Enter counselor phone..."
                       value={counselorPhone}
                       onChange={(e) => setCounselorPhone(e.target.value)}
                     />
                   </div>
-                  {/* Third row: University */}
                   <div className="col-md-6">
                     <input
                       type="text"
-                      id="university"
                       className="form-control"
                       placeholder="Enter university name..."
                       value={university}
                       onChange={(e) => setUniversity(e.target.value)}
                     />
+                  </div>
+                </div>
+
+                {/* Status */}
+                <div className="row mb-3">
+                  <div className="col-md-6">
+                    <select
+                      className="form-control"
+                      value={status}
+                      onChange={(e) => setStatus(e.target.value)}
+                    >
+                      <option value="Active">Active</option>
+                      <option value="Inactive">Inactive</option>
+                    </select>
                   </div>
                 </div>
               </div>
@@ -220,43 +237,47 @@ const AddCounselor = ({ onAdd }) => {
       {filteredCounselors.length > 0 && (
         <div className="mt-4">
           <h5>Counselor List</h5>
-          <table className="table table-bordered">
-            <thead>
-              <tr className="text-nowrap">
-                <th>Name</th>
-                <th>Email</th>
-                <th>Phone</th>
-                <th>University</th> {/* New University Column */}
-                <th>Date Added</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {filteredCounselors.map((c, index) => (
-                <tr className="text-nowrap" key={index}>
-                  <td>{c.name}</td>
-                  <td>{c.email}</td>
-                  <td>{c.phone}</td>
-                  <td>{c.university}</td> {/* Display University */}
-                  <td>{c.date}</td>
-                  <td>
-                    <button
-                      className="btn btn-warning btn-sm"
-                      onClick={() => handleEditCounselor(index)}
-                    >
-                      Edit
-                    </button>
-                    <button
-                      className="btn btn-danger btn-sm ms-2"
-                      onClick={() => handleDeleteCounselor(index)}
-                    >
-                      Delete
-                    </button>
-                  </td>
+          <div className="table-responsive">
+            <table className="table table-striped table-bordered">
+              <thead>
+                <tr className="text-nowrap">
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Phone</th>
+                  <th>University</th>
+                  <th>Status</th>
+                  <th>Date Added</th>
+                  <th>Actions</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {filteredCounselors.map((c, index) => (
+                  <tr className="text-nowrap" key={index}>
+                    <td>{c.name}</td>
+                    <td>{c.email}</td>
+                    <td>{c.phone}</td>
+                    <td>{c.university}</td>
+                    <td>{c.status}</td>
+                    <td>{c.date}</td>
+                    <td>
+                      <button
+                        className="btn btn-warning btn-sm"
+                        onClick={() => handleEditCounselor(index)}
+                      >
+                        Edit
+                      </button>
+                      <button
+                        className="btn btn-danger btn-sm ms-2"
+                        onClick={() => handleDeleteCounselor(index)}
+                      >
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       )}
     </div>

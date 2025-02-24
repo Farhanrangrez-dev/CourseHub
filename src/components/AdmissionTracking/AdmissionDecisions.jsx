@@ -130,6 +130,7 @@ const AdmissionDecisions = () => {
               variant="success"
               onClick={() => setShowModal(true)}
               className="w-100"
+              style={{backgroundColor:"gray" , color:"black", border:"none"}}
             >
               + Add Decision
             </Button>
@@ -183,7 +184,7 @@ const AdmissionDecisions = () => {
       {/* Modal for Adding New Decision */}
       <Modal show={showModal} onHide={() => setShowModal(false)}>
         <Modal.Header closeButton>
-          <Modal.Title>Add Admission Decision</Modal.Title>
+          <Modal.Title style={{backgroundColor:"gray" , color:"black", border:"none"}}>Add Admission Decision</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
@@ -234,7 +235,7 @@ const AdmissionDecisions = () => {
           <Button variant="secondary" onClick={() => setShowModal(false)}>
             Cancel
           </Button>
-          <Button variant="primary" onClick={addNewDecision}>
+          <Button variant="primary" onClick={addNewDecision} style={{backgroundColor:"gray" , color:"black", border:"none"}}>
             Save
           </Button>
         </Modal.Footer>

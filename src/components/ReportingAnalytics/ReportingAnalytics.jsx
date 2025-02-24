@@ -167,7 +167,7 @@ const Payments = () => {
     <Container className="p-3">
       <div className="d-flex justify-content-between align-items-center mb-4">
         <h4 className="fw-bold mb-4">Payment Management</h4>
-        <Button variant="primary" onClick={handleAddNew}>
+        <Button variant="primary" onClick={handleAddNew} style={{backgroundColor:"gray" , color:"black", border:"none"}}>
           <FaFileInvoice className="me-2" /> Create New Payment
         </Button>
       </div>
@@ -195,7 +195,7 @@ const Payments = () => {
               </div>
 
               <div className="table-responsive">
-                <Table responsive hover>
+                <Table striped responsive hover>
                   <thead>
                     <tr>
                       <th>Invoice ID</th>

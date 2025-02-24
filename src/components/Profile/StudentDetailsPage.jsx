@@ -170,7 +170,7 @@ function StudentDetailsPage() {
               </table>
             </div>
             <div className="col-md-8">
-              <div className="navbar navbar-expand-lg navbar-light bg-light" style={{ zIndex:"0"}}>
+              {/* <div className="navbar navbar-expand-lg navbar-light bg-light" style={{ zIndex:"0"}}>
                 
                 <div
                   className="collapse navbar-collapse"
@@ -212,7 +212,7 @@ function StudentDetailsPage() {
                <Link to="/studentDetails">
                <button className="btn btn-dark">back</button>
                </Link>
-              </div>
+              </div> */}
               <div className="m-3 p-4 border">
                 <table className="table table-borderless table-spacing">
                   <tbody>
