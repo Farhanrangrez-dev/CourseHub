@@ -10,6 +10,8 @@ import {
   Form,
 } from "react-bootstrap";
 import "./Home.css";
+import { Link } from "react-router-dom";
+import { Border } from "react-bootstrap-icons";
 
 const App = () => {
   const featuredCourses = [
@@ -80,11 +82,13 @@ const App = () => {
                 Explore
               </Nav.Link>
             </Nav>
-            <Button variant="outline-light" className="ms-3">
+            <Button ><Link to={"/login"} className="ms-3 gap-2" >
               Sign up
-            </Button>
-            <Button variant="danger" className="ms-2">
+            </Link></Button>
+            <Button>
+            <Link to={"/login"} variant="danger" className="ms-2 gap-2">
               Log in
+            </Link>
             </Button>
           </Navbar.Collapse>
         </Container>
@@ -100,7 +104,7 @@ const App = () => {
           <p className="lead">Discover a world of knowledge with us!</p>
 
           {/* Search Form */}
-          <Form className="d-flex justify-content-center">
+          {/* <Form className="d-flex justify-content-center">
             <Row className="w-75">
               <Col md={3}>
                 <Form.Control type="text" placeholder="Select your interest" />
@@ -120,7 +124,7 @@ const App = () => {
                 </Button>
               </Col>
             </Row>
-          </Form>
+          </Form> */}
         </div>
       </section>
 
