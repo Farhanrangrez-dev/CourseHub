@@ -43,6 +43,9 @@ import StudentProfile from "./components/Profile/Dashboard";
 import StudentUniversity from "./components/PaymentInvoiceManagement/StudentUniversity";
 import Councelor from "./components/dashbord/Councelor";
 import LandingPage from "./components/landingpage/landingPage";
+import StatusTracking from "./components/Lead & Inquiry Management/StatusTracking";
+import AdminStatus from "./components/Lead & Inquiry Management/AdminStatus";
+import { LeadProvider } from "./context/LeadContext";
 
 function App() {
   //show details to admin
@@ -114,165 +117,185 @@ function App() {
           }`}
           style={hideLayout ? { marginTop: "0", paddingLeft: "0" } : {}}
         >
-          <Routes>
-            {/* login signup */}
-            <Route
-              path="/login"
-              element={
-                <Login
-                  login={login}
-                  setLogin={setLogin}
-                  handleAdmin={handleAdmin}
-                  handleStudent={handleStudent}
-                  handleCounselor={handleCounselor}
-                />
-              }
-            />
-            {/* login signup */}
-            <Route path="/" element={<Home></Home>}></Route>
+          <LeadProvider>
+            <Routes>
+              {/* login signup */}
+              <Route
+                path="/login"
+                element={
+                  <Login
+                    login={login}
+                    setLogin={setLogin}
+                    handleAdmin={handleAdmin}
+                    handleStudent={handleStudent}
+                    handleCounselor={handleCounselor}
+                  />
+                }
+              />
+              {/* login signup */}
+              <Route path="/" element={<Home></Home>}></Route>
 
-            {/* dashbord */}
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/councelor" element={<Councelor></Councelor>}></Route>
-            {/* student dashboard */}
-            <Route
-              path="/studentProfile"
-              element={<StudentProfile></StudentProfile>}
-            ></Route>
-            {/* dashbord */}
+              {/* dashbord */}
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route
+                path="/councelor"
+                element={<Councelor></Councelor>}
+              ></Route>
+              {/* student dashboard */}
+              <Route
+                path="/studentProfile"
+                element={<StudentProfile></StudentProfile>}
+              ></Route>
+              {/* dashbord */}
 
-            {/* LeadInquiryManagement */}
-            {/* Inquriy */}
-            <Route path="/inquiry" element={<Inquriy></Inquriy>}></Route>
-            {/* lead   */}
-            <Route path="/lead" element={<Lead></Lead>}></Route>
+              {/* LeadInquiryManagement */}
+              {/* Inquriy */}
+              <Route path="/inquiry" element={<Inquriy></Inquriy>}></Route>
+              {/* lead   */}
+              <Route path="/lead" element={<Lead></Lead>}></Route>
 
-            {/* deal */}
-            {/* <Route path="/deal" element={<Deal></Deal>}></Route> */}
-            <Route path="/lead/:id" element={<Deal />} />
+              {/* deal */}
+              {/* <Route path="/deal" element={<Deal></Deal>}></Route> */}
+              <Route path="/lead/:id" element={<Deal />} />
 
-            <Route path="/contract" element={<Contract></Contract>}></Route>
+              <Route path="/contract" element={<Contract></Contract>}></Route>
 
-            {/* student management */}
-            <Route
-              path="/studentDetails"
-              element={<StudentDetails></StudentDetails>}
-            ></Route>
-            {/* student details page */}
-            <Route
-              path="/manaDetails"
-              element={<ManaDetails></ManaDetails>}
-            ></Route>
+              <Route
+                path="/status"
+                element={<StatusTracking></StatusTracking>}
+              ></Route>
 
-            {/* student addmission */}
-            <Route
-              path="/admission"
-              element={<AdmissionNew></AdmissionNew>}
-            ></Route>
+              <Route
+                path="/adminstatus"
+                element={<AdminStatus></AdminStatus>}
+              ></Route>
 
-            <Route
-              path="/new"
-              element={<AdmissionTracking></AdmissionTracking>}
-            ></Route>
-            {/* student detail single page */}
-            <Route
-              path="/studentProfile/:admissionNo"
-              element={<StudentDetailsPage></StudentDetailsPage>}
-            ></Route>
+              {/* student management */}
+              <Route
+                path="/studentDetails"
+                element={<StudentDetails></StudentDetails>}
+              ></Route>
+              {/* student details page */}
+              <Route
+                path="/manaDetails"
+                element={<ManaDetails></ManaDetails>}
+              ></Route>
 
-            {/* comunication */}
-            <Route
-              path="/communication"
-              element={
-                <CommunicationFollowupManagement></CommunicationFollowupManagement>
-              }
-            ></Route>
+              {/* student addmission */}
+              <Route
+                path="/admission"
+                element={<AdmissionNew></AdmissionNew>}
+              ></Route>
 
-            {/* ApplicationTracking */}
-            <Route
-              path="/tracker"
-              element={<ApplicationTracker></ApplicationTracker>}
-            ></Route>
+              <Route
+                path="/new"
+                element={<AdmissionTracking></AdmissionTracking>}
+              ></Route>
+              {/* student detail single page */}
+              <Route
+                path="/studentProfile/:admissionNo"
+                element={<StudentDetailsPage></StudentDetailsPage>}
+              ></Route>
 
-            {/* university details */}
-            <Route
-              path="/university"
-              element={<UniversitySubmissions></UniversitySubmissions>}
-            ></Route>
+              {/* comunication */}
+              <Route
+                path="/communication"
+                element={
+                  <CommunicationFollowupManagement></CommunicationFollowupManagement>
+                }
+              ></Route>
 
-            {/* Admission decisions */}
-            <Route
-              path="/applications"
-              element={<AdmissionDecisions></AdmissionDecisions>}
-            ></Route>
-            <Route path="/AdmissionTracking" element={<AdmissionTracking />} />
+              {/* ApplicationTracking */}
+              <Route
+                path="/tracker"
+                element={<ApplicationTracker></ApplicationTracker>}
+              ></Route>
 
-            {/* follow up */}
-            <Route
-              path="/followup"
-              element={<FollowUpScheduling></FollowUpScheduling>}
-            ></Route>
+              {/* university details */}
+              <Route
+                path="/university"
+                element={<UniversitySubmissions></UniversitySubmissions>}
+              ></Route>
 
-            {/* automated reminder */}
-            <Route
-              path="/reminder"
-              element={<AutomatedReminders></AutomatedReminders>}
-            ></Route>
+              {/* Admission decisions */}
+              <Route
+                path="/applications"
+                element={<AdmissionDecisions></AdmissionDecisions>}
+              ></Route>
+              <Route
+                path="/AdmissionTracking"
+                element={<AdmissionTracking />}
+              />
 
-            {/* add councelor */}
-            <Route
-              path="/addcounselor"
-              element={<AddCounselor onAdd={handleAddCounselor}></AddCounselor>}
-            ></Route>
+              {/* follow up */}
+              <Route
+                path="/followup"
+                element={<FollowUpScheduling></FollowUpScheduling>}
+              ></Route>
 
-            {/* tasks */}
-            <Route
-              path="/tasks"
-              element={
-                <TaskAssignment
-                  counselors={counselors}
-                  tasks={tasks}
-                  onTaskAssign={handleTaskAssign}
-                ></TaskAssignment>
-              }
-            ></Route>
+              {/* automated reminder */}
+              <Route
+                path="/reminder"
+                element={<AutomatedReminders></AutomatedReminders>}
+              ></Route>
 
-            {/* reminder */}
-            <Route
-              path="/tasksreminder"
-              element={<TaskReminder tasks={tasks}></TaskReminder>}
-            ></Route>
+              {/* add councelor */}
+              <Route
+                path="/addcounselor"
+                element={
+                  <AddCounselor onAdd={handleAddCounselor}></AddCounselor>
+                }
+              ></Route>
 
-            {/* roles permissions */}
-            <Route path="/RolesManagement" element={<RolesManagement />} />
+              {/* tasks */}
+              <Route
+                path="/tasks"
+                element={
+                  <TaskAssignment
+                    counselors={counselors}
+                    tasks={tasks}
+                    onTaskAssign={handleTaskAssign}
+                  ></TaskAssignment>
+                }
+              ></Route>
 
-            <Route path="/permissions/:role" element={<PermissionsTable />} />
+              {/* reminder */}
+              <Route
+                path="/tasksreminder"
+                element={<TaskReminder tasks={tasks}></TaskReminder>}
+              ></Route>
 
-            {/* reports & analytics */}
-            <Route
-              path="/CourseUniversityDatabase"
-              element={<CourseUniversityDatabase></CourseUniversityDatabase>}
-            ></Route>
+              {/* roles permissions */}
+              <Route path="/RolesManagement" element={<RolesManagement />} />
 
-            {/* payment & invoices*/}
-            <Route
-              path="/ReportingAnalytics"
-              element={<ReportingAnalytics />}
-            />
+              <Route path="/permissions/:role" element={<PermissionsTable />} />
 
-            {/* PaymentInvoiceManagement */}
-            <Route
-              path="/StudentUniversity"
-              element={<StudentUniversity></StudentUniversity>}
-            ></Route>
-            <Route
-              path="/PaymentInvoiceManagement"
-              element={<PaymentInvoiceManagement />}
-            />
+              {/* reports & analytics */}
+              <Route
+                path="/CourseUniversityDatabase"
+                element={<CourseUniversityDatabase></CourseUniversityDatabase>}
+              ></Route>
 
-            {/* chatbox route */}
-            <Route path="/chatbox" element={<ChatBox />} />
-          </Routes>
+              {/* payment & invoices*/}
+              <Route
+                path="/ReportingAnalytics"
+                element={<ReportingAnalytics />}
+              />
+
+              {/* PaymentInvoiceManagement */}
+              <Route
+                path="/StudentUniversity"
+                element={<StudentUniversity></StudentUniversity>}
+              ></Route>
+              <Route
+                path="/PaymentInvoiceManagement"
+                element={<PaymentInvoiceManagement />}
+              />
+
+              {/* chatbox route */}
+              <Route path="/chatbox" element={<ChatBox />} />
+            </Routes>
+          </LeadProvider>
         </div>
         {/* right end  */}
       </div>

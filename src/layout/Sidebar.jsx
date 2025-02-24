@@ -110,6 +110,7 @@ const Sidebar = ({ collapsed, menuItemClick, login, toggleSidebar }) => {
                   "/contract",
                   "/quotes",
                   "/analytics",
+                  "/adminstatus",
                 ])
                   ? "active"
                   : ""
@@ -177,17 +178,17 @@ const Sidebar = ({ collapsed, menuItemClick, login, toggleSidebar }) => {
                   >
                     Lead
                   </li>
-                  {/* <li
+                  <li
                     className={`menu-item submenu-item ${
-                      isActive("/deal") ? "active" : ""
+                      isActive("/adminstatus") ? "active" : ""
                     }`}
                     onClick={() => {
-                      navigate("/deal");
+                      navigate("/adminstatus");
                       menuItemClick();
                     }}
                   >
-                    Deal
-                  </li> */}
+                    Admin Status
+                  </li>
                   {/* <li
                   className={`menu-item submenu-item ${
                     isActive("/quotes") ? "active" : ""
@@ -223,6 +224,7 @@ const Sidebar = ({ collapsed, menuItemClick, login, toggleSidebar }) => {
                   "/contract",
                   "/quotes",
                   "/analytics",
+                  "/status",
                 ])
                   ? "active"
                   : ""
@@ -254,17 +256,6 @@ const Sidebar = ({ collapsed, menuItemClick, login, toggleSidebar }) => {
                 >
                   Dashboard
                 </li> */}
-                  {/* <li
-                    className={`menu-item submenu-item ${
-                      isActive("/contract") ? "active" : ""
-                    }`}
-                    onClick={() => {
-                      navigate("/contract");
-                      menuItemClick();
-                    }}
-                  >
-                    Contact
-                  </li> */}
                   <li
                     className={`menu-item submenu-item ${
                       isActive("/inquiry") ? "active" : ""
@@ -286,6 +277,17 @@ const Sidebar = ({ collapsed, menuItemClick, login, toggleSidebar }) => {
                     }}
                   >
                     Lead
+                  </li>
+                  <li
+                    className={`menu-item submenu-item ${
+                      isActive("/status") ? "active" : ""
+                    }`}
+                    onClick={() => {
+                      navigate("/status");
+                      menuItemClick();
+                    }}
+                  >
+                    Status Tracking
                   </li>
                   {/* <li
                     className={`menu-item submenu-item ${

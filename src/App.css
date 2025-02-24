@@ -272,6 +272,15 @@ select.form-input {
   }
 }
 
+.card {
+  background: #f0f0ff;
+}
+
+th, td {
+  text-align: center;
+}
+
+
 /* signup end */
 
 /* maindashbord start */
