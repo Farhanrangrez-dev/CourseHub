@@ -22,7 +22,7 @@ const Dashboard = () => {
                         <h5>Lead Management</h5>
                         <Bar data={{
                             labels: ['102', '239', '112', '114', '74', '3'],
-                            datasets: [{ label: 'Leads', data: [102, 239, 112, 114, 74, 3], backgroundColor: 'purple' }]
+                            datasets: [{ label: 'Leads', data: [102, 239, 112, 114, 74, 3], backgroundColor: '#00aaf3' }]
                         }} />
                     </Card>
                 </Col>
@@ -30,7 +30,7 @@ const Dashboard = () => {
                     <Card className="p-3">
                         <h5>Application Tracking</h5>
                         <Bubble data={{
-                            datasets: [{ label: 'Applications', data: [{ x: 10, y: 60, r: 10 }, { x: 20, y: 40, r: 20 }, { x: 30, y: 80, r: 30 }], backgroundColor: 'purple' }]
+                            datasets: [{ label: 'Applications', data: [{ x: 10, y: 60, r: 10 }, { x: 20, y: 40, r: 20 }, { x: 30, y: 80, r: 30 }], backgroundColor: '#00aaf3' }]
                         }} />
                     </Card>
                 </Col>
@@ -41,7 +41,7 @@ const Dashboard = () => {
                         <h5>Student Performance</h5>
                         <Bar data={{
                             labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-                            datasets: [{ label: 'Performance', data: [80, 75, 90, 85, 70, 50, 10], backgroundColor: 'purple' }]
+                            datasets: [{ label: 'Performance', data: [80, 75, 90, 85, 70, 50, 10], backgroundColor: '#00aaf3' }]
                         }} />
                     </Card>
                 </Col>
@@ -50,7 +50,7 @@ const Dashboard = () => {
                         <h5>Staff Distribution by Department</h5>
                         <Bar data={{
                             labels: ['Recruiters', 'Admission', 'Legal', 'Marketing', 'Finance', 'Product', 'Human'],
-                            datasets: [{ label: 'Staff', data: [100, 90, 85, 80, 70, 60, 50], backgroundColor: 'purple' }]
+                            datasets: [{ label: 'Staff', data: [100, 90, 85, 80, 70, 60, 50], backgroundColor: '#00aaf3' }]
                         }}
                         options={{
                             indexAxis: 'y'  // Converts Bar Chart to Horizontal Bar Chart
