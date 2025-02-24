@@ -157,7 +157,7 @@ const AdmissionTracking = () => {
                 )}
 
                 {step < 3 ? (
-                  <Button variant="primary" type="submit">
+                  <Button variant="primary" type="submit" style={{backgroundColor:"gray",  color:"black", border:"none"}}>
                     Next
                   </Button>
                 ) : (

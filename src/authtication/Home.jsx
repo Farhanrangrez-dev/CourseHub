@@ -9,6 +9,7 @@ import {
 } from "react-bootstrap";
 import "./Home.css";
 import { Link } from "react-router-dom";
+import { Border } from "react-bootstrap-icons";
 
 const App = () => {
   const featuredCourses = [
@@ -79,12 +80,14 @@ const App = () => {
                 Explore
               </Nav.Link>
             </Nav>
-            <Link to={"/login"} variant="outline-light" className="ms-3">
+            <Button ><Link to={"/login"} className="ms-3 gap-2" >
               Sign up
-            </Link>
-            <Link to={"/login"} variant="danger" className="ms-2">
+            </Link></Button>
+            <Button>
+            <Link to={"/login"} variant="danger" className="ms-2 gap-2">
               Log in
             </Link>
+            </Button>
           </Navbar.Collapse>
         </Container>
       </Navbar>
