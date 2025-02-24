@@ -1,5 +1,13 @@
 import React, { useState } from "react";
-import { Table, Button, Form, Badge, Modal, Pagination, Dropdown } from "react-bootstrap";
+import {
+  Table,
+  Button,
+  Form,
+  Badge,
+  Modal,
+  Pagination,
+  Dropdown,
+} from "react-bootstrap";
 
 const Inquiry = () => {
   // Sample inquiry data
@@ -7,27 +15,12 @@ const Inquiry = () => {
     todayInquiries: [
       {
         id: 1,
-        title: "Complete monthly inquiry report",
-        status: "In Progress",
-        priority: "High priority",
-        assignedTeam: "Marketing",
-        counselor: "👤",
-      },
-      {
-        id: 2,
-        title: "Contact negotiation meeting",
-        status: "In Progress",
-        priority: "Medium priority",
-        assignedTeam: "Operational",
-        counselor: "👥",
-      },
-      {
-        id: 3,
-        title: "Keynote on market trends",
-        status: "In Progress",
-        priority: " Medium priority",
-        assignedTeam: "Counselor",
-        counselor: "👨‍🏫",
+        name: "raja",
+        email: "raja@email",
+        phone: "123456789",
+        city: "indore",
+        address: "vijay nagar",
+        course: "maths",
       },
     ],
     todayFollowUps: [
@@ -133,11 +126,12 @@ const Inquiry = () => {
   const handleCloseInquiryModal = () => {
     setShowInquiryModal(false);
     setNewInquiry({
-      title: "",
-      status: "New",
-      priority: "Medium priority",
-      assignedTeam: "",
-      counselor: "👤",
+      name: "",
+      email: "New",
+      phone: "Medium priority",
+      city: "",
+      address: "👤",
+      course: "maths",
     });
   };
 
@@ -239,7 +233,9 @@ const Inquiry = () => {
   const handleDeleteFollowUp = (id) => {
     setInquiries({
       ...inquiries,
-      todayFollowUps: inquiries.todayFollowUps.filter((followUp) => followUp.id !== id),
+      todayFollowUps: inquiries.todayFollowUps.filter(
+        (followUp) => followUp.id !== id
+      ),
     });
   };
 
@@ -264,8 +260,14 @@ const Inquiry = () => {
   // Pagination logic
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentInquiries = inquiries.todayInquiries.slice(indexOfFirstItem, indexOfLastItem);
-  const currentFollowUps = inquiries.todayFollowUps.slice(indexOfFirstItem, indexOfLastItem);
+  const currentInquiries = inquiries.todayInquiries.slice(
+    indexOfFirstItem,
+    indexOfLastItem
+  );
+  const currentFollowUps = inquiries.todayFollowUps.slice(
+    indexOfFirstItem,
+    indexOfLastItem
+  );
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
@@ -273,9 +275,18 @@ const Inquiry = () => {
     <div className="container mt-4">
       {/* Header Section */}
       <div className="d-flex justify-content-between mb-3">
-        <Form.Control type="text" placeholder="Search inquiries" className="w-50" />
+        <Form.Control
+          type="text"
+          placeholder="Search inquiries"
+          className="w-50"
+        />
         <div>
-          <Button variant="success" className="me-2" onClick={handleShowInquiryModal} style={{ backgroundColor: "gray", color: "black", border: "none" }}>
+          <Button
+            variant="success"
+            className="me-2"
+            onClick={handleShowInquiryModal}
+            style={{ backgroundColor: "gray", color: "black", border: "none" }}
+          >
             Add Inquiry
           </Button>
           <Button variant="light" onClick={handleShowFollowUpModal}>
@@ -289,31 +300,39 @@ const Inquiry = () => {
       <Table striped bordered hover responsive>
         <thead>
           <tr>
-            <th>Inquiry</th>
-            <th>Inquiry Stage</th>
-            <th>Priority</th>
-            <th>Assigned Team</th>
-            <th>Counselor</th>
-            <th>Actions</th>
+            <th>id</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>City</th>
+            <th>Address</th>
+            <th>Course</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
           {currentInquiries.map((inq) => (
             <tr key={inq.id}>
-              <td>{inq.title}</td>
+              <td>{inq.name}</td>
+              <td>{inq.email}</td>
+              <td>{inq.phone}</td>
+              <td>{inq.city}</td>
+              <td>{inq.address}</td>
+              <td>{inq.course}</td>
               <td>
-                <Badge bg={getBadge(inq.status)}>{inq.status}</Badge>
-              </td>
-              <td>
-                <Badge bg="danger">{inq.priority}</Badge>
-              </td>
-              <td>{inq.assignedTeam}</td>
-              <td>{inq.counselor}</td>
-              <td>
-                <Button variant="info" size="sm" onClick={() => handleViewDetail(inq)}>
+                <Button
+                  variant="info"
+                  size="sm"
+                  onClick={() => handleViewDetail(inq)}
+                >
                   View
                 </Button>
-                <Button variant="danger" size="sm" onClick={() => handleDeleteInquiry(inq.id)} className="ms-2">
+                <Button
+                  variant="danger"
+                  size="sm"
+                  onClick={() => handleDeleteInquiry(inq.id)}
+                  className="ms-2"
+                >
                   Delete
                 </Button>
               </td>
@@ -322,8 +341,14 @@ const Inquiry = () => {
         </tbody>
       </Table>
       <Pagination>
-        {Array.from({ length: Math.ceil(inquiries.todayInquiries.length / itemsPerPage) }).map((_, index) => (
-          <Pagination.Item key={index + 1} active={index + 1 === currentPage} onClick={() => paginate(index + 1)}>
+        {Array.from({
+          length: Math.ceil(inquiries.todayInquiries.length / itemsPerPage),
+        }).map((_, index) => (
+          <Pagination.Item
+            key={index + 1}
+            active={index + 1 === currentPage}
+            onClick={() => paginate(index + 1)}
+          >
             {index + 1}
           </Pagination.Item>
         ))}
@@ -365,7 +390,11 @@ const Inquiry = () => {
                 </Button>
               </td>
               <td>
-                <Button variant="danger" size="sm" onClick={() => handleDeleteFollowUp(inq.id)}>
+                <Button
+                  variant="danger"
+                  size="sm"
+                  onClick={() => handleDeleteFollowUp(inq.id)}
+                >
                   Delete
                 </Button>
               </td>
@@ -374,8 +403,14 @@ const Inquiry = () => {
         </tbody>
       </Table>
       <Pagination>
-        {Array.from({ length: Math.ceil(inquiries.todayFollowUps.length / itemsPerPage) }).map((_, index) => (
-          <Pagination.Item key={index + 1} active={index + 1 === currentPage} onClick={() => paginate(index + 1)}>
+        {Array.from({
+          length: Math.ceil(inquiries.todayFollowUps.length / itemsPerPage),
+        }).map((_, index) => (
+          <Pagination.Item
+            key={index + 1}
+            active={index + 1 === currentPage}
+            onClick={() => paginate(index + 1)}
+          >
             {index + 1}
           </Pagination.Item>
         ))}
@@ -417,7 +452,11 @@ const Inquiry = () => {
                 </Button>
               </td>
               <td>
-                <Button variant="danger" size="sm" onClick={() => handleDeleteFollowUp(inq.id)}>
+                <Button
+                  variant="danger"
+                  size="sm"
+                  onClick={() => handleDeleteFollowUp(inq.id)}
+                >
                   Delete
                 </Button>
               </td>
@@ -479,7 +518,15 @@ const Inquiry = () => {
               />
             </Form.Group>
             <div className="d-flex gap-2">
-              <Button variant="primary" type="submit" style={{ backgroundColor: "gray", color: "black", border: "none" }}>
+              <Button
+                variant="primary"
+                type="submit"
+                style={{
+                  backgroundColor: "gray",
+                  color: "black",
+                  border: "none",
+                }}
+              >
                 Add Inquiry
               </Button>
               <Button variant="secondary" onClick={handleCloseInquiryModal}>
@@ -491,7 +538,11 @@ const Inquiry = () => {
       </Modal>
 
       {/* Modal for Adding New Follow-up */}
-      <Modal show={showFollowUpModal} onHide={handleCloseFollowUpModal} centered>
+      <Modal
+        show={showFollowUpModal}
+        onHide={handleCloseFollowUpModal}
+        centered
+      >
         <Modal.Header closeButton>
           <Modal.Title>Add New Follow-up</Modal.Title>
         </Modal.Header>
@@ -565,7 +616,15 @@ const Inquiry = () => {
               />
             </Form.Group>
             <div className="d-flex gap-2">
-              <Button variant="primary" type="submit" style={{ backgroundColor: "gray", color: "black", border: "none" }}>
+              <Button
+                variant="primary"
+                type="submit"
+                style={{
+                  backgroundColor: "gray",
+                  color: "black",
+                  border: "none",
+                }}
+              >
                 Add Follow-up
               </Button>
               <Button variant="secondary" onClick={handleCloseFollowUpModal}>
@@ -577,18 +636,36 @@ const Inquiry = () => {
       </Modal>
 
       {/* Modal for Inquiry Detail */}
-      <Modal show={showDetailModal} onHide={() => setShowDetailModal(false)} centered>
+      <Modal
+        show={showDetailModal}
+        onHide={() => setShowDetailModal(false)}
+        centered
+      >
         <Modal.Header closeButton>
           <Modal.Title>Inquiry Detail</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           {selectedInquiry && (
             <div>
-              <p><strong>Title:</strong> {selectedInquiry.title}</p>
-              <p><strong>Status:</strong> <Badge bg={getBadge(selectedInquiry.status)}>{selectedInquiry.status}</Badge></p>
-              <p><strong>Priority:</strong> <Badge bg="danger">{selectedInquiry.priority}</Badge></p>
-              <p><strong>Assigned Team:</strong> {selectedInquiry.assignedTeam}</p>
-              <p><strong>Counselor:</strong> {selectedInquiry.counselor}</p>
+              <p>
+                <strong>Title:</strong> {selectedInquiry.title}
+              </p>
+              <p>
+                <strong>Status:</strong>{" "}
+                <Badge bg={getBadge(selectedInquiry.status)}>
+                  {selectedInquiry.status}
+                </Badge>
+              </p>
+              <p>
+                <strong>Priority:</strong>{" "}
+                <Badge bg="danger">{selectedInquiry.priority}</Badge>
+              </p>
+              <p>
+                <strong>Assigned Team:</strong> {selectedInquiry.assignedTeam}
+              </p>
+              <p>
+                <strong>Counselor:</strong> {selectedInquiry.counselor}
+              </p>
             </div>
           )}
         </Modal.Body>
