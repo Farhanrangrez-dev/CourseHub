@@ -1,26 +1,51 @@
 import React, { useState } from "react";
-import { Container, Table, Button, Form, Row, Col, Card } from "react-bootstrap";
+import {
+  Container,
+  Table,
+  Button,
+  Form,
+  Row,
+  Col,
+  Card,
+} from "react-bootstrap";
 
 const TaskManagement = () => {
   const [tasks, setTasks] = useState([]);
   const [taskTitle, setTaskTitle] = useState("");
   const [dueDate, setDueDate] = useState("");
   const [counselor, setCounselor] = useState("");
+  const [student, setStudent] = useState("");
+  const [status, setStatus] = useState("");
 
   // Sample counselors list
   const counselors = ["John Smith", "Jane Doe", "Emily Davis"];
 
+  const students = ["sanjana", "kabir singh", "Emily Davis"];
+
+  const statuss = ["progress", "pending", "completed"];
   // Add new task
   const addTask = () => {
-    if (!taskTitle || !dueDate || !counselor) {
+    if (!taskTitle || !dueDate || !counselor || !student || !status) {
       alert("Please fill all fields!");
       return;
     }
 
-    setTasks([...tasks, { title: taskTitle, dueDate, counselor, status: "Pending", reminder: "" }]);
+    setTasks([
+      ...tasks,
+      {
+        title: taskTitle,
+        dueDate,
+        counselor,
+        status,
+        reminder: "",
+        student,
+      },
+    ]);
     setTaskTitle("");
     setDueDate("");
     setCounselor("");
+    setStudent("");
+    setStatus("");
   };
 
   // Mark task as completed
@@ -59,15 +84,50 @@ const TaskManagement = () => {
             />
           </Col>
           <Col md={4}>
-            <Form.Select value={counselor} onChange={(e) => setCounselor(e.target.value)}>
-              <option value="">Name</option>
+            <Form.Select
+              value={counselor}
+              onChange={(e) => setCounselor(e.target.value)}
+            >
+              <option value="">Councelor Name</option>
               {counselors.map((name, index) => (
-                <option key={index} value={name}>{name}</option>
+                <option key={index} value={name}>
+                  {name}
+                </option>
+              ))}
+            </Form.Select>
+          </Col>
+
+          <Col md={4}>
+            <Form.Select
+              value={student}
+              onChange={(e) => setStudent(e.target.value)}
+            >
+              <option value="">Student Name</option>
+              {students.map((student, index) => (
+                <option key={index} value={student}>
+                  {student}
+                </option>
+              ))}
+            </Form.Select>
+          </Col>
+
+          <Col md={4}>
+            <Form.Select
+              value={status}
+              onChange={(e) => setStatus(e.target.value)}
+            >
+              <option value="">Status</option>
+              {statuss.map((statuss, index) => (
+                <option key={index} value={statuss}>
+                  {statuss}
+                </option>
               ))}
             </Form.Select>
           </Col>
         </Row>
-        <Button className="mt-3" variant="primary" onClick={addTask}>Add Task</Button>
+        <Button className="mt-3" variant="primary" onClick={addTask}>
+          Add Task
+        </Button>
       </Card>
 
       {/* Task List */}
@@ -80,13 +140,17 @@ const TaskManagement = () => {
               <th>Due Date</th>
               <th>Name</th>
               <th>Status</th>
-              <th>Action</th>
+
               <th>Reminder</th>
             </tr>
           </thead>
           <tbody>
             {tasks.length === 0 ? (
-              <tr><td colSpan="6" className="text-center">No tasks added.</td></tr>
+              <tr>
+                <td colSpan="6" className="text-center">
+                  No tasks added.
+                </td>
+              </tr>
             ) : (
               tasks.map((task, index) => (
                 <tr key={index}>
@@ -94,17 +158,23 @@ const TaskManagement = () => {
                   <td>{task.dueDate}</td>
                   <td>{task.counselor}</td>
                   <td>{task.status}</td>
-                  <td>
+                  {/* <td>
                     {task.status === "Pending" && (
-                      <Button variant="primary" size="sm" onClick={() => completeTask(index)}>
+                      <Button
+                        variant="primary"
+                        size="sm"
+                        onClick={() => completeTask(index)}
+                      >
                         Complete
                       </Button>
                     )}
-                  </td>
+                  </td> */}
                   <td>
                     <Form.Select
                       value={task.reminder}
-                      onChange={(e) => handleReminderChange(index, e.target.value)}
+                      onChange={(e) =>
+                        handleReminderChange(index, e.target.value)
+                      }
                     >
                       <option value="">Select Reminder</option>
                       <option value="Task Cancel">Task Cancel</option>

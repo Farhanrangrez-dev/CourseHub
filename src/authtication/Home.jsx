@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Navbar,
   Nav,
@@ -7,7 +6,6 @@ import {
   Row,
   Col,
   Card,
-  Form,
 } from "react-bootstrap";
 import "./Home.css";
 import { Link } from "react-router-dom";
