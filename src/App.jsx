@@ -46,6 +46,7 @@ import LandingPage from "./components/landingpage/landingPage";
 import StatusTracking from "./components/Lead & Inquiry Management/StatusTracking";
 import AdminStatus from "./components/Lead & Inquiry Management/AdminStatus";
 import { LeadProvider } from "./context/LeadContext";
+import LeadCouncelor from "./components/Lead & Inquiry Management/LeadCouncelor";
 
 function App() {
   //show details to admin
@@ -157,6 +158,11 @@ function App() {
               {/* deal */}
               {/* <Route path="/deal" element={<Deal></Deal>}></Route> */}
               <Route path="/lead/:id" element={<Deal />} />
+
+              <Route
+                path="/leadCouncelor"
+                element={<LeadCouncelor></LeadCouncelor>}
+              ></Route>
 
               <Route path="/contract" element={<Contract></Contract>}></Route>
 

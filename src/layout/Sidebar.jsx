@@ -218,7 +218,7 @@ const Sidebar = ({ collapsed, menuItemClick, login, toggleSidebar }) => {
                 isSubmenuActive([
                   "/LeadInquiryManagement",
                   "/inquiry",
-                  "/lead",
+                  "//leadCouncelor",
                   "/deal",
                   // "/dashboard",
                   "/contract",
@@ -269,10 +269,10 @@ const Sidebar = ({ collapsed, menuItemClick, login, toggleSidebar }) => {
                   </li>
                   <li
                     className={`menu-item submenu-item ${
-                      isActive("/lead") ? "active" : ""
+                      isActive("/leadCouncelor") ? "active" : ""
                     }`}
                     onClick={() => {
-                      navigate("/lead");
+                      navigate("/leadCouncelor");
                       menuItemClick();
                     }}
                   >
