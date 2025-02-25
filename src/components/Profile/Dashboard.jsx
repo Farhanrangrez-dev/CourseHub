@@ -90,18 +90,7 @@ const StudentProfile = () => {
             </p>
 
             {/* Link to view student profile */}
-            <Link
-              to="#"
-              className="text-decoration-none text-nowrap"
-            >
-              <Button variant="primary" className="me-2">
-                View
-              </Button>
-            </Link>
-
-            <Button variant="primary" className="me-2">
-              Student
-            </Button>
+            
             <Button
               variant="primary"
               className="me-2"
