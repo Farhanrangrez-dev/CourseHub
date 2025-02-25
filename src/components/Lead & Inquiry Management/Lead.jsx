@@ -7,9 +7,9 @@ const Lead = () => {
   const navigate = useNavigate()
   // Sample lead data
   const [leads, setLeads] = useState([
-    { id: 1, name: "John Smith", email: "john.smith@example.com", phone: "+1 234 567 890", status: "Active" },
-    { id: 2, name: "Emily Johnson", email: "emily.johnson@example.com", phone: "+1 987 654 321", status: "Pending" },
-    { id: 3, name: "Michael Brown", email: "michael.brown@example.com", phone: "+1 555 666 777", status: "Inactive" },
+    { id: 1, name: "John Smith", email: "john.smith@example.com", phone: "+1 234 567 890", },
+    { id: 2, name: "Emily Johnson", email: "emily.johnson@example.com", phone: "+1 987 654 321",  },
+    { id: 3, name: "Michael Brown", email: "michael.brown@example.com", phone: "+1 555 666 777", },
   ]);
 
   // State for modal visibility
@@ -20,7 +20,7 @@ const Lead = () => {
     name: "",
     email: "",
     phone: "",
-    status: "Active",
+    
   });
 
   // Open modal
@@ -33,7 +33,7 @@ const Lead = () => {
       name: "",
       email: "",
       phone: "",
-      status: "Active",
+      
     });
   };
 
@@ -90,12 +90,7 @@ const Lead = () => {
                   <br />
                   {lead.phone}
                 </Card.Text>
-                <Badge
-                  bg={lead.status === "Active" ? "success" : lead.status === "Pending" ? "warning" : "secondary"}
-                  className="mb-2"
-                >
-                  {lead.status.toLowerCase()}
-                </Badge>
+               
                 <div className="d-flex justify-content-between mt-3">
                 <Button variant="light" onClick={() => navigate(`/lead/${lead.id}`)} > 
                     View Details
@@ -150,18 +145,7 @@ const Lead = () => {
                 required
               />
             </Form.Group>
-            <Form.Group className="mb-3">
-              <Form.Label>Status</Form.Label>
-              <Form.Select
-                name="status"
-                value={newLead.status}
-                onChange={handleInputChange}
-              >
-                <option value="Active">Active</option>
-                <option value="Pending">Pending</option>
-                <option value="Inactive">Inactive</option>
-              </Form.Select>
-            </Form.Group>
+           
             <div className="d-flex justify-content-end gap-2">
               <Button variant="secondary" onClick={handleCloseModal}>
                 Cancel
