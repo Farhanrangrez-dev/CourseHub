@@ -15,18 +15,22 @@ const TaskManagement = () => {
   const [dueDate, setDueDate] = useState("");
   const [counselor, setCounselor] = useState("");
   const [student, setStudent] = useState("");
-  const [status, setStatus] = useState("");
+  const [description, setDescription] = useState("");
+  const [descriptionError, setDescriptionError] = useState("");
 
   // Sample counselors list
   const counselors = ["John Smith", "Jane Doe", "Emily Davis"];
-
   const students = ["sanjana", "kabir singh", "Emily Davis"];
 
-  const statuss = ["progress", "pending", "completed"];
   // Add new task
   const addTask = () => {
-    if (!taskTitle || !dueDate || !counselor || !student || !status) {
+    if (!taskTitle || !dueDate || !counselor || !student || !description) {
       alert("Please fill all fields!");
+      return;
+    }
+
+    if (description.length > 200) {
+      setDescriptionError("Description cannot exceed 200 characters.");
       return;
     }
 
@@ -36,23 +40,19 @@ const TaskManagement = () => {
         title: taskTitle,
         dueDate,
         counselor,
-        status,
+        description,
         reminder: "",
         student,
       },
     ]);
+
+    // Reset form fields
     setTaskTitle("");
     setDueDate("");
     setCounselor("");
     setStudent("");
-    setStatus("");
-  };
-
-  // Mark task as completed
-  const completeTask = (index) => {
-    const updatedTasks = [...tasks];
-    updatedTasks[index].status = "Completed";
-    setTasks(updatedTasks);
+    setDescription("");
+    setDescriptionError("");
   };
 
   // Handle reminder selection
@@ -88,7 +88,7 @@ const TaskManagement = () => {
               value={counselor}
               onChange={(e) => setCounselor(e.target.value)}
             >
-              <option value="">Councelor Name</option>
+              <option value="">Counselor Name</option>
               {counselors.map((name, index) => (
                 <option key={index} value={name}>
                   {name}
@@ -110,19 +110,27 @@ const TaskManagement = () => {
               ))}
             </Form.Select>
           </Col>
-
-          <Col md={4}>
-            <Form.Select
-              value={status}
-              onChange={(e) => setStatus(e.target.value)}
-            >
-              <option value="">Status</option>
-              {statuss.map((statuss, index) => (
-                <option key={index} value={statuss}>
-                  {statuss}
-                </option>
-              ))}
-            </Form.Select>
+          <Col md={8}>
+            <Form.Control
+              as="textarea"
+              rows={3}
+              placeholder="Description"
+              value={description}
+              onChange={(e) => {
+                setDescription(e.target.value);
+                if (e.target.value.length > 200) {
+                  setDescriptionError("Description cannot exceed 200 characters.");
+                } else {
+                  setDescriptionError("");
+                }
+              }}
+            />
+            <small className="text-muted">
+              {description.length}/200 characters
+            </small>
+            {descriptionError && (
+              <small className="text-danger">{descriptionError}</small>
+            )}
           </Col>
         </Row>
         <Button className="mt-3" variant="primary" onClick={addTask}>
@@ -138,9 +146,9 @@ const TaskManagement = () => {
             <tr>
               <th>Task Title</th>
               <th>Due Date</th>
-              <th>Name</th>
-              <th>Status</th>
-
+              <th>Counselor Name</th>
+              <th>Student Name</th>
+              <th>Description</th>
               <th>Reminder</th>
             </tr>
           </thead>
@@ -157,18 +165,8 @@ const TaskManagement = () => {
                   <td>{task.title}</td>
                   <td>{task.dueDate}</td>
                   <td>{task.counselor}</td>
-                  <td>{task.status}</td>
-                  {/* <td>
-                    {task.status === "Pending" && (
-                      <Button
-                        variant="primary"
-                        size="sm"
-                        onClick={() => completeTask(index)}
-                      >
-                        Complete
-                      </Button>
-                    )}
-                  </td> */}
+                  <td>{task.student}</td>
+                  <td>{task.description}</td>
                   <td>
                     <Form.Select
                       value={task.reminder}
@@ -178,8 +176,8 @@ const TaskManagement = () => {
                     >
                       <option value="">Select Reminder</option>
                       <option value="Task Cancel">Task Cancel</option>
-                      <option value="Upcoming ">Upcoming</option>
-                      <option value=" Alert"> Alert</option>
+                      <option value="Upcoming">Upcoming</option>
+                      <option value="Alert">Alert</option>
                     </Form.Select>
                   </td>
                 </tr>

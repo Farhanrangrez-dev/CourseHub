@@ -14,13 +14,14 @@ const Inquiry = () => {
   const [inquiries, setInquiries] = useState({
     todayInquiries: [
       {
-        id: 1,
-        name: "raja",
-        email: "raja@email",
+        
+        name: "Raja",
+        email: "raja@email.com",
         phone: "123456789",
-        city: "indore",
-        address: "vijay nagar",
-        course: "maths",
+        city: "Indore",
+        address: "Vijay Nagar",
+        course: "Maths",
+        source:"Whatsapp"
       },
     ],
     todayFollowUps: [
@@ -97,11 +98,14 @@ const Inquiry = () => {
 
   // State for new inquiry form data
   const [newInquiry, setNewInquiry] = useState({
-    title: "",
-    status: "New",
-    priority: "Medium priority",
-    assignedTeam: "",
-    counselor: "👤",
+   
+    name: "",
+    email: "",
+    phone: "",
+    city: "",
+    address: "",
+    course: "Maths",
+    source:"",
   });
 
   // State for new follow-up form data
@@ -126,12 +130,14 @@ const Inquiry = () => {
   const handleCloseInquiryModal = () => {
     setShowInquiryModal(false);
     setNewInquiry({
+      id: "",
       name: "",
-      email: "New",
-      phone: "Medium priority",
+      email: "",
+      phone: "",
       city: "",
-      address: "👤",
-      course: "maths",
+      address: "",
+      course: "Maths",
+      source:"WhatSapp",
     });
   };
 
@@ -300,26 +306,29 @@ const Inquiry = () => {
       <Table striped bordered hover responsive>
         <thead>
           <tr>
-            <th>id</th>
+          
             <th>Name</th>
             <th>Email</th>
             <th>Phone</th>
             <th>City</th>
             <th>Address</th>
             <th>Course</th>
+            <th>Source</th>
             <th>Action</th>
           </tr>
         </thead>
         <tbody>
           {currentInquiries.map((inq) => (
-            <tr key={inq.id}>
+            <tr>
+              
               <td>{inq.name}</td>
               <td>{inq.email}</td>
               <td>{inq.phone}</td>
               <td>{inq.city}</td>
               <td>{inq.address}</td>
               <td>{inq.course}</td>
-              <td>
+              <td>{inq.source}</td>
+              <td className="d-flex">
                 <Button
                   variant="info"
                   size="sm"
@@ -472,47 +481,81 @@ const Inquiry = () => {
         </Modal.Header>
         <Modal.Body>
           <Form onSubmit={handleAddInquiry}>
-            <Form.Group className="mb-3">
-              <Form.Label>Title</Form.Label>
+            
+           
+          <Form.Group className="mb-3">
+              <Form.Label>Name</Form.Label>
               <Form.Control
                 type="text"
-                placeholder="Enter inquiry title"
-                name="title"
-                value={newInquiry.title}
+                placeholder="Enter inquiry Name"
+                name="name"
+                value={newInquiry.name}
                 onChange={handleInquiryInputChange}
                 required
               />
             </Form.Group>
             <Form.Group className="mb-3">
-              <Form.Label>Status</Form.Label>
-              <Form.Select
-                name="status"
-                value={newInquiry.status}
+              <Form.Label>Email</Form.Label>
+              <Form.Control
+                type="email"
+                placeholder="Enter inquiry email"
+                name="email"
+                value={newInquiry.email}
                 onChange={handleInquiryInputChange}
-              >
-                <option value="New">New</option>
-                <option value="In Progress">In Progress</option>
-              </Form.Select>
+                required
+              />
             </Form.Group>
             <Form.Group className="mb-3">
-              <Form.Label>Priority</Form.Label>
-              <Form.Select
-                name="priority"
-                value={newInquiry.priority}
+              <Form.Label>Phone</Form.Label>
+              <Form.Control
+                type="number"
+                placeholder="Enter Phone Number"
+                name="phone"
+                value={newInquiry.phone}
                 onChange={handleInquiryInputChange}
-              >
-                <option value="High priority">High priority</option>
-                <option value="Medium priority">Medium priority</option>
-                <option value="Low priority">Low priority</option>
-              </Form.Select>
+                required
+              />
             </Form.Group>
             <Form.Group className="mb-3">
-              <Form.Label>Assigned Team</Form.Label>
+              <Form.Label>City</Form.Label>
               <Form.Control
                 type="text"
-                placeholder="Enter assigned team"
-                name="assignedTeam"
-                value={newInquiry.assignedTeam}
+                placeholder="Enter Your City"
+                name="city"
+                value={newInquiry.city}
+                onChange={handleInquiryInputChange}
+                required
+              />
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Address</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter Your Address"
+                name="address"
+                value={newInquiry.address}
+                onChange={handleInquiryInputChange}
+                required
+              />
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Course</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter Your Course"
+                name="course"
+                value={newInquiry.course}
+                onChange={handleInquiryInputChange}
+                required
+              />
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Source</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter Inquiry Source"
+                name="source"
+                value={newInquiry.source}
                 onChange={handleInquiryInputChange}
                 required
               />
@@ -648,23 +691,29 @@ const Inquiry = () => {
           {selectedInquiry && (
             <div>
               <p>
-                <strong>Title:</strong> {selectedInquiry.title}
+                <strong>Name:</strong> {selectedInquiry.name}
               </p>
               <p>
-                <strong>Status:</strong>{" "}
-                <Badge bg={getBadge(selectedInquiry.status)}>
-                  {selectedInquiry.status}
+                <strong>Email:</strong>{" "}
+                <Badge bg={getBadge(selectedInquiry.email)}>
+                  {selectedInquiry.email}
                 </Badge>
               </p>
               <p>
-                <strong>Priority:</strong>{" "}
-                <Badge bg="danger">{selectedInquiry.priority}</Badge>
+                <strong>Phone No.:</strong>{" "}
+                <Badge bg="danger">{selectedInquiry.phone}</Badge>
               </p>
               <p>
-                <strong>Assigned Team:</strong> {selectedInquiry.assignedTeam}
+                <strong>City:</strong> {selectedInquiry.city}
               </p>
               <p>
-                <strong>Counselor:</strong> {selectedInquiry.counselor}
+                <strong>Address:</strong> {selectedInquiry.address}
+              </p>
+              <p>
+                <strong>Course:</strong> {selectedInquiry.course}
+              </p>
+              <p>
+                <strong>Source:</strong> {selectedInquiry.source}
               </p>
             </div>
           )}

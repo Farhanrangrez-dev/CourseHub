@@ -23,6 +23,7 @@ phone: "",
 city: "",
 address: "",
 course: "",
+source:"",
 });
 
 useEffect(() => {
@@ -44,7 +45,7 @@ const updatedInquiries = [...inquiries, formData];
 setInquiries(updatedInquiries);
 localStorage.setItem("inquiries", JSON.stringify(updatedInquiries));
 
-setFormData({ name: "", email: "", phone: "", city: "", address: "", course: "" });
+setFormData({ name: "", email: "", phone: "", city: "", address: "", course: "", source:"",});
 handleClose();
 };
 const featuredCourses = [
@@ -124,7 +125,7 @@ return (
                     Log in
                     </Link>
                 </Button>
-                <Button onClick={handleShow}>Apply</Button>
+                <Button onClick={handleShow}>Inquiry </Button>
             </Navbar.Collapse>
         </Container>
     </Navbar>
@@ -165,6 +166,10 @@ return (
                 <Form.Group className="mt-2">
                     <Form.Label>Course</Form.Label>
                     <Form.Control type="text" name="course" value={formData.course} onChange={handleChange} required />
+                </Form.Group>
+                <Form.Group className="mt-2">
+                    <Form.Label>Inquiey Source</Form.Label>
+                    <Form.Control type="text" name="source" value={formData.source} onChange={handleChange} required />
                 </Form.Group>
 
                 <Button variant="primary" type="submit" className="mt-3">

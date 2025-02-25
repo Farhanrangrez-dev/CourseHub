@@ -3,18 +3,16 @@ import { Container, Row, Col, Card, Button, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
 const AssignCounselor = () => {
+  const navigate = useNavigate(); // Hook for navigation
 
-const navigate = useNavigate(); // Hook for navigation
-
-
-  // Sample counselor data
+  // Sample counselor data with status
   const [counselors, setCounselors] = useState([
-    { id: 1, name: "Emily Johnson", image: "https://randomuser.me/api/portraits/women/44.jpg", selected: false },
-    { id: 2, name: "Michael Smith", image: "https://randomuser.me/api/portraits/men/45.jpg", selected: false },
-    { id: 3, name: "Sarah Lee", image: "https://randomuser.me/api/portraits/women/46.jpg", selected: false },
-    { id: 4, name: "David Brown", image: "https://randomuser.me/api/portraits/men/47.jpg", selected: false },
-    { id: 5, name: "Lisa White", image: "https://randomuser.me/api/portraits/women/48.jpg", selected: false },
-    { id: 6, name: "James Green", image: "https://randomuser.me/api/portraits/men/49.jpg", selected: false },
+    { id: 1, name: "Emily Johnson", image: "https://randomuser.me/api/portraits/women/44.jpg", selected: false, status: "Active" },
+    { id: 2, name: "Michael Smith", image: "https://randomuser.me/api/portraits/men/45.jpg", selected: false, status: "Inactive" },
+    { id: 3, name: "Sarah Lee", image: "https://randomuser.me/api/portraits/women/46.jpg", selected: false, status: "Active" },
+    { id: 4, name: "David Brown", image: "https://randomuser.me/api/portraits/men/47.jpg", selected: false, status: "Inactive" },
+    { id: 5, name: "Lisa White", image: "https://randomuser.me/api/portraits/women/48.jpg", selected: false, status: "Active" },
+    { id: 6, name: "James Green", image: "https://randomuser.me/api/portraits/men/49.jpg", selected: false, status: "Inactive" },
   ]);
 
   // Function to handle selection
@@ -22,6 +20,17 @@ const navigate = useNavigate(); // Hook for navigation
     setCounselors(
       counselors.map((counselor) =>
         counselor.id === id ? { ...counselor, selected: !counselor.selected } : counselor
+      )
+    );
+  };
+
+  // Function to toggle status between Active and Inactive
+  const toggleStatus = (id) => {
+    setCounselors(
+      counselors.map((counselor) =>
+        counselor.id === id
+          ? { ...counselor, status: counselor.status === "Active" ? "Inactive" : "Active" }
+          : counselor
       )
     );
   };
@@ -34,11 +43,12 @@ const navigate = useNavigate(); // Hook for navigation
 
   return (
     <Container className="mt-4">
-      
-       <div className="d-flex justify-content-between mb-3">
-       <h2 className="mb-3" >Assign Leads to Counselors</h2>
-        <Button variant="secondary" onClick={() => navigate(-1)}>⬅ Back</Button>
-       </div>
+      <div className="d-flex justify-content-between mb-3">
+        <h2 className="mb-3">Assign Leads to Counselors</h2>
+        <Button variant="secondary" onClick={() => navigate(-1)}>
+          ⬅ Back
+        </Button>
+      </div>
 
       <Row>
         {counselors.map((counselor) => (
@@ -58,6 +68,13 @@ const navigate = useNavigate(); // Hook for navigation
                 />
                 <div className="flex-grow-1">
                   <Card.Title>{counselor.name}</Card.Title>
+                  <Button
+                    variant={counselor.status === "Active" ? "success" : "danger"}
+                    size="sm"
+                    onClick={() => toggleStatus(counselor.id)}
+                  >
+                    {counselor.status}
+                  </Button>
                 </div>
                 <Form.Check
                   type="checkbox"
@@ -70,7 +87,9 @@ const navigate = useNavigate(); // Hook for navigation
         ))}
       </Row>
 
-      <Button variant="dark" onClick={handleSubmit} style={{backgroundColor:"gray", color:"black", border:"none"}}>Submit</Button>
+      <Button variant="dark" onClick={handleSubmit} style={{ backgroundColor: "gray", color: "black", border: "none" }}>
+        Submit
+      </Button>
     </Container>
   );
 };
