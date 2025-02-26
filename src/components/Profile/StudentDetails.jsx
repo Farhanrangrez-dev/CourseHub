@@ -6,7 +6,7 @@ const StudentDetails = () => {
   const [show, setShow] = useState(false); // State for modal visibility
   const [selectedStudent, setSelectedStudent] = useState(null); // State for selected student
   const [searchQuery, setSearchQuery] = useState(""); // State for search query
-  const [selectedClass, setSelectedClass] = useState(""); // State for selected class
+  const [selectedCourse, setSelectedCourse] = useState(""); // State for selected class
   const [selectedSection, setSelectedSection] = useState(""); // State for selected section
 
   // Sample student data
@@ -15,7 +15,7 @@ const StudentDetails = () => {
       admissionNo: 1001,
       name: "Hudson",
       rollNo: "0201",
-      class: "Class 1(A)",
+      course: "University of California, Berkeley",
       fatherName: "Emrys",
       dob: "02/06/2019",
       gender: "Male",
@@ -26,7 +26,7 @@ const StudentDetails = () => {
       admissionNo: 1020,
       name: "Marlie",
       rollNo: "0204",
-      class: "Class 1(B)",
+      course: "University of California, Berkeley",
       fatherName: "Lester",
       dob: "05/22/2019",
       gender: "Female",
@@ -37,7 +37,7 @@ const StudentDetails = () => {
       admissionNo: 120036,
       name: "Ayan Desai",
       rollNo: "23620",
-      class: "Class 1(C)",
+      course: "Massachusetts Institute of Technology",
       fatherName: "Abhinand",
       dob: "10/15/2015",
       gender: "Male",
@@ -48,7 +48,7 @@ const StudentDetails = () => {
       admissionNo: 2152,
       name: "Kaylen",
       rollNo: "0205",
-      class: "Class 2(A)",
+      course: "Massachusetts Institute of Technology",
       fatherName: "Lyndon",
       dob: "06/19/2019",
       gender: "Female",
@@ -59,7 +59,7 @@ const StudentDetails = () => {
       admissionNo: 7663,
       name: "Paul S. Bealer",
       rollNo: "6230",
-      class: "Class 2(B)",
+      course: "Stanford University",
       fatherName: "McMahon",
       dob: "08/13/2005",
       gender: "Male",
@@ -70,7 +70,7 @@ const StudentDetails = () => {
       admissionNo: 96302,
       name: "Jacob Bethell",
       rollNo: "221002",
-      class: "Class 2(C)",
+      course: "Stanford University",
       fatherName: "Brydon",
       dob: "08/19/2016",
       gender: "Male",
@@ -81,7 +81,7 @@ const StudentDetails = () => {
       admissionNo: 96302,
       name: "Jacob Bethell",
       rollNo: "221002",
-      class: "Class 3(A)",
+      course: "Stanford University",
       fatherName: "Brydon",
       dob: "08/19/2016",
       gender: "Male",
@@ -92,7 +92,7 @@ const StudentDetails = () => {
       admissionNo: 96302,
       name: "Jacob Bethell",
       rollNo: "221002",
-      class: "Class 3(B)",
+      course: "Stanford University",
       fatherName: "Brydon",
       dob: "08/19/2016",
       gender: "Male",
@@ -103,7 +103,7 @@ const StudentDetails = () => {
       admissionNo: 96302,
       name: "Jacob Bethell",
       rollNo: "221002",
-      class: "Class 3(C)",
+      course: "Stanford University",
       fatherName: "Brydon",
       dob: "08/19/2016",
       gender: "Male",
@@ -119,14 +119,14 @@ const StudentDetails = () => {
       student.rollNo.toLowerCase().includes(searchQuery.toLowerCase()) ||
       student.admissionNo.toString().includes(searchQuery);
 
-    const matchesClass = selectedClass
-      ? student.class.includes(selectedClass)
+    const matchesCourse = selectedCourse
+      ? student.course.includes(selectedCourse)
       : true;
     const matchesSection = selectedSection
-      ? student.class.includes(`(${selectedSection})`)
+      ? student.course.includes(`(${selectedSection})`)
       : true;
 
-    return matchesSearchQuery && matchesClass && matchesSection;
+    return matchesSearchQuery && matchesCourse && matchesSection;
   });
 
   // Function to handle modal show
@@ -140,7 +140,7 @@ const StudentDetails = () => {
 
   return (
     <div className="container pt-3">
-      <h4 className="fw-bold mb-4">Select Criteria</h4>
+      <h4 className="fw-bold mb-5">Select Criteria</h4>
       <div className="row g-2 align-items-center">
         <div className="col-md-3">
           <label className="form-label">
@@ -148,31 +148,21 @@ const StudentDetails = () => {
           </label>
           <select
             className="form-select"
-            value={selectedClass}
-            onChange={(e) => setSelectedClass(e.target.value)}
+            value={selectedCourse}
+            onChange={(e) => setSelectedCourse(e.target.value)}
           >
-            <option value="">All Classes</option>
-            <option>Class 1</option>
-            <option>Class 2</option>
-            <option>Class 3</option>
+            <option value="">All Course</option>
+            <option>University of California, Berkeley</option>
+            <option>University of California, Berkeley</option>
+            <option>Massachusetts Institute of Technology	</option>
+            <option>Massachusetts Institute of Technology	</option>
+            <option>Stanford University</option>
+            <option>Stanford University</option>
           </select>
         </div>
 
-        <div className="col-md-3">
-          <label className="form-label">Section</label>
-          <select
-            className="form-select"
-            value={selectedSection}
-            onChange={(e) => setSelectedSection(e.target.value)}
-          >
-            <option value="">All Sections</option>
-            <option>A</option>
-            <option>B</option>
-            <option>C</option>
-          </select>
-        </div>
-
-        <div className="col-md-4">
+        
+        <div className="col-md-5">
           <label className="form-label">Search By Keyword</label>
           <input
             type="text"
@@ -218,7 +208,7 @@ const StudentDetails = () => {
               <th>Student Name</th>
               <th>Admission No</th>
               <th>Roll No.</th>
-              <th>Class</th>
+              <th>Couse Name</th>
               <th>Father Name</th>
               <th>Date of Birth</th>
               <th>Gender</th>
@@ -243,7 +233,7 @@ const StudentDetails = () => {
                 </td>
                 <td>{student.admissionNo}</td>
                 <td>{student.rollNo}</td>
-                <td>{student.class}</td>
+                <td>{student.course}</td>
                 <td>{student.fatherName}</td>
                 <td>{student.dob}</td>
                 <td>{student.gender}</td>
@@ -285,7 +275,7 @@ const StudentDetails = () => {
               <div className="modal-body">
                 <p>Admission No: {selectedStudent.admissionNo}</p>
                 <p>Roll No: {selectedStudent.rollNo}</p>
-                <p>Class: {selectedStudent.class}</p>
+                <p>Class: {selectedStudent.course}</p>
                 <p>Father's Name: {selectedStudent.fatherName}</p>
                 <p>Date of Birth: {selectedStudent.dob}</p>
                 <p>Gender: {selectedStudent.gender}</p>
