@@ -139,17 +139,7 @@ const LeadCouncelor = () => {
                   >
                     View Details
                   </Button>
-                  <Button
-                    variant="dark"
-                    onClick={() => navigate(`/contract`)}
-                    style={{
-                      backgroundColor: "gray",
-                      color: "black",
-                      border: "none",
-                    }}
-                  >
-                    Assign to Counselor
-                  </Button>
+                  
                 </div>
               </Card.Body>
             </Card>
