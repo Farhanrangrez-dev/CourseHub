@@ -11,7 +11,7 @@ const AdminStatus = () => {
         <h4 className="mb-3">Admin Panel - All Leads</h4>
         {/* Make the table scrollable horizontally on small screens */}
         <div className="table-responsive">
-          <Table bordered hover>
+          <Table striped bordered hover>
             <thead>
               <tr>
                 <th>Lead Name</th>
