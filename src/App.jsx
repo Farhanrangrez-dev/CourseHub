@@ -43,6 +43,7 @@ import StudentProfile from "./components/Profile/Dashboard";
 import StudentUniversity from "./components/PaymentInvoiceManagement/StudentUniversity";
 import Councelor from "./components/dashbord/Councelor";
 import LandingPage from "./components/landingpage/landingPage";
+import CounselorTask from "./components/Lead & Inquiry Management/CouncelorTask";
 import StatusTracking from "./components/Lead & Inquiry Management/StatusTracking";
 import AdminStatus from "./components/Lead & Inquiry Management/AdminStatus";
 import { LeadProvider } from "./context/LeadContext";
@@ -163,7 +164,10 @@ function App() {
                 path="/leadCouncelor"
                 element={<LeadCouncelor></LeadCouncelor>}
               ></Route>
-
+              <Route
+                path="/councelorTask"
+                element={<CounselorTask></CounselorTask>}
+              ></Route>
               <Route path="/contract" element={<Contract></Contract>}></Route>
 
               <Route
