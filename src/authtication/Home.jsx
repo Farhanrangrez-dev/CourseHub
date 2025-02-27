@@ -1,284 +1,202 @@
 import React, { useState, useEffect } from "react";
 import {
-Navbar,
-Nav,
-Button,
-Container,
-Row,
-Col,
-Card,
-Modal,
-Form,
+  Navbar,
+  Nav,
+  Button,
+  Container,
+  Row,
+  Col,
+  Card,
+  Modal,
+  Form,
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import InquiryForm from "./InquiryForm";
 import "./Home.css";
 
 const App = () => {
-const [showModal, setShowModal] = useState(false);
-const [inquiries, setInquiries] = useState([]);
-const [formData, setFormData] = useState({
-name: "",
-email: "",
-phone: "",
-city: "",
-address: "",
-course: "",
-source:"",
-});
+  const [showInquiryModal, setShowInquiryModal] = useState(false);
 
-useEffect(() => {
-const storedInquiries = JSON.parse(localStorage.getItem("inquiries")) || [];
-setInquiries(storedInquiries);
-}, []);
+  // 2) Handlers to open/close the modal
+  const handleOpenInquiry = () => setShowInquiryModal(true);
+  const handleCloseInquiry = () => setShowInquiryModal(false);
 
-const handleShow = () => setShowModal(true);
-const handleClose = () => setShowModal(false);
+  const featuredCourses = [
+    { title: "Mathematics", img: "/public/img/course1.jpeg" },
+    { title: "Physics", img: "/public/img/course2.jpeg" },
+    { title: "History", img: "/public/img/course3.jpeg" },
+    { title: "Literature", img: "/public/img/course4.png" },
+    { title: "Computer Science", img: "/public/img/course5.png" },
+    { title: "Languages", img: "/public/img/course6.png" },
+  ];
 
-const handleChange = (e) => {
-setFormData({ ...formData, [e.target.name]: e.target.value });
-};
-
-const handleSubmit = (e) => {
-e.preventDefault();
-
-const updatedInquiries = [...inquiries, formData];
-setInquiries(updatedInquiries);
-localStorage.setItem("inquiries", JSON.stringify(updatedInquiries));
-
-setFormData({ name: "", email: "", phone: "", city: "", address: "", course: "", source:"",});
-handleClose();
-};
-const featuredCourses = [
-{ title: "Mathematics", img: "/public/img/course1.jpeg" },
-{ title: "Physics", img: "/public/img/course2.jpeg" },
-{ title: "History", img: "/public/img/course3.jpeg" },
-{ title: "Literature", img: "/public/img/course4.png" },
-{ title: "Computer Science", img: "/public/img/course5.png" },
-{ title: "Languages", img: "/public/img/course6.png" },
-];
-
-const topCourses = [
-{
-title: "Science Lab Basics",
-category: "Physics",
-price: "$50",
-rating: "3.6",
-img: "/public/img/image1.jpeg",
-},
-{
-title: "Digital Literacy",
-category: "Computer Science",
-price: "$70",
-rating: "5.0",
-img: "/public/img/image2.png",
-},
-{
-title: "Literary Analysis",
-category: "Literature",
-price: "$60",
-rating: "3.8",
-img: "/public/img/image3.jpeg",
-},
-{
-title: "Historical Research",
-category: "History",
-price: "$80",
-rating: "5.5",
-img: "/public/img/image4.jpeg",
-},
-{
-title: "Language Proficiency",
-category: "Languages",
-price: "$40",
-rating: "5.5",
-img: "/public/img/image5.jpeg",
-},
-];
-return (
-<div className="bg-dark text-white">
-    {/* Navbar */}
-    <Navbar expand="lg" className="navbar-dark bg-dark py-3">
+  const topCourses = [
+    {
+      title: "Science Lab Basics",
+      category: "Physics",
+      price: "$50",
+      rating: "3.6",
+      img: "/public/img/image1.jpeg",
+    },
+    {
+      title: "Digital Literacy",
+      category: "Computer Science",
+      price: "$70",
+      rating: "5.0",
+      img: "/public/img/image2.png",
+    },
+    {
+      title: "Literary Analysis",
+      category: "Literature",
+      price: "$60",
+      rating: "3.8",
+      img: "/public/img/image3.jpeg",
+    },
+    {
+      title: "Historical Research",
+      category: "History",
+      price: "$80",
+      rating: "5.5",
+      img: "/public/img/image4.jpeg",
+    },
+    {
+      title: "Language Proficiency",
+      category: "Languages",
+      price: "$40",
+      rating: "5.5",
+      img: "/public/img/image5.jpeg",
+    },
+  ];
+  return (
+    <div className="bg-dark text-white">
+      {/* Navbar */}
+      <Navbar expand="lg" className="navbar-dark bg-dark py-3">
         <Container>
-            <Navbar.Brand href="#" className="fw-bold">
-                CourseHub
-            </Navbar.Brand>
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse id="basic-navbar-nav">
-                <Nav className="ms-auto">
-                    <Nav.Link href="#" className="text-white">
-                        Courses
-                    </Nav.Link>
-                    <Nav.Link href="#" className="text-white">
-                        Programs
-                    </Nav.Link>
-                    <Nav.Link href="#" className="text-white">
-                        Explore
-                    </Nav.Link>
-                </Nav>
-                <Button style={{ marginRight: "10px" }}>
-                    <Link to={"/login"} className="ms-3" style={{ color: "white" }}>
-                    Sign up
-                    </Link>
-                </Button>
-                <Button style={{ marginRight: "10px" }}>
-                    <Link to={"/login"} style={{ color: "white" }}>
-                    Log in
-                    </Link>
-                </Button>
-                <Button onClick={handleShow}>Inquiry </Button>
-            </Navbar.Collapse>
+          <Navbar.Brand href="#" className="fw-bold">
+            CourseHub
+          </Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="ms-auto">
+              <Link
+                to={"/login"}
+                className="text-white me-2 text-decoration-none"
+                style={{ color: "white" }}
+              >
+                Log in
+              </Link>
+              <Link
+                to={"/login"}
+                className="me-2 text-decoration-none"
+                style={{ color: "white" }}
+              >
+                Sign up
+              </Link>
+            </Nav>
+            <Button onClick={handleOpenInquiry}>Inquiry</Button>
+          </Navbar.Collapse>
         </Container>
-    </Navbar>
+      </Navbar>
 
-    {/* Apply Modal Form */}
-    <Modal show={showModal} onHide={handleClose}>
-        <Modal.Header closeButton>
-            <Modal.Title>Student Inquiry Form</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-            <Form onSubmit={handleSubmit}>
-                <Form.Group>
-                    <Form.Label>Name</Form.Label>
-                    <Form.Control type="text" name="name" value={formData.name} onChange={handleChange} required />
-                </Form.Group>
-
-                <Form.Group className="mt-2">
-                    <Form.Label>Email</Form.Label>
-                    <Form.Control type="email" name="email" value={formData.email} onChange={handleChange} required />
-                </Form.Group>
-
-                <Form.Group className="mt-2">
-                    <Form.Label>Phone</Form.Label>
-                    <Form.Control type="tel" name="phone" value={formData.phone} onChange={handleChange} required />
-                </Form.Group>
-
-                <Form.Group className="mt-2">
-                    <Form.Label>City</Form.Label>
-                    <Form.Control type="text" name="city" value={formData.city} onChange={handleChange} required />
-                </Form.Group>
-
-                <Form.Group className="mt-2">
-                    <Form.Label>Address</Form.Label>
-                    <Form.Control as="textarea" name="address" rows={2} value={formData.address} onChange={handleChange}
-                        required />
-                </Form.Group>
-
-                <Form.Group className="mt-2">
-                    <Form.Label>Course</Form.Label>
-                    <Form.Control type="text" name="course" value={formData.course} onChange={handleChange} required />
-                </Form.Group>
-                <Form.Group className="mt-2">
-                    <Form.Label>Inquiey Source</Form.Label>
-                    <Form.Control type="text" name="source" value={formData.source} onChange={handleChange} required />
-                </Form.Group>
-
-                <Button variant="primary" type="submit" className="mt-3">
-                    Submit Inquiry
-                </Button>
-            </Form>
-        </Modal.Body>
-    </Modal>
-    {/* Hero Section */}
-    <section className="hero-section text-center" style={{ backgroundImage: "url('/public/img/hero.png')" }}>
+      <section
+        className="hero-section text-center"
+        style={{ backgroundImage: "url('/public/img/hero.png')" }}
+      >
         <div className="hero-overlay d-flex flex-column align-items-center justify-content-center text-center">
-            <h1 className="fw-bold">Join CourseHub for Students</h1>
-            <p className="lead">Discover a world of knowledge with us!</p>
-    
-            {/* Search Form */}
-            {/* <Form className="d-flex justify-content-center">
-                <Row className="w-75">
-                    <Col md={3}>
-                    <Form.Control type="text" placeholder="Select your interest" />
-                    </Col>
-                    <Col md={2}>
-                    <Form.Control type="date" placeholder="Start date" />
-                    </Col>
-                    <Col md={2}>
-                    <Form.Control type="date" placeholder="End date" />
-                    </Col>
-                    <Col md={3}>
-                    <Form.Control type="number" placeholder="Number of students" />
-                    </Col>
-                    <Col md={2} className="text-center">
-                    <Button variant="danger" className="rounded-circle px-3">
-                        ➜
-                    </Button>
-                    </Col>
-                </Row>
-            </Form> */}
+          <h1 className="fw-bold">Join CourseHub for Students</h1>
+          <p className="lead">Discover a world of knowledge with us!</p>
         </div>
-    </section>
-    
-    {/* Featured Courses */}
-    <Container className="py-5">
+      </section>
+
+      {/* Featured Courses */}
+      <Container className="py-5">
         <h2 className="text-center fw-bold">Featured Courses</h2>
         <Row className="mt-4">
-            {featuredCourses.map((course, index) => (
+          {featuredCourses.map((course, index) => (
             <Col key={index} md={4} className="mb-3">
-            <Card className="bg-secondary text-white p-2">
+              <Card className="bg-secondary text-white p-2">
                 <Card.Img src={course.img} className="rounded" />
                 <Card.Body>
-                    <span className="badge bg-light text-dark">
-                        {course.title}
-                    </span>
+                  <span className="badge bg-light text-dark">
+                    {course.title}
+                  </span>
                 </Card.Body>
-            </Card>
+              </Card>
             </Col>
-            ))}
+          ))}
         </Row>
-    </Container>
-    
-    {/* Top-rated Courses */}
-    <Container className="py-5">
+      </Container>
+
+      {/* Top-rated Courses */}
+      <Container className="py-5">
         <h2 className="text-center fw-bold">Top-rated Courses</h2>
         <Row className="mt-4">
-            {topCourses.map((course, index) => (
+          {topCourses.map((course, index) => (
             <Col key={index} md={3} className="mb-3">
-            <Card className="bg-dark text-white">
+              <Card className="bg-dark text-white">
                 <Card.Img src={course.img} />
                 <Card.Body>
-                    <span className="badge bg-danger">{course.rating}</span>
-                    <Card.Title>{course.title}</Card.Title>
-                    <Card.Text>{course.category}</Card.Text>
-                    <p>
-                        <strong>From {course.price}/course</strong>
-                    </p>
+                  <span className="badge bg-danger">{course.rating}</span>
+                  <Card.Title>{course.title}</Card.Title>
+                  <Card.Text>{course.category}</Card.Text>
+                  <p>
+                    <strong>From {course.price}/course</strong>
+                  </p>
                 </Card.Body>
-            </Card>
+              </Card>
             </Col>
-            ))}
+          ))}
         </Row>
-    </Container>
-    
-    {/* Exclusive Offer */}
-    <section className="offer-section text-center py-4 bg-secondary">
+      </Container>
+
+      {/* Exclusive Offer */}
+      <section className="offer-section text-center py-4 bg-secondary">
         <Container>
-            <h5>🎁 Exclusive Offer!</h5>
-            <p>
-                Want to stay updated on new courses and promotions? Sign up for our
-                Newsletter
-            </p>
-            <Button variant="light">Subscribe</Button>
+          <h5>🎁 Exclusive Offer!</h5>
+          <p>
+            Want to stay updated on new courses and promotions? Sign up for our
+            Newsletter
+          </p>
+          <Button variant="light">Subscribe</Button>
         </Container>
-    </section>
-    
-    {/* Footer */}
-    <footer className="bg-dark text-white py-4">
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-dark text-white py-4">
         <Container>
-            <Row>
-                <Col md={6}>
-                <h5>Contact Us</h5>
-                <p>Email: info@studentrecruit.com</p>
-                <p>Phone: +123 456 7890</p>
-                </Col>
-                <Col md={6} className="text-md-end">
-                <p>Privacy Policy | Terms of Use</p>
-                </Col>
-            </Row>
+          <Row>
+            <Col md={6}>
+              <h5>Contact Us</h5>
+              <p>Email: info@studentrecruit.com</p>
+              <p>Phone: +123 456 7890</p>
+            </Col>
+            <Col md={6} className="text-md-end">
+              <p>Privacy Policy | Terms of Use</p>
+            </Col>
+          </Row>
         </Container>
-    </footer>
-</div>
-);
+      </footer>
+
+      <Modal
+        show={showInquiryModal}
+        onHide={handleCloseInquiry}
+        size="xl"
+        backdrop="static"
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Inquiry</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <InquiryForm />
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCloseInquiry}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </div>
+  );
 };
 
 export default App;
