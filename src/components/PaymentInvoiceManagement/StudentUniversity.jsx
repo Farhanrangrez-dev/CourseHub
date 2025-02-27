@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Link } from "react-router-dom";
-
+import HungryUniversity from "../universityPagesform/HungryUniversity";
 // Sample data for universities and programs
 const universities = [
   {
@@ -62,9 +62,8 @@ const universities = [
 
 function StudentUniversity() {
   const [searchTerm, setSearchTerm] = useState("");
-  const [filteredUniversities, setFilteredUniversities] = useState(
-    universities
-  );
+  const [filteredUniversities, setFilteredUniversities] =
+    useState(universities);
 
   // Handle search input
   const handleSearch = (e) => {
@@ -104,7 +103,7 @@ function StudentUniversity() {
         backgroundColor: "#f8f9fa",
         padding: "20px",
         borderRadius: "10px",
-        marginRight:"35px"
+        marginRight: "35px",
       }}
     >
       <div className="container mt-4">
@@ -148,9 +147,9 @@ function StudentUniversity() {
                     <td>{program.eligibility}</td>
                     <td>{program.fee}</td>
                     <td className="text-nowrap">
-                      <Link to={"/admission"}>
-                        <button className="btn btn-light btn-sm me-1">
-                          <i className="fa fa-paper-plane me-2"></i>
+                      <Link to={"/HungryUniversity"}>
+                        <button type="button"className=" btn btn-primary me-2">
+                         Apply
                         </button>
                       </Link>
                       <button

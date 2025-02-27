@@ -42,11 +42,17 @@ import CourseUniversityDatabase from "./components/CourseUniversityDatabase/Cour
 import StudentProfile from "./components/Profile/Dashboard";
 import StudentUniversity from "./components/PaymentInvoiceManagement/StudentUniversity";
 import Councelor from "./components/dashbord/Councelor";
-import LandingPage from "./components/landingpage/landingPage";
+
 import StatusTracking from "./components/Lead & Inquiry Management/StatusTracking";
 import AdminStatus from "./components/Lead & Inquiry Management/AdminStatus";
 import { LeadProvider } from "./context/LeadContext";
 import LeadCouncelor from "./components/Lead & Inquiry Management/LeadCouncelor";
+import HungryUniversity from "./components/universityPagesform/HungryUniversity";
+import BmuUniversity from "./components/universityPagesform/BmuUniversity";
+
+import DebrecenUniversity from "./components/universityPagesform/DebrecenUniversity";
+import GyorUniversity from "./components/universityPagesform/GyorUniversity";
+import WekerleUniversity from "./components/universityPagesform/WekerleUniversity";
 
 function App() {
   //show details to admin
@@ -95,7 +101,9 @@ function App() {
     location.pathname === "/" || location.pathname === "/login";
   return (
     <>
-      {/* <LandingPage/> */}
+     
+
+    
 
       {/* navbar */}
       {!hideLayout && <Navbar toggleSidebar={toggleSidebar} />}
@@ -119,7 +127,23 @@ function App() {
           style={hideLayout ? { marginTop: "0", paddingLeft: "0" } : {}}
         >
           <LeadProvider>
+
+
+
+
             <Routes>
+      
+    {/* this is VB routes for all the university  */}
+    
+      <Route path="/HungryUniversity" element={<HungryUniversity />}></Route>
+      <Route path="/BmuUniversity" element={<BmuUniversity />}></Route>
+      <Route path="/DebrecenUniversity" element={<DebrecenUniversity />}></Route>
+      <Route path="/WekerleUniversity" element={< WekerleUniversity/>}></Route>
+      <Route path="/GyorUniversity" element={<GyorUniversity />}></Route>
+
+
+
+       
               {/* login signup */}
               <Route
                 path="/login"
