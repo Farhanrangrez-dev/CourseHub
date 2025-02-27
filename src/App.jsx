@@ -42,17 +42,19 @@ import CourseUniversityDatabase from "./components/CourseUniversityDatabase/Cour
 import StudentProfile from "./components/Profile/Dashboard";
 import StudentUniversity from "./components/PaymentInvoiceManagement/StudentUniversity";
 import Councelor from "./components/dashbord/Councelor";
-
+// import LandingPage from "./components/landingpage/landingPage";
+import CounselorTask from "./components/Lead & Inquiry Management/CouncelorTask";
 import StatusTracking from "./components/Lead & Inquiry Management/StatusTracking";
 import AdminStatus from "./components/Lead & Inquiry Management/AdminStatus";
 import { LeadProvider } from "./context/LeadContext";
 import LeadCouncelor from "./components/Lead & Inquiry Management/LeadCouncelor";
+import UniversityCards from "./components/PaymentInvoiceManagement/UniversityCards";
 import HungryUniversity from "./components/universityPagesform/HungryUniversity";
+import WekerleUniversity from "./components/universityPagesform/WekerleUniversity";
 import BmuUniversity from "./components/universityPagesform/BmuUniversity";
-
 import DebrecenUniversity from "./components/universityPagesform/DebrecenUniversity";
 import GyorUniversity from "./components/universityPagesform/GyorUniversity";
-import WekerleUniversity from "./components/universityPagesform/WekerleUniversity";
+
 
 function App() {
   //show details to admin
@@ -135,8 +137,8 @@ function App() {
       
     {/* this is VB routes for all the university  */}
     
-      <Route path="/HungryUniversity" element={<HungryUniversity />}></Route>
-      <Route path="/BmuUniversity" element={<BmuUniversity />}></Route>
+      <Route path="/HungryUniversity" element={<HungryUniversity/>}></Route>
+      <Route path="/BmuUniversity" element={<BmuUniversity/>}></Route>
       <Route path="/DebrecenUniversity" element={<DebrecenUniversity />}></Route>
       <Route path="/WekerleUniversity" element={< WekerleUniversity/>}></Route>
       <Route path="/GyorUniversity" element={<GyorUniversity />}></Route>
@@ -187,7 +189,10 @@ function App() {
                 path="/leadCouncelor"
                 element={<LeadCouncelor></LeadCouncelor>}
               ></Route>
-
+              <Route
+                path="/councelorTask"
+                element={<CounselorTask></CounselorTask>}
+              ></Route>
               <Route path="/contract" element={<Contract></Contract>}></Route>
 
               <Route
@@ -314,8 +319,8 @@ function App() {
 
               {/* PaymentInvoiceManagement */}
               <Route
-                path="/StudentUniversity"
-                element={<StudentUniversity></StudentUniversity>}
+                path="/UniversityCards"
+                element={<UniversityCards></UniversityCards>}
               ></Route>
               <Route
                 path="/PaymentInvoiceManagement"

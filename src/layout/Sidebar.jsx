@@ -248,14 +248,6 @@ const Sidebar = ({ collapsed, menuItemClick, login, toggleSidebar }) => {
 
               {openSubmenu === "leadInquiry" && (
                 <ul className={`submenu `}>
-                  {/* <li
-                  className={`menu-item submenu-item ${
-                    isActive("/dashboard") ? "active" : ""
-                  }`}
-                  onClick={() => navigate("/dashboard")}
-                >
-                  Dashboard
-                </li> */}
                   <li
                     className={`menu-item submenu-item ${
                       isActive("/inquiry") ? "active" : ""
@@ -287,7 +279,15 @@ const Sidebar = ({ collapsed, menuItemClick, login, toggleSidebar }) => {
                       menuItemClick();
                     }}
                   >
-                    Status Tracking
+                    Status
+                  </li>
+                  <li
+                    className={`menu-item submenu-item ${
+                      isActive("/councelorTask") ? "active" : ""
+                    }`}
+                    onClick={() => navigate("/councelorTask")}
+                  >
+                    Task
                   </li>
                   {/* <li
                     className={`menu-item submenu-item ${
@@ -837,13 +837,13 @@ const Sidebar = ({ collapsed, menuItemClick, login, toggleSidebar }) => {
           {login == "student" ? (
             <li
               className={`menu-item ${
-                isActive("/StudentUniversity") ? "active" : ""
+                isActive("/UniversityCards") ? "active" : ""
               }`}
             >
               <div
                 className="menu-link menu-i"
                 onClick={() => {
-                  navigate("/StudentUniversity");
+                  navigate("/UniversityCards");
                   // menuItemClick();
                 }}
               >
