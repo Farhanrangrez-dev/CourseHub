@@ -5,7 +5,8 @@ import harvard from "../../assets/IMG.png";
 const UniversityCards = () => {
   const universities = [
     {
-      name: "Harvard University",
+      id: "GyorUniversity",
+      name: "GyorUniversity",
       logo: harvard,
       location: "Cambridge, Massachusetts, USA",
       programs: [
@@ -23,7 +24,8 @@ const UniversityCards = () => {
       contact: { phone: "+1 (617) 495-1000", email: "admissions@harvard.edu" },
     },
     {
-      name: "MIT",
+      id: "BmuUniversity",
+      name: "BmuUniversity",
       logo: harvard,
       location: "Cambridge, Massachusetts, USA",
       programs: ["Engineering", "Computer Science", "Physics", "Mathematics"],
@@ -36,7 +38,8 @@ const UniversityCards = () => {
       contact: { phone: "+1 (617) 253-1000", email: "admissions@mit.edu" },
     },
     {
-      name: "Stanford University",
+      id: "DebrecenUniversity",
+      name: "DebrecenUniversity",
       logo: harvard,
       location: "Stanford, California, USA",
       programs: ["Computer Science", "Business", "Engineering", "Medicine"],
@@ -49,8 +52,9 @@ const UniversityCards = () => {
       contact: { phone: "+1 (650) 723-2300", email: "admissions@stanford.edu" },
     },
     {
-      name: "Oxford University",
-      logo:harvard,
+      id: "WekerleUniversity",
+      name: "WekerleUniversity",
+      logo: harvard,
       location: "Oxford, United Kingdom",
       programs: ["Philosophy", "Economics", "Literature", "Medicine"],
       highlights: [
@@ -62,8 +66,9 @@ const UniversityCards = () => {
       contact: { phone: "+44 (1865) 270000", email: "admissions@ox.ac.uk" },
     },
     {
-      name: "Cambridge University",
-      logo:harvard,
+      id: "HungryUniversity",
+      name: "HungryUniversity",
+      logo: harvard,
       location: "Cambridge, United Kingdom",
       programs: ["Mathematics", "Physics", "Engineering", "Natural Sciences"],
       highlights: [
@@ -73,24 +78,6 @@ const UniversityCards = () => {
         "92% Student Satisfaction",
       ],
       contact: { phone: "+44 (1223) 337733", email: "admissions@cam.ac.uk" },
-    },
-    {
-      name: "ETH Zurich",
-      logo:harvard,
-      location: "Zurich, Switzerland",
-      programs: [
-        "Engineering",
-        "Architecture",
-        "Computer Science",
-        "Natural Sciences",
-      ],
-      highlights: [
-        "Founded in 1855",
-        "#6 World University Ranking",
-        "23,000+ Students",
-        "91% International Recognition",
-      ],
-      contact: { phone: "+41 44 632 11 11", email: "admissions@ethz.ch" },
     },
   ];
 

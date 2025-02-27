@@ -1,0 +1,291 @@
+.application-container {
+  padding: 30px 0;
+  max-width: 1200px;
+}
+
+.main-title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 30px;
+}
+
+/* Progress Steps Styling */
+.progress-steps-container {
+  margin-bottom: 40px;
+}
+
+.progress-steps {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.step-column {
+  position: relative;
+}
+
+.step-circle {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 15px;
+  background-color: #f8f9fa;
+  color: #6c757d;
+  border: 2px solid #dee2e6;
+}
+
+.step-circle.completed {
+  background-color: #198754;
+  color: white;
+  border-color: #198754;
+}
+
+.step-circle.in-progress {
+  background-color: #ffc107;
+  color: #212529;
+  border-color: #ffc107;
+}
+
+.step-circle.pending {
+  background-color: #f8f9fa;
+  color: #6c757d;
+  border-color: #dee2e6;
+}
+
+.step-label {
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.step-status {
+  font-size: 0.9rem;
+}
+
+.completed-text {
+  color: #198754;
+  font-weight: 500;
+}
+
+.in-progress-text {
+  color: #ffc107;
+  font-weight: 500;
+}
+
+.pending-text {
+  color: #6c757d;
+}
+
+.progress-bar-container {
+  height: 8px;
+  margin-top: 30px;
+}
+
+/* Document Checklist Styling */
+.document-checklist .card-header,
+.important-dates .card-header {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #dee2e6;
+  padding: 15px 20px;
+}
+
+.document-checklist h4,
+.important-dates h4,
+.help-section h4 {
+  margin-bottom: 0;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.document-item {
+  padding: 20px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.document-item:last-child {
+  border-bottom: none;
+}
+
+.document-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.document-header h5 {
+  margin-bottom: 0;
+  font-weight: 600;
+}
+
+.uploaded-badge {
+  font-weight: 500;
+  padding: 6px 10px;
+}
+
+.pending-badge {
+  font-weight: 500;
+  padding: 6px 10px;
+  background-color: #ffc107;
+  color: #212529;
+}
+
+.document-details {
+  display: flex;
+  align-items: flex-start;
+}
+
+.document-preview {
+  width: 80px;
+  height: 80px;
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 20px;
+  overflow: hidden;
+}
+
+.preview-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.file-icon {
+  color: #6c757d;
+}
+
+.document-info {
+  flex: 1;
+}
+
+.document-info p {
+  margin-bottom: 10px;
+  color: #6c757d;
+  font-size: 0.9rem;
+}
+
+/* Important Dates Styling */
+.date-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.date-item:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.date-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 15px;
+  flex-shrink: 0;
+}
+
+.date-icon.embassy {
+  background-color: #e9ecef;
+  color: #212529;
+}
+
+.date-icon.documents {
+  background-color: #fff3cd;
+  color: #664d03;
+}
+
+.date-icon.orientation {
+  background-color: #cfe2ff;
+  color: #084298;
+}
+
+.date-icon.term {
+  background-color: #d1e7dd;
+  color: #0f5132;
+}
+
+.date-info {
+  flex: 1;
+}
+
+.date-info h5 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.date-info p {
+  margin-bottom: 0;
+  color: #6c757d;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+}
+
+/* Help Section Styling */
+.help-section .card-body {
+  padding: 20px;
+}
+
+.support-btn,
+.guidelines-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+
+/* Footer Styling */
+footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+  font-size: 0.9rem;
+}
+
+.footer-links a {
+  color: #6c757d;
+  text-decoration: none;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .step-column:not(:last-child)::after {
+    display: none;
+  }
+
+  .document-details {
+    flex-direction: column;
+  }
+
+  .document-preview {
+    margin-right: 0;
+    margin-bottom: 15px;
+  }
+
+  footer {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .footer-links {
+    margin-top: 10px;
+  }
+}

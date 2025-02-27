@@ -137,11 +137,11 @@ function App() {
       
     {/* this is VB routes for all the university  */}
     
-      <Route path="/HungryUniversity" element={<HungryUniversity/>}></Route>
-      <Route path="/BmuUniversity" element={<BmuUniversity/>}></Route>
-      <Route path="/DebrecenUniversity" element={<DebrecenUniversity />}></Route>
-      <Route path="/WekerleUniversity" element={< WekerleUniversity/>}></Route>
-      <Route path="/GyorUniversity" element={<GyorUniversity />}></Route>
+      <Route path="/university/HungryUniversity" element={<HungryUniversity/>}></Route>
+      <Route path="/university/BmuUniversity" element={<BmuUniversity/>}></Route>
+      <Route path="/university/DebrecenUniversity" element={<DebrecenUniversity />}></Route>
+      <Route path="/university/WekerleUniversity" element={< WekerleUniversity/>}></Route>
+      <Route path="/university/GyorUniversity" element={<GyorUniversity />}></Route>
 
 
 

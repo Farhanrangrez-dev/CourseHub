@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSpring, animated } from "react-spring";
+import GyorUniversity from "../universityPagesform/GyorUniversity";
+import { useNavigate } from "react-router-dom";
 
 const StudentUniversity = ({ university }) => {
+  const navigate = useNavigate();
   const animation = useSpring({
     opacity: 1,
     transform: "translateY(0)",
@@ -61,7 +64,12 @@ const StudentUniversity = ({ university }) => {
             </div>
           </div>
 
-          <button className="btn btn-primary w-100">Apply Now</button>
+          <button
+            className="btn btn-primary w-100 mt-3"
+            onClick={() => navigate(`/university/${university.id}`)}
+          >
+            Apply Now
+          </button>
         </div>
       </div>
     </animated.div>
