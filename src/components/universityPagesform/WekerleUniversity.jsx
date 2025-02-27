@@ -3,8 +3,7 @@ import React from 'react'
 const WekerleUniversity = () => {
   return (
     <div>
-        <h1>Wekerle University</h1>
-      
+      <h1>wekerle</h1>
     </div>
   )
 }

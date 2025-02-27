@@ -5,7 +5,7 @@ import harvard from "../../assets/IMG.png";
 const UniversityCards = () => {
   const universities = [
     {
-      name: "Harvard University",
+      name: "WekerleUniversity",
       logo: harvard,
       location: "Cambridge, Massachusetts, USA",
       programs: [
@@ -23,7 +23,7 @@ const UniversityCards = () => {
       contact: { phone: "+1 (617) 495-1000", email: "admissions@harvard.edu" },
     },
     {
-      name: "MIT",
+      name: "GyorUniversity",
       logo: harvard,
       location: "Cambridge, Massachusetts, USA",
       programs: ["Engineering", "Computer Science", "Physics", "Mathematics"],

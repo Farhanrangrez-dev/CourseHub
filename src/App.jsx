@@ -50,10 +50,11 @@ import { LeadProvider } from "./context/LeadContext";
 import LeadCouncelor from "./components/Lead & Inquiry Management/LeadCouncelor";
 import UniversityCards from "./components/PaymentInvoiceManagement/UniversityCards";
 import HungryUniversity from "./components/universityPagesform/HungryUniversity";
-import WekerleUniversity from "./components/universityPagesform/WekerleUniversity";
+
 import BmuUniversity from "./components/universityPagesform/BmuUniversity";
 import DebrecenUniversity from "./components/universityPagesform/DebrecenUniversity";
 import GyorUniversity from "./components/universityPagesform/GyorUniversity";
+import WekerleUniversity from "./components/universityPagesform/WekerleUniversity";
 
 
 function App() {
@@ -133,14 +134,15 @@ function App() {
 
 
 
-            <Routes>
+        <Routes>
       
     {/* this is VB routes for all the university  */}
     
       <Route path="/HungryUniversity" element={<HungryUniversity/>}></Route>
       <Route path="/BmuUniversity" element={<BmuUniversity/>}></Route>
       <Route path="/DebrecenUniversity" element={<DebrecenUniversity />}></Route>
-      <Route path="/WekerleUniversity" element={< WekerleUniversity/>}></Route>
+      <Route path="/WekerleUniversity" element={<WekerleUniversity />}></Route>
+      
       <Route path="/GyorUniversity" element={<GyorUniversity />}></Route>
 
 

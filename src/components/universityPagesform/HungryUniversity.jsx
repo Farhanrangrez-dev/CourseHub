@@ -1,7 +1,7 @@
 import React from 'react'
 
 const HungryUniversity = () => {
-    console.log("Hungry University");
+
   return (
     <div>
         
