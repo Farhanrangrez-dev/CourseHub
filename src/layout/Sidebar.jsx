@@ -837,13 +837,13 @@ const Sidebar = ({ collapsed, menuItemClick, login, toggleSidebar }) => {
           {login == "student" ? (
             <li
               className={`menu-item ${
-                isActive("/StudentUniversity") ? "active" : ""
+                isActive("/UniversityCards") ? "active" : ""
               }`}
             >
               <div
                 className="menu-link menu-i"
                 onClick={() => {
-                  navigate("/StudentUniversity");
+                  navigate("/UniversityCards");
                   // menuItemClick();
                 }}
               >
