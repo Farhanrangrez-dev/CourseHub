@@ -54,7 +54,11 @@ const Login = ({
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
-            <button type="submit" className="btn btn-primary w-100">
+            <button
+              onClick={handleStudent}
+              type="submit"
+              className="btn btn-primary w-100"
+            >
               Login
             </button>
           </form>

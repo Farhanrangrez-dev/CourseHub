@@ -238,8 +238,12 @@
   padding: 20px;
 }
 
+<<<<<<< HEAD
 .support-btn,
 .guidelines-btn {
+=======
+.support-btn, .guidelines-btn {
+>>>>>>> 8873bcde0ce5540d755a4e7f70e2bd6217f5f9f6
   display: flex;
   align-items: center;
   justify-content: center;
@@ -270,21 +274,37 @@ footer {
   .step-column:not(:last-child)::after {
     display: none;
   }
+<<<<<<< HEAD
 
   .document-details {
     flex-direction: column;
   }
 
+=======
+  
+  .document-details {
+    flex-direction: column;
+  }
+  
+>>>>>>> 8873bcde0ce5540d755a4e7f70e2bd6217f5f9f6
   .document-preview {
     margin-right: 0;
     margin-bottom: 15px;
   }
+<<<<<<< HEAD
 
+=======
+  
+>>>>>>> 8873bcde0ce5540d755a4e7f70e2bd6217f5f9f6
   footer {
     flex-direction: column;
     text-align: center;
   }
+<<<<<<< HEAD
 
+=======
+  
+>>>>>>> 8873bcde0ce5540d755a4e7f70e2bd6217f5f9f6
   .footer-links {
     margin-top: 10px;
   }

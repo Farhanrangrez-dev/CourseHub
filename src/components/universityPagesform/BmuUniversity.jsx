@@ -7,6 +7,7 @@ const BmuUniversity = () => {
   return (
     <Container className="application-container">
       <h2 className="main-title">Application Progress</h2>
+      
       {/* Progress Steps */}
       <div className="progress-steps-container">
         <Row className="progress-steps">
