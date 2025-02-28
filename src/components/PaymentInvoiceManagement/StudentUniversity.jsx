@@ -1,16 +1,23 @@
 import React, { useState } from "react";
 import { useSpring, animated } from "react-spring";
-import GyorUniversity from "../universityPagesform/GyorUniversity";
 import { useNavigate } from "react-router-dom";
 
-const StudentUniversity = ({ university }) => {
-  const navigate = useNavigate();
+
+const Studentuniversities = ({ university }) => {
   const animation = useSpring({
     opacity: 1,
     transform: "translateY(0)",
     from: { opacity: 0, transform: "translateY(20px)" },
     config: { tension: 200, friction: 20 },
   });
+   
+  const Navigate = useNavigate();
+  function handleApplyBtn() {
+    Navigate("/AllUniversityStatus");
+    
+    
+    alert(`You have applied to ${university.name}`);
+  }
 
   return (
     <animated.div className="col-md-4 mb-4" style={animation}>
@@ -64,16 +71,20 @@ const StudentUniversity = ({ university }) => {
             </div>
           </div>
 
+<<<<<<< HEAD
           <button
             className="btn btn-primary w-100 mt-3"
             onClick={() => navigate(`/university/${university.id}`)}
           >
             Apply Now
           </button>
+=======
+          <button onClick={handleApplyBtn} className="btn btn-primary w-100">Apply Now</button>
+>>>>>>> 32f3b7f0f75e690c916cf852a4719a338c09843c
         </div>
       </div>
     </animated.div>
   );
 };
 
-export default StudentUniversity;
+export default Studentuniversities;
