@@ -90,14 +90,8 @@ const UniversityCards = () => {
       }
     },
     {
-<<<<<<< HEAD
-      id: "HungryUniversity",
-      name: "HungryUniversity",
-      logo: harvard,
-=======
       name: "Cambridge University",
       logo:   harvard,
->>>>>>> 32f3b7f0f75e690c916cf852a4719a338c09843c
       location: "Cambridge, United Kingdom",
       programs: [
         "Mathematics",
@@ -116,8 +110,6 @@ const UniversityCards = () => {
         email: "admissions@cam.ac.uk"
       }
     },
-<<<<<<< HEAD
-=======
     {
       name: "ETH Zurich",
       logo: harvard,
@@ -139,7 +131,6 @@ const UniversityCards = () => {
         email: "admissions@ethz.ch"
       }
     }
->>>>>>> 32f3b7f0f75e690c916cf852a4719a338c09843c
   ];
   
   

@@ -71,16 +71,7 @@ const Studentuniversities = ({ university }) => {
             </div>
           </div>
 
-<<<<<<< HEAD
-          <button
-            className="btn btn-primary w-100 mt-3"
-            onClick={() => navigate(`/university/${university.id}`)}
-          >
-            Apply Now
-          </button>
-=======
           <button onClick={handleApplyBtn} className="btn btn-primary w-100">Apply Now</button>
->>>>>>> 32f3b7f0f75e690c916cf852a4719a338c09843c
         </div>
       </div>
     </animated.div>
