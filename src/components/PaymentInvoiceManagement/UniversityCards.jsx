@@ -5,8 +5,7 @@ import harvard from "../../assets/IMG.png";
 const UniversityCards = () => {
   const universities = [
     {
-      id: "GyorUniversity",
-      name: "GyorUniversity",
+      name: "Wekerle University",
       logo: harvard,
       location: "Massachusetts, USA",
       programs: [
@@ -27,9 +26,8 @@ const UniversityCards = () => {
       }
     },
     {
-      id: "BmuUniversity",
-      name: "BmuUniversity",
-      logo: harvard,
+      name: "Gyor University",
+      logo:  harvard, // Add actual logo URL or import here
       location: "Cambridge, Massachusetts, USA",
       programs: [
         "Engineering",
@@ -71,9 +69,8 @@ const UniversityCards = () => {
       }
     },
     {
-      id: "WekerleUniversity",
-      name: "WekerleUniversity",
-      logo: harvard,
+      name: "Oxford University",
+      logo: harvard ,
       location: "Oxford, United Kingdom",
       programs: [
         "Philosophy",
