@@ -1,13 +1,23 @@
 import React from "react";
 import { useSpring, animated } from "react-spring";
+import { useNavigate } from "react-router-dom";
 
-const StudentUniversity = ({ university }) => {
+
+const Studentuniversities = ({ university }) => {
   const animation = useSpring({
     opacity: 1,
     transform: "translateY(0)",
     from: { opacity: 0, transform: "translateY(20px)" },
     config: { tension: 200, friction: 20 },
   });
+   
+  const Navigate = useNavigate();
+  function handleApplyBtn() {
+    Navigate("/AllUniversityStatus");
+    
+    
+    alert(`You have applied to ${university.name}`);
+  }
 
   return (
     <animated.div className="col-md-4 mb-4" style={animation}>
@@ -61,11 +71,11 @@ const StudentUniversity = ({ university }) => {
             </div>
           </div>
 
-          <button className="btn btn-primary w-100">Apply Now</button>
+          <button onClick={handleApplyBtn} className="btn btn-primary w-100">Apply Now</button>
         </div>
       </div>
     </animated.div>
   );
 };
 
-export default StudentUniversity;
+export default Studentuniversities;

@@ -8,9 +8,9 @@ import {
   FileEarmarkText, PersonBadge, Airplane, House, 
   QuestionCircle, Bell, Person
 } from 'react-bootstrap-icons';
-import './DebrecenUniversity.css';
+import './AllUniversityStatus.css';
 
-const DebrecenUniversity = () => {
+const AllUniversityStatus = () => {
   // State for file uploads
   const [files, setFiles] = useState({
     passport: null,
@@ -53,7 +53,7 @@ const DebrecenUniversity = () => {
           <div className="logo-icon">
             <Building />
           </div>
-          <h5>Hungary University Application </h5>
+          <h5>DebrecenUniversity University Application </h5>
         </div>
         <div className="nav-links">
           <a href="#" className="nav-link">Dashboard</a>
@@ -412,4 +412,4 @@ const DebrecenUniversity = () => {
   );
 };
 
-export default DebrecenUniversity;
+export default AllUniversityStatus;
