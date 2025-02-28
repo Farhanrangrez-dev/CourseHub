@@ -33,7 +33,7 @@ const Navbar = ({ toggleSidebar }) => {
           <div className="nav-content">
             <div className="nav-bran">
               <img
-                src="./public/img/logo.png"
+                src="/img/logo.png"
                 alt="Logo"
                 height={"90px"}
                 width={"140px"}

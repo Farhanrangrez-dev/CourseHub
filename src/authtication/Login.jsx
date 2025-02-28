@@ -26,9 +26,9 @@ const Login = ({
   };
 
   return (
-    <main className="justify-content-center align-items-center">
-      <div className="login-container border rounded shadow ">
-        <h1 className="fw-bold text-center ">Student RECRUITMENT</h1>
+    <main className="d-flex justify-content-center align-items-center vh-100">
+      <div className="login-container border rounded shadow p-4" style={{ width: "90%", maxWidth: "400px",marginBottom:"100px", marginRight:"280px" }}>
+        <h1 className="fw-bold text-center">Student RECRUITMENT</h1>
         <h4 className="text-center mb-4">
           {showSignUp ? "Sign Up" : "Welcome!"}
         </h4>
@@ -43,6 +43,7 @@ const Login = ({
                 placeholder="Email Address"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                required
               />
             </div>
             <div className="mb-3">
@@ -52,6 +53,7 @@ const Login = ({
                 placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                required
               />
             </div>
             <button type="submit" className="btn btn-primary w-100">
@@ -89,7 +91,7 @@ const Login = ({
               <input
                 type="password"
                 className="form-control"
-                placeholder="Comfirm  Password"
+                placeholder="Confirm Password"
                 required
               />
             </div>
@@ -102,7 +104,7 @@ const Login = ({
         {/* Role Selection */}
         <div className="mt-4 text-center">
           <h6>Select Role:</h6>
-          <div className="buttons d-flex justify-content-center gap-3">
+          <div className="buttons d-flex justify-content-center gap-3 flex-wrap">
             <button className="btn btn-outline-primary" onClick={handleAdmin}>
               <FaUserShield size={20} className="me-2" /> Admin
             </button>
