@@ -10,6 +10,15 @@ import {
 } from 'react-bootstrap-icons';
 import './AllUniversityStatus.css';
 
+import {
+  progressSteps,
+  universityFollowUps,
+  visaProcessSteps,
+  requiredDocuments,
+  payments,
+  upcomingAppointments
+} from './data/universityData';
+
 const AllUniversityStatus = () => {
   // State for file uploads
   const [files, setFiles] = useState({
@@ -84,7 +93,7 @@ const AllUniversityStatus = () => {
         </div>
       </div>
 
-      <div className="progress-steps">
+      {/* <div className="progress-steps">
         <div className="progress-step step-completed">
           <div className="step-icon icon-completed">
             <CheckCircleFill />
@@ -116,15 +125,27 @@ const AllUniversityStatus = () => {
           <div className="step-title">Embassy</div>
           <div className="step-status status-pending">Pending</div>
         </div>
+      </div> */}
+      <div className="progress-steps">
+  {progressSteps.map((step, index) => (
+    <div key={index} className={`progress-step step-${step.status.toLowerCase().replace(' ', '-')}`}>
+      <div className={`step-icon icon-${step.status.toLowerCase().replace(' ', '-')}`}>
+        {step.status === "Completed" ? <CheckCircleFill /> : <CircleFill />}
       </div>
+      <div className="step-title">{step.title}</div>
+      <div className={`step-status status-${step.status.toLowerCase().replace(' ', '-')}`}>{step.status}</div>
+    </div>
+  ))}
+</div>
 
-      {/* Main Content Grid */}
+
+      {/* Main Content Grid */} 
       <div className="grid-container">
         {/* University Enrollment & Follow-Ups */}
         <div className="card">
           <h3 className="card-title">University Enrollment & Follow-Ups</h3>
           
-          <div className="follow-up-item" style={{ marginBottom: '15px' }}>
+          {/* <div className="follow-up-item" style={{ marginBottom: '15px' }}>
             <div className="follow-up-icon">
               <CircleFill size={12} />
             </div>
@@ -132,7 +153,19 @@ const AllUniversityStatus = () => {
               <div className="follow-up-title">Enrollment Confirmation</div>
               <div className="follow-up-status">Pending</div>
             </div>
-          </div>
+          </div> */}
+          {universityFollowUps.map((item, index) => (
+  <div key={index} className="follow-up-item">
+    <div className="follow-up-icon">
+      <CircleFill size={12} />
+    </div>
+    <div className="follow-up-content">
+      <div className="follow-up-title">{item.title}</div>
+      <div className="follow-up-status">{item.status}</div>
+    </div>
+  </div>
+))}
+
           
           <div className="follow-up-grid">
             <div className="follow-up-item">
@@ -181,7 +214,7 @@ const AllUniversityStatus = () => {
         <div className="card">
           <h3 className="card-title">Visa Process</h3>
           
-          <div className="follow-up-item" style={{ marginBottom: '15px', backgroundColor: '#f0f9ff' }}>
+          {/* <div className="follow-up-item" style={{ marginBottom: '15px', backgroundColor: '#f0f9ff' }}>
             <div className="follow-up-icon" style={{ backgroundColor: '#dbeafe', color: '#2563eb' }}>
               <Calendar3 size={14} />
             </div>
@@ -189,8 +222,21 @@ const AllUniversityStatus = () => {
               <div className="follow-up-title">Visa Interview</div>
               <div className="follow-up-status status-scheduled">Scheduled for July 1, 2024</div>
             </div>
-          </div>
-          
+          </div> */}
+          {visaProcessSteps.map((step, index) => (
+  <div key={index} className="follow-up-item" style={step.type === 'scheduled' ? { backgroundColor: '#f0f9ff' } : {}}>
+    <div className="follow-up-icon" style={step.type === 'scheduled' ? { backgroundColor: '#dbeafe', color: '#2563eb' } : {}}>
+      {step.type === 'scheduled' ? <Calendar3 size={14} /> : <CircleFill size={12} />}
+    </div>
+    <div className="follow-up-content">
+      <div className="follow-up-title">{step.title}</div>
+      <div className="follow-up-status">{step.status}</div>
+    </div>
+  </div>
+))}
+
+
+
           <div className="follow-up-item" style={{ marginBottom: '15px' }}>
             <div className="follow-up-icon">
               <CircleFill size={12} />
@@ -249,30 +295,32 @@ const AllUniversityStatus = () => {
       <h2 className="section-title">Required Documents</h2>
       
       <div className="document-list">
-        <div className="document-item">
-          <div className="document-info">
-            <div className="document-icon">
-              <FileEarmarkText />
-            </div>
-            <div className="document-details">
-              <div className="document-title">Passport Copy</div>
-              <div className="document-subtitle">Original + Color Photocopy</div>
-            </div>
-          </div>
-          <Button 
-            className="upload-button"
-            onClick={() => document.getElementById('passport-upload').click()}
-          >
-            Upload
-          </Button>
-          <input
-            id="passport-upload"
-            type="file"
-            style={{ display: 'none' }}
-            onChange={(e) => handleFileUpload(e, 'passport')}
-          />
-        </div>
-        
+      {requiredDocuments.map((doc) => (
+  <div key={doc.key} className="document-item">
+    <div className="document-info">
+      <div className="document-icon">
+        <FileEarmarkText />
+      </div>
+      <div className="document-details">
+        <div className="document-title">{doc.name}</div>
+        <div className="document-subtitle">{doc.description}</div>
+      </div>
+    </div>
+    <Button 
+      className="upload-button"
+      onClick={() => document.getElementById(`${doc.key}-upload`).click()}
+    >
+      Upload
+    </Button>
+    <input
+      id={`${doc.key}-upload`}
+      type="file"
+      style={{ display: 'none' }}
+      onChange={(e) => handleFileUpload(e, doc.key)}
+    />
+  </div>
+))}
+
         <div className="document-item">
           <div className="document-info">
             <div className="document-icon">
@@ -325,7 +373,7 @@ const AllUniversityStatus = () => {
       {/* Upcoming Appointments */}
       <h2 className="section-title">Upcoming Appointments</h2>
       
-      <div className="appointment-card">
+      {/* <div className="appointment-card">
         <div className="appointment-icon">
           <Calendar3 />
         </div>
@@ -333,10 +381,24 @@ const AllUniversityStatus = () => {
           <div className="appointment-title">University Interview</div>
           <div className="appointment-date">June 15, 2024 · 10:00 AM</div>
         </div>
-      </div>
+      </div> */}
+      {upcomingAppointments.map((appointment, index) => (
+  <div key={index} className="appointment-card">
+    <div className="appointment-icon">
+      <Calendar3 />
+    </div>
+    <div className="appointment-details">
+      <div className="appointment-title">{appointment.title}</div>
+      <div className="appointment-date">{appointment.date}</div>
+    </div>
+  </div>
+))}
+
+
+
 
       {/* Payment Status and Help & Support */}
-      <div className="grid-container">
+      {/* <div className="grid-container">
         <div className="card">
           <h3 className="card-title">Payment Status</h3>
           
@@ -383,7 +445,17 @@ const AllUniversityStatus = () => {
             </a>
           </div>
         </div>
-      </div>
+      </div> */}
+      {payments.map((payment, index) => (
+  <div key={index} className="payment-status">
+    <div className="payment-info">
+      <div className="payment-title">{payment.name}</div>
+      <div className="payment-amount">{payment.amount}</div>
+    </div>
+    <div className={`status-badge badge-${payment.status.toLowerCase()}`}>{payment.status}</div>
+  </div>
+))}
+
 
       {/* Footer */}
       <div className="footer">
