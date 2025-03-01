@@ -19,15 +19,87 @@ const Login = ({
     setShowSignUp(!showSignUp);
   };
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    console.log("Login with:", email, password);
-    navigate("/dashboard"); // Redirect after login
+  
+  const handleRoleSelect = (role) => {
+    let userEmail = "";
+    let userPassword = "";
+
+    if (role === "admin") {
+      userEmail = "admin@example.com";
+      userPassword = "admin123";
+    } else if (role === "student") {
+      userEmail = "student@example.com";
+      userPassword = "student123";
+    } else if (role === "counselor") {
+      userEmail = "counselor@example.com";
+      userPassword = "counselor123";
+    }
+
+    setEmail(userEmail);
+    setPassword(userPassword);
+
+    localStorage.setItem("login", role);
+    setLogin(role);
+
+    console.log("Login state updated:", role);
+    console.log("LocalStorage updated:", localStorage.getItem("login"));
+
+    // Delay navigation to ensure state updates
+    setTimeout(() => {
+      navigate(
+        role === "admin"
+          ? "/dashboard"
+          : role === "student"
+          ? "/studentProfile"
+          : "/councelor"
+      );
+    }, 300);
   };
 
+  const handleLogin = (e) => {
+    e.preventDefault(); // Prevent form submission
+
+    if (!email || !password) {
+      alert("Please enter email and password.");
+      return;
+    }
+
+    let role = "";
+    if (email === "admin@example.com" && password === "admin123") {
+      role = "admin";
+    } else if (email === "student@example.com" && password === "student123") {
+      role = "student";
+    } else if (
+      email === "counselor@example.com" &&
+      password === "counselor123"
+    ) {
+      role = "counselor";
+    } else {
+      alert("Invalid credentials!");
+      return;
+    }
+
+    setLogin(role);
+    localStorage.setItem("login", role);
+
+    console.log("Login state updated:", role);
+    console.log("LocalStorage updated:", localStorage.getItem("login"));
+
+    setTimeout(() => {
+      navigate(
+        role === "admin"
+          ? "/dashboard"
+          : role === "student"
+          ? "/studentProfile"
+          : "/counselor"
+      );
+    }, 300);
+  };
+
+
   return (
-    <main className="d-flex justify-content-center align-items-center vh-100">
-      <div className="login-container border rounded shadow p-4" style={{ width: "90%", maxWidth: "400px",marginBottom:"100px", marginRight:"280px" }}>
+    <main className="login-main">
+      <div className="login-container">
         <h1 className="fw-bold text-center">Student RECRUITMENT</h1>
         <h4 className="text-center mb-4">
           {showSignUp ? "Sign Up" : "Welcome!"}
@@ -43,7 +115,6 @@ const Login = ({
                 placeholder="Email Address"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                required
               />
             </div>
             <div className="mb-3">
@@ -53,7 +124,6 @@ const Login = ({
                 placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                required
               />
             </div>
             <button type="submit" className="btn btn-primary w-100">
@@ -76,7 +146,6 @@ const Login = ({
                 type="email"
                 className="form-control"
                 placeholder="Email Address"
-                required
               />
             </div>
             <div className="mb-3">
@@ -84,7 +153,6 @@ const Login = ({
                 type="password"
                 className="form-control"
                 placeholder="Create Password"
-                required
               />
             </div>
             <div className="mb-3">

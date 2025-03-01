@@ -30,45 +30,29 @@ li {
 }
 
 /* login */
-main {
-  position: fixed;
-  top: 61px;
-  left: 535px;
-  width: 100vh;
-  /* height: 100vh; */
-}
-
-@media (min-width: 320px) and (max-width: 355px) {
-  main {
-    top: -30px;
-    left: 20px;
-    width: 60vh;
-    /* height: 100vh; */
-    position: relative;
-  }
-}
-/* Remove fixed positioning and hardcoded values */
-main {
+/* Base Styles */
+.login-main {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh; /* Ensure it takes the full height of the viewport */
-  padding: 20px; /* Add some padding for smaller screens */
+  min-height: 100vh; /* Full viewport height */
+  padding: 20px; /* Add padding for smaller screens */
+  background-color: #f8f9fa; /* Light background */
 }
 
 .login-container {
-  background: transparent;
+  background: white;
   border-radius: 8px;
   padding: 30px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   text-align: center;
-  max-width: 500px;
+  max-width: 400px;
   width: 100%;
 }
 
-/* Responsive adjustments */
+/* Responsive Adjustments */
 @media (max-width: 768px) {
-  main {
+  .login-main {
     padding: 10px; /* Reduce padding for smaller screens */
   }
 
@@ -78,23 +62,18 @@ main {
 
   .buttons {
     flex-direction: column; /* Stack buttons vertically on small screens */
-    gap: 10px; /* Add some spacing between buttons */
+    gap: 10px; /* Add spacing between buttons */
   }
 }
 
-/* Specific adjustments for 360px to 374px */
-@media (min-width: 360px) and (max-width: 374px) {
-  main {
-    padding: 10px; /* Reduce padding for smaller screens */
-    position: relative; /* Ensure it stays relative */
-    top: 0; /* Reset top position */
-    left: 0; /* Reset left position */
-    width: 100%; /* Take full width */
+/* Specific adjustments for very small screens (320px to 374px) */
+@media (min-width: 320px) and (max-width: 374px) {
+  .login-main {
+    padding: 10px;
   }
 
   .login-container {
-    width: 100%; /* Ensure the container takes full width */
-    padding: 20px; /* Reduce padding for smaller screens */
+    padding: 15px;
   }
 
   .buttons {
@@ -103,26 +82,29 @@ main {
     gap: 10px; /* Add spacing between buttons */
   }
 }
+
+/* Adjustments for medium screens (375px to 768px) */
 @media (min-width: 375px) and (max-width: 768px) {
-  main {
-    top: 15px;
-    left: 5px;
-    width: auto;
-    height: 25vh;
-    position: fixed;
+  .login-main {
+    padding: 15px;
   }
-}
-@media (min-width: 768px) and (max-width: 884px) {
-  main {
-    top: 220px !important;
-    left: 150px !important;
-    width: 100%;
-    height: auto;
-    position: fixed;
+
+  .login-container {
+    padding: 20px;
   }
 }
 
-.login-container {
+/* Adjustments for larger screens (768px and above) */
+@media (min-width: 768px) {
+  .login-main {
+    padding: 20px;
+  }
+
+  .login-container {
+    padding: 30px;
+  }
+}
+/* .login-container {
   background: transparent;
   border-radius: 8px;
   padding: 30px;
@@ -130,11 +112,11 @@ main {
   text-align: center;
   max-width: 500px;
   width: 100%;
-}
+} */
 .login-container h1 {
   font-weight: 600;
 
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 .req {
   color: red;
