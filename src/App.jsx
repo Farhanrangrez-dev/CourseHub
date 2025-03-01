@@ -4,7 +4,7 @@ import "./App.css";
 import Navbar from "./layout/Navbar";
 import Sidebar from "./layout/Sidebar";
 import Home from "./authtication/Home";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import Login from "./authtication/Login";
 import Dashboard from "./components/dashbord/Dashbord";
@@ -42,7 +42,7 @@ import CourseUniversityDatabase from "./components/CourseUniversityDatabase/Cour
 import StudentProfile from "./components/Profile/Dashboard";
 import StudentUniversity from "./components/PaymentInvoiceManagement/StudentUniversity";
 import Councelor from "./components/dashbord/Councelor";
-// import LandingPage from "./components/landingpage/landingPage";
+
 import CounselorTask from "./components/Lead & Inquiry Management/CouncelorTask";
 import StatusTracking from "./components/Lead & Inquiry Management/StatusTracking";
 import AdminStatus from "./components/Lead & Inquiry Management/AdminStatus";
@@ -51,27 +51,17 @@ import LeadCouncelor from "./components/Lead & Inquiry Management/LeadCouncelor"
 import UniversityCards from "./components/PaymentInvoiceManagement/UniversityCards";
 import AllUniversityStatus from "./components/universityPagesform/AllUniversityStatus";
 
-
-
-
-
-
 function App() {
   //show details to admin
-  const [login, setLogin] = useState(null);
+  const [login, setLogin] = useState(localStorage.getItem("login") || "");
 
-  const handleAdmin = () => {
-    setLogin("admin");
-  };
+  useEffect(() => {
+    console.log("Current login state:", login);
+    if (login) {
+      localStorage.setItem("login", login);
+    }
+  }, [login]);
 
-  const handleStudent = () => {
-    setLogin("student");
-  };
-
-  const handleCounselor = () => {
-    setLogin("counselor");
-  };
-  // counseler
   const [counselors, setCounselors] = useState([]);
 
   const [tasks, setTasks] = useState([
@@ -103,10 +93,6 @@ function App() {
     location.pathname === "/" || location.pathname === "/login";
   return (
     <>
-     
-
-    
-
       {/* navbar */}
       {!hideLayout && <Navbar toggleSidebar={toggleSidebar} />}
       {/* navbar end */}
@@ -117,6 +103,7 @@ function App() {
             collapsed={isSidebarCollapsed}
             menuItemClick={menusidebarcollaps}
             login={login}
+            // login={"admin"}
             toggleSidebar={toggleSidebar}
           />
         )}
@@ -129,22 +116,14 @@ function App() {
           style={hideLayout ? { marginTop: "0", paddingLeft: "0" } : {}}
         >
           <LeadProvider>
+            <Routes>
+              {/* this is VB routes for all the university  */}
 
+              <Route
+                path="/AllUniversityStatus"
+                element={<AllUniversityStatus />}
+              ></Route>
 
-
-
-        <Routes>
-      
-    {/* this is VB routes for all the university  */}
-    
-      
-      <Route path="/AllUniversityStatus" element={<AllUniversityStatus/>}></Route>
-     
-     
-
-
-
-       
               {/* login signup */}
               <Route
                 path="/login"
@@ -152,9 +131,9 @@ function App() {
                   <Login
                     login={login}
                     setLogin={setLogin}
-                    handleAdmin={handleAdmin}
-                    handleStudent={handleStudent}
-                    handleCounselor={handleCounselor}
+                    // handleAdmin={handleAdmin}
+                    // handleStudent={handleStudent}
+                    // handleCounselor={handleCounselor}
                   />
                 }
               />

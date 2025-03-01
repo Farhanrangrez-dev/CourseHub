@@ -1,14 +1,20 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import "./Sidebar.css";
 import { FaUsers, FaRegFileAlt } from "react-icons/fa"; // FontAwesome
 import { BsFillPersonLinesFill } from "react-icons/bs"; // Bootstrap
 
-const Sidebar = ({ collapsed, menuItemClick, login, toggleSidebar }) => {
-  console.log(login);
+const Sidebar = ({ login, collapsed, menuItemClick, toggleSidebar }) => {
   const [openSubmenu, setOpenSubmenu] = useState(null); // Tracks the open submenu
   const navigate = useNavigate();
   const location = useLocation();
+
+  useEffect(() => {
+    console.log("Updated Login State:", login);
+    if (!login) {
+      navigate("/login"); // Agar login nahi hai toh login page par bhejo
+    }
+  }, [login, navigate]);
 
   const toggleSubmenu = (menuName) => {
     setOpenSubmenu((prev) => (prev === menuName ? null : menuName));
@@ -29,7 +35,7 @@ const Sidebar = ({ collapsed, menuItemClick, login, toggleSidebar }) => {
       <div className="sidebar">
         <ul className="menu">
           {/* Dashboard Section */}
-          {login == "admin" ? (
+          {login === "admin" && (
             <li
               className={`menu-item ${isActive("/dashboard") ? "active" : ""}`}
             >
@@ -48,10 +54,8 @@ const Sidebar = ({ collapsed, menuItemClick, login, toggleSidebar }) => {
                 <span className="menu-text">Dashboard</span>
               </div>
             </li>
-          ) : (
-            ""
           )}
-          {login == "counselor" ? (
+          {login == "counselor" && (
             <li
               className={`menu-item ${isActive("/councelor") ? "active" : ""}`}
             >
@@ -70,10 +74,8 @@ const Sidebar = ({ collapsed, menuItemClick, login, toggleSidebar }) => {
                 <span className="menu-text">Dashboard</span>
               </div>
             </li>
-          ) : (
-            ""
           )}
-          {login == "student" ? (
+          {login == "student" && (
             <li
               className={`menu-item ${
                 isActive("/studentProfile") ? "active" : ""
@@ -94,8 +96,6 @@ const Sidebar = ({ collapsed, menuItemClick, login, toggleSidebar }) => {
                 <span className="menu-text">Dashboard</span>
               </div>
             </li>
-          ) : (
-            ""
           )}
           {/* Lead & Inquiry Management */}
           {login == "admin" ? (
@@ -614,60 +614,6 @@ const Sidebar = ({ collapsed, menuItemClick, login, toggleSidebar }) => {
             ""
           )}
 
-          {/* Communication & Follow-up Management */}
-          {/* {login == "admin" ? (
-            <li
-              className={`menu-item ${
-                isSubmenuActive(["/followup", "/reminder"]) ? "active" : ""
-              }`}
-            >
-              <div
-                className="menu-link menu-i"
-                onClick={() => toggleSubmenu("communication")}
-              >
-                <i
-                  onClick={() => toggleSidebar()}
-                  className="fa-solid fa-comments"
-                ></i>
-                <span className="menu-text text-nowrap">Communication</span>
-                <i
-                  className={`fa-solid fa-chevron-${
-                    openSubmenu === "communiction" ? "up" : "down"
-                  } submenu-arrow`}
-                ></i>
-              </div>
-
-              {openSubmenu === "communication" && (
-                <ul className={`submenu `}>
-                  <li
-                    className={`menu-item submenu-item ${
-                      isActive("/followup") ? "active" : ""
-                    }`}
-                    onClick={() => {
-                      navigate("/followup");
-                      menuItemClick();
-                    }}
-                  >
-                    Follow Up
-                  </li>
-                  <li
-                    className={`menu-item submenu-item ${
-                      isActive("/reminder") ? "active" : ""
-                    }`}
-                    onClick={() => {
-                      navigate("/reminder");
-                      menuItemClick();
-                    }}
-                  >
-                    Reminder
-                  </li>
-                </ul>
-              )}
-            </li>
-          ) : (
-            ""
-          )} */}
-
           {/* Task Management */}
           {login == "admin" ? (
             <li
@@ -880,37 +826,6 @@ const Sidebar = ({ collapsed, menuItemClick, login, toggleSidebar }) => {
           ) : (
             ""
           )}
-          {/* User Roles & Access Control */}
-          {/* <li
-            className={`menu-item ${
-              isActive("/UserRolesAccessControl") ? "active" : ""
-            }`}
-          >
-            <div
-              className="menu-link menu-i"
-              onClick={() => {
-                navigate("/UserRolesAccessControl");
-                menuItemClick();
-              }}
-            >
-              <i className="fa-solid fa-users-cog "></i>
-              <span className="menu-text"> User Roles & Access Control</span>
-            </div>
-          </li> */}
-          {/* Cloud & Mobile Accessibility */}
-          {/* <li
-            className={`menu-item ${
-              isActive("/") ? "active" : ""
-            }`}>
-            <div
-              className="menu-link menu-i"
-              onClick={() => {navigate("/dashboard");menuItemClick();}}>
-              <i className="fa-solid fa-file-contract"></i>
-              <span className="menu-text"> Cloud & Mobile Accessibility
-
-              </span>
-            </div>
-          </li> */}
         </ul>
       </div>
     </div>

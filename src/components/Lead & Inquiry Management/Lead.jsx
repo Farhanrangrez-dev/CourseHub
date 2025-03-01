@@ -210,30 +210,7 @@ const Lead = () => {
   return (
     <div className="lead-container">
       {/* Header */}
-      <div className="header">
-        <div className="header-left">
-          <span className="menu-icon">☰</span>
-          <h4>Leads</h4>
-        </div>
-        <div className="header-right">
-          <span className="icon">
-            <FaExpand />
-          </span>
-          <span className="icon">
-            <FaList />
-          </span>
-          <span className="icon">
-            <FaCommentAlt />
-          </span>
-          <span className="icon notification-icon">
-            <FaBell />
-            <span className="notification-badge">5</span>
-          </span>
-          <span className="date-time">Tue, 25 February 9:00 PM</span>
-          <span className="user-avatar">👤</span>
-        </div>
-      </div>
-
+  
       {/* Search and Actions */}
       <div className="search-actions">
         <div className="search-container">
@@ -246,7 +223,7 @@ const Lead = () => {
         </div>
         <div className="action-buttons">
           <button className="btn-outline">Summary</button>
-          <button className="btn-outline">Advanced Filters</button>
+          
           <button className="btn-outline">Export</button>
           <button className="btn-outline">Import</button>
           <button className="btn-primary" onClick={handleShowModal}>

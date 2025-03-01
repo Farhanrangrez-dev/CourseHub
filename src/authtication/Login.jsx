@@ -1,28 +1,87 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaUserShield, FaUserTie, FaUserGraduate } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
 
-const Login = ({
-  login,
-  setLogin,
-  handleAdmin,
-  handleStudent,
-  handleCounselor,
-}) => {
+const Login = ({ setLogin }) => {
   const [showSignUp, setShowSignUp] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const toggleForm = () => {
-    setShowSignUp(!showSignUp);
+  const handleRoleSelect = (role) => {
+    let userEmail = "";
+    let userPassword = "";
+
+    if (role === "admin") {
+      userEmail = "admin@example.com";
+      userPassword = "admin123";
+    } else if (role === "student") {
+      userEmail = "student@example.com";
+      userPassword = "student123";
+    } else if (role === "counselor") {
+      userEmail = "counselor@example.com";
+      userPassword = "counselor123";
+    }
+
+    setEmail(userEmail);
+    setPassword(userPassword);
+
+    localStorage.setItem("login", role);
+    setLogin(role);
+
+    console.log("Login state updated:", role);
+    console.log("LocalStorage updated:", localStorage.getItem("login"));
+
+    // Delay navigation to ensure state updates
+    setTimeout(() => {
+      navigate(
+        role === "admin"
+          ? "/dashboard"
+          : role === "student"
+          ? "/studentProfile"
+          : "/councelor"
+      );
+    }, 300);
   };
 
   const handleLogin = (e) => {
-    e.preventDefault();
-    console.log("Login with:", email, password);
-    navigate("/dashboard"); // Redirect after login
+    e.preventDefault(); // Prevent form submission
+
+    if (!email || !password) {
+      alert("Please enter email and password.");
+      return;
+    }
+
+    let role = "";
+    if (email === "admin@example.com" && password === "admin123") {
+      role = "admin";
+    } else if (email === "student@example.com" && password === "student123") {
+      role = "student";
+    } else if (
+      email === "counselor@example.com" &&
+      password === "counselor123"
+    ) {
+      role = "counselor";
+    } else {
+      alert("Invalid credentials!");
+      return;
+    }
+
+    setLogin(role);
+    localStorage.setItem("login", role);
+
+    console.log("Login state updated:", role);
+    console.log("LocalStorage updated:", localStorage.getItem("login"));
+
+    setTimeout(() => {
+      navigate(
+        role === "admin"
+          ? "/dashboard"
+          : role === "student"
+          ? "/studentProfile"
+          : "/counselor"
+      );
+    }, 300);
   };
 
   return (
@@ -34,7 +93,6 @@ const Login = ({
         </h4>
 
         {!showSignUp ? (
-          // Login Form
           <form onSubmit={handleLogin}>
             <div className="mb-3">
               <input
@@ -43,6 +101,7 @@ const Login = ({
                 placeholder="Email Address"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                required
               />
             </div>
             <div className="mb-3">
@@ -52,18 +111,14 @@ const Login = ({
                 placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                required
               />
             </div>
-            <button
-              onClick={handleStudent}
-              type="submit"
-              className="btn btn-primary w-100"
-            >
+            <button type="submit" className="btn btn-primary w-100">
               Login
             </button>
           </form>
         ) : (
-          // Signup Form
           <form>
             <div className="mb-3">
               <input
@@ -78,7 +133,6 @@ const Login = ({
                 type="email"
                 className="form-control"
                 placeholder="Email Address"
-                required
               />
             </div>
             <div className="mb-3">
@@ -86,15 +140,13 @@ const Login = ({
                 type="password"
                 className="form-control"
                 placeholder="Create Password"
-                required
               />
             </div>
             <div className="mb-3">
               <input
                 type="password"
                 className="form-control"
-                placeholder="Comfirm  Password"
-                required
+                placeholder="Confirm Password"
               />
             </div>
             <button type="submit" className="btn btn-success w-100">
@@ -103,32 +155,36 @@ const Login = ({
           </form>
         )}
 
-        {/* Role Selection */}
         <div className="mt-4 text-center">
           <h6>Select Role:</h6>
           <div className="buttons d-flex justify-content-center gap-3">
-            <button className="btn btn-outline-primary" onClick={handleAdmin}>
+            <button
+              className="btn btn-outline-primary"
+              onClick={() => handleRoleSelect("admin")}
+            >
               <FaUserShield size={20} className="me-2" /> Admin
             </button>
-            <button className="btn btn-outline-success" onClick={handleStudent}>
+            <button
+              className="btn btn-outline-success"
+              onClick={() => handleRoleSelect("student")}
+            >
               <FaUserGraduate size={20} className="me-2" /> Student
             </button>
             <button
               className="btn btn-outline-warning"
-              onClick={handleCounselor}
+              onClick={() => handleRoleSelect("counselor")}
             >
               <FaUserTie size={20} className="me-2" /> Counselor
             </button>
           </div>
         </div>
 
-        {/* Toggle between Login & Signup */}
         <div className="mt-4 text-center">
           <p>
             {showSignUp ? "Already have an account?" : "Don't have an account?"}{" "}
             <span
               className="text-primary cursor-pointer"
-              onClick={toggleForm}
+              onClick={() => setShowSignUp(!showSignUp)}
               style={{ cursor: "pointer" }}
             >
               {showSignUp ? "Login" : "Sign Up"}
