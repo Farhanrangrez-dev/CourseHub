@@ -70,97 +70,234 @@ const App = () => {
   return (
     <div className="bg-dark text-white">
       {/* Navbar */}
-      <Navbar expand="lg" className="navbar-dark bg-dark py-3">
-        <Container>
-          <Navbar.Brand href="#" className="fw-bold">
-            CourseHub
-          </Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="ms-auto">
-              <Link
-                to={"/login"}
-                className="text-white me-2 text-decoration-none"
-                style={{ color: "white" }}
-              >
-                Log in
-              </Link>
-              <Link
-                to={"/login"}
-                className="me-2 text-decoration-none"
-                style={{ color: "white" }}
-              >
-                Sign up
-              </Link>
-            </Nav>
-            <Button onClick={handleOpenInquiry}>Inquiry</Button>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
+   <Navbar expand="lg" className="navbar py-3 fixed-top backdrop-blur">
+  <Container>
+    <Navbar.Brand href="#" className="d-flex align-items-center">
+      <img 
+        src="/img/logo.png" 
+        alt="CourseHub" 
+        height="40" 
+        className="me-2"
+      />
+      <div className="brand-text">
+        <span className="text-gradient">Course</span>
+        <span className="fw-bold">Hub</span>
+      </div>
+    </Navbar.Brand>
+    
+    <Navbar.Toggle aria-controls="basic-navbar-nav" />
+    <Navbar.Collapse id="basic-navbar-nav">
+      <Nav className="mx-auto">
+        <Nav.Link href="#courses" className="nav-link-hover mx-2">Courses</Nav.Link>
+        <Nav.Link href="#about" className="nav-link-hover mx-2">About</Nav.Link>
+        <Nav.Link href="#teachers" className="nav-link-hover mx-2">Teachers</Nav.Link>
+        <Nav.Link href="#contact" className="nav-link-hover mx-2">Contact</Nav.Link>
+      </Nav>
+      
+      <div className="d-flex align-items-center gap-3">
+        <Link
+          to={"/login"}
+          className="nav-link-special"
+        >
+          Log in
+        </Link>
+        <Link
+          to={"/signup"}
+          className="btn btn-gradient px-4 py-2"
+        >
+          Sign up
+        </Link>
+        <Button 
+          variant="outline-light"
+          className="inquiry-btn"
+          onClick={handleOpenInquiry}
+        >
+          <i className="fas fa-question-circle me-2"></i>
+          Inquiry
+        </Button>
+      </div>
+    </Navbar.Collapse>
+  </Container>
+</Navbar>
 
-      <section
-        className="hero-section text-center"
-        style={{ backgroundImage: "url('/img/hero.png')" }}
-      >
-        <div className="hero-overlay d-flex flex-column align-items-center justify-content-center text-center">
-          <h1 className="fw-bold">Join CourseHub for Students</h1>
-          <p className="lead">Discover a world of knowledge with us!</p>
+<section className="hero-section text-center position-relative">
+  <div className="hero-video-bg"></div>
+  <div className="hero-overlay d-flex flex-column align-items-center justify-content-center">
+    <div className="hero-content" data-aos="fade-up">
+      <h1 className="hero-title mb-4">
+        <span className="gradient-text">Transform</span> Your Future with
+        <span className="gradient-text"> CourseHub</span>
+      </h1>
+      <p className="hero-subtitle mb-5">
+        Unlock your potential with world-class courses and expert instructors
+      </p>
+      <div className="hero-buttons d-flex gap-3 justify-content-center">
+        <Button variant="gradient" size="lg" className="pulse-button">
+          <i className="fas fa-play-circle me-2"></i>
+          Start Learning
+        </Button>
+        <Button variant="outline-light" size="lg" className="hover-fill">
+          <i className="fas fa-book me-2"></i>
+          Browse Courses
+        </Button>
+      </div>
+      <div className="hero-stats d-flex gap-5 justify-content-center mt-5">
+        <div className="stat-item">
+          <h3 className="gradient-text">10K+</h3>
+          <p>Active Students</p>
         </div>
-      </section>
+        <div className="stat-item">
+          <h3 className="gradient-text">500+</h3>
+          <p>Expert Teachers</p>
+        </div>
+        <div className="stat-item">
+          <h3 className="gradient-text">1000+</h3>
+          <p>Online Courses</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
       {/* Featured Courses */}
-      <Container className="py-5">
-        <h2 className="text-center fw-bold">Featured Courses</h2>
-        <Row className="mt-4">
-          {featuredCourses.map((course, index) => (
-            <Col key={index} md={4} className="mb-3">
-              <Card className="bg-secondary text-white p-2">
-                <Card.Img src={course.img} className="rounded" />
-                <Card.Body>
-                  <span className="badge bg-light text-dark">
-                    {course.title}
-                  </span>
-                </Card.Body>
-              </Card>
-            </Col>
-          ))}
-        </Row>
-      </Container>
-
+<Container className="featured-courses py-5">
+  <h2 className="text-center fw-bold mb-5">
+    <span className="gradient-text">Featured</span> Courses
+  </h2>
+  <Row className="g-4">
+    {featuredCourses.map((course, index) => (
+      <Col key={index} md={4} className="mb-4">
+        <Card className="course-card h-100">
+          <div className="card-image-wrapper">
+            <Card.Img src={course.img} className="course-image" />
+            <div className="card-overlay">
+              <Button variant="light" className="view-btn">
+                <i className="fas fa-play-circle me-2"></i>Preview Course
+              </Button>
+            </div>
+          </div>
+          <Card.Body className="position-relative">
+            <div className="course-badge">
+              <i className={`fas fa-${
+                course.title === "Mathematics" ? "square-root-alt" :
+                course.title === "Physics" ? "atom" :
+                course.title === "History" ? "landmark" :
+                course.title === "Literature" ? "book-reader" :
+                course.title === "Computer Science" ? "laptop-code" :
+                "language"
+              }`}></i>
+            </div>
+            <h5 className="course-title mb-3">{course.title}</h5>
+            <div className="course-info mb-3">
+              <span><i className="fas fa-user-graduate me-2"></i>2.5k Students</span>
+              <span><i className="fas fa-clock me-2"></i>6 Weeks</span>
+            </div>
+            <div className="course-rating mb-3">
+              <div className="stars">
+                {[...Array(5)].map((_, i) => (
+                  <i key={i} className="fas fa-star"></i>
+                ))}
+              </div>
+              <span className="rating-count">(1,250 ratings)</span>
+            </div>
+            <Button variant="gradient" className="enroll-btn w-100">
+              Enroll Now
+            </Button>
+          </Card.Body>
+        </Card>
+      </Col>
+    ))}
+  </Row>
+</Container>
       {/* Top-rated Courses */}
-      <Container className="py-5">
-        <h2 className="text-center fw-bold">Top-rated Courses</h2>
-        <Row className="mt-4">
-          {topCourses.map((course, index) => (
-            <Col key={index} md={3} className="mb-3">
-              <Card className="bg-dark text-white">
-                <Card.Img src={course.img} />
-                <Card.Body>
-                  <span className="badge bg-danger">{course.rating}</span>
-                  <Card.Title>{course.title}</Card.Title>
-                  <Card.Text>{course.category}</Card.Text>
-                  <p>
-                    <strong>From {course.price}/course</strong>
-                  </p>
-                </Card.Body>
-              </Card>
-            </Col>
-          ))}
-        </Row>
-      </Container>
+<Container className="py-5">
+  <h2 className="text-center fw-bold mb-5">
+    <span className="gradient-text">Top-rated</span> Courses
+  </h2>
+  <Row className="g-4">
+    {topCourses.map((course, index) => (
+      <Col key={index} md={4} className="mb-4"> {/* Changed from md={3} to md={4} */}
+        <Card className="top-course-card h-100">
+          <div className="card-image-wrapper">
+            <Card.Img src={course.img} className="course-image" />
+            <div className="price-tag">{course.price}</div>
+            <div className="rating-badge">
+              <i className="fas fa-star"></i> {course.rating}
+            </div>
+          </div>
+          <Card.Body>
+            <div className="category-badge">
+              <i className={`fas fa-${
+                course.category === "Physics" ? "atom" :
+                course.category === "Computer Science" ? "laptop-code" :
+                course.category === "Literature" ? "book" :
+                course.category === "History" ? "landmark" :
+                "language"
+              }`}></i>
+              {course.category}
+            </div>
+            <h5 className="course-title">{course.title}</h5>
+            <div className="course-features">
+              <span><i className="fas fa-users me-2"></i>156 Students</span>
+              <span><i className="fas fa-video me-2"></i>18 Lessons</span>
+            </div>
+            <div className="course-progress">
+              <div className="progress-bar" style={{width: '75%'}}></div>
+              <span>75% Success Rate</span>
+            </div>
+            <Button className="enroll-now-btn w-100">
+              <i className="fas fa-graduation-cap me-2"></i>
+              Enroll Now
+            </Button>
+          </Card.Body>
+        </Card>
+      </Col>
+    ))}
+  </Row>
+</Container>
+
 
       {/* Exclusive Offer */}
-      <section className="offer-section text-center py-4 bg-secondary">
-        <Container>
-          <h5>🎁 Exclusive Offer!</h5>
-          <p>
-            Want to updated on new courses and promotions? Sign up for our
-            Newsletter
-          </p>
-          <Button variant="light">Subscribe</Button>
-        </Container>
-      </section>
-
+ <section className="offer-section text-center position-relative">
+  <div className="offer-overlay">
+    <Container>
+      <div className="offer-content">
+        <div className="offer-icon mb-4">
+          <i className="fas fa-gift"></i>
+        </div>
+        <h3 className="offer-title mb-4">
+          <span className="gradient-text">Special Offer</span> for New Students
+        </h3>
+        <p className="offer-description mb-4">
+          Join our community today and get 20% off on all courses!
+          Subscribe to our newsletter for exclusive updates and promotions.
+        </p>
+        <Form className="newsletter-form">
+          <Row className="justify-content-center">
+            <Col md={6}>
+              <div className="input-group">
+                <Form.Control
+                  type="email"
+                  placeholder="Enter your email address"
+                  className="newsletter-input"
+                />
+                <Button className="subscribe-btn">
+                  <i className="fas fa-paper-plane me-2"></i>
+                  Subscribe Now
+                </Button>
+              </div>
+            </Col>
+          </Row>
+        </Form>
+        <div className="offer-features mt-4">
+          <span><i className="fas fa-check-circle me-2"></i>Weekly Updates</span>
+          <span><i className="fas fa-check-circle me-2"></i>Special Discounts</span>
+          <span><i className="fas fa-check-circle me-2"></i>New Course Alerts</span>
+        </div>
+      </div>
+    </Container>
+  </div>
+</section>
       {/* Footer */}
       <footer className="bg-dark text-white py-4">
         <Container>
