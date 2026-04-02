@@ -37,10 +37,10 @@ import AddCounselor from "./components/Task Calendar Management/AddCounselor";
 import TaskAssignment from "./components/Task Calendar Management/TaskAssignment";
 import TaskReminder from "./components/Task Calendar Management/TaskReminder";
 import RolesManagement from "./components/CourseUniversityDatabase/RolesManagement";
-import PermissionsTable from "./components/CourseUniversityDatabase/permissionsData";
+// import PermissionsTable from "./components/CourseUniversityDatabase/permissionsData";
 import CourseUniversityDatabase from "./components/CourseUniversityDatabase/CourseUniversityDatabase";
 import StudentProfile from "./components/Profile/Dashboard";
-import StudentUniversity from "./components/PaymentInvoiceManagement/StudentUniversity";
+// import StudentUniversity from "./components/PaymentInvoiceManagement/StudentUniversity";
 import Councelor from "./components/dashbord/Councelor";
 
 import CounselorTask from "./components/Lead & Inquiry Management/CouncelorTask";
@@ -281,7 +281,7 @@ function App() {
               {/* roles permissions */}
               <Route path="/RolesManagement" element={<RolesManagement />} />
 
-              <Route path="/permissions/:role" element={<PermissionsTable />} />
+              {/* <Route path="/permissions/:role" element={<PermissionsTable />} /> */}
 
               {/* reports & analytics */}
               <Route
